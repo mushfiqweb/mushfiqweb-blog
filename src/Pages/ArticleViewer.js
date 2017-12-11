@@ -5,7 +5,6 @@ import { fetchArticles } from '../Actions/article.Actions';
 import ArticleCard from '../Components/ArticleCard.Component'
 
 import ReactGA from 'react-ga';
-import { Scrollbars } from 'react-custom-scrollbars';
 
 class ArticleViewer extends Component {
 

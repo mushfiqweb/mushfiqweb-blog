@@ -10,8 +10,6 @@ import ReactGA from 'react-ga';
 import DisqusThread from '../Components/disqusThread';
 import SocialShareCompo from "../Components/socialShareCompo";
 
-import { Scrollbars } from 'react-custom-scrollbars';
-
 const StyleSheet = {
     articleContent: {
         width: '69vmax',
@@ -24,10 +22,6 @@ const StyleSheet = {
         fontWeight: '600'
     }
 }
-
-
-
-
 
 
 class ArticleDetails extends Component {
@@ -55,8 +49,8 @@ class ArticleDetails extends Component {
 
     render() {
 
-        const htmlToRender = this.props.article ? this.props.article.articleBody : '<h1>fetching the article...</h1>';
 
+        const htmlToRender = this.props.article ? this.props.article.articleBody : '<h1>fetching the article...</h1>';
         const metaTitle = this.props.article ? this.props.article.metaTitle + " | mushfiqWEB - mushfiqur's blog" : "mushfiqWEB - mushfiqur's blog";
         const metaDescription = this.props.article ? this.props.article.metaDesc : "mushfiqWEB - mushfiqur's blog";
         const metaUrl = this.props.article ? this.props.article.metaUrl : "https://mushfiqweb.com";
@@ -120,6 +114,43 @@ class ArticleDetails extends Component {
             return (<Label key={tag} color={colorProfile}>{tag}</Label>);
         });
 
+        const jsonLD = {
+            "@context": "http://schema.org",
+            "@type": "Article",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": metaUrl
+            },
+            "headline": metaTitle,
+            "alternativeHeadline": metaTitle,
+            "image": metaImage,
+            "author": {
+                "@type": "Person",
+                "name": "Mushfiqur Rahman Shishir"
+            },
+            "award": "Best article ever written",
+            "editor": {
+                "@type": "Person",
+                "name": "Mushfiqur Rahman Shishir"
+            },
+            "genre": this.props.article.articleCategory,
+            "keywords": this.props.article.metaKeys,
+            "publisher": {
+                "@type": "Person",
+                "name": "mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://mushfiqweb.com/favicon.ico"
+                }
+            },
+            "url": metaUrl,
+            "datePublished": "2015-09-20",
+            "dateCreated": "2015-09-20",
+            "dateModified": "2015-09-20",
+            "description": metaDescription,
+            "articleBody": this.props.article.articleSlug
+        };
+
         return (
             <div>
 
@@ -142,6 +173,11 @@ class ArticleDetails extends Component {
                         <meta name="twitter:title" content={metaTitle} />
                         <meta name="twitter:description" content={metaDescription} />
                         <meta name="twitter:image" content={metaImage} />
+                        <script type="application/ld+json" >
+                            {
+                                JSON.stringify(jsonLD)
+                            }
+                        </script>
                     </Helmet> : ''
                 }
 
@@ -165,40 +201,40 @@ class ArticleDetails extends Component {
                         </div>
                     </Header>
                     </Segment> : <Segment style={StyleSheet.articleContent} color={this.props.accent} >
-                            
-                                <div style={StyleSheet.articleMeta}>
-                                    Tag(s): {tagCompo}
-                                </div>
-                                <div>
-                                    <style>{
-                                        'img {max-width: 60% !important;}  p {text-align: justify;}'
-                                    }</style>
 
-                                    {
-                                        Parser(htmlToRender)
-                                    }
+                            <div style={StyleSheet.articleMeta}>
+                                Tag(s): {tagCompo}
+                            </div>
+                            <div>
+                                <style>{
+                                    'img {max-width: 60% !important;}  p {text-align: justify;}'
+                                }</style>
 
-                                </div>
+                                {
+                                    Parser(htmlToRender)
+                                }
 
-                                <div>
-                                    {
-                                        metaUrl.length ?
-                                            <SocialShareCompo metaDescription={metaDescription} metaUrl={metaUrl} metaTitle={metaTitle} metaImage={metaImage} accent={this.props.accent} />
-                                            : <div> </div>
-                                    }
+                            </div>
 
-                                </div>
+                            <div>
+                                {
+                                    metaUrl.length ?
+                                        <SocialShareCompo metaDescription={metaDescription} metaUrl={metaUrl} metaTitle={metaTitle} metaImage={metaImage} accent={this.props.accent} />
+                                        : <div> </div>
+                                }
+
+                            </div>
 
 
-                                <div>
-                                    <DisqusThread id={this.props.article._id}
-                                        title={metaTitle}
-                                        path={this.props.article.articleUrl} />
-                                </div>
-                                <div style={{ display: 'block', height: '35px' }}>
+                            <div>
+                                <DisqusThread id={this.props.article._id}
+                                    title={metaTitle}
+                                    path={this.props.article.articleUrl} />
+                            </div>
+                            <div style={{ display: 'block', height: '35px' }}>
 
-                                </div>
-                            
+                            </div>
+
                         </Segment>
 
                 }
