@@ -1,0 +1,39 @@
+{
+  "name": "mushfiqweb",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "latest",
+    "glamor": "^2.20.40",
+    "html-react-parser": "latest",
+    "lodash": "latest",
+    "moment": "^2.19.3",
+    "react": "latest",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "latest",
+    "react-froala-wysiwyg": "latest",
+    "react-ga": "latest",
+    "react-helmet": "latest",
+    "react-moment": "latest",
+    "react-quill": "latest",
+    "react-redux": "latest",
+    "react-router-dom": "latest",
+    "react-router-transition": "latest",
+    "react-scripts": "latest",
+    "react-share": "^1.18.0",
+    "reading-time": "latest",
+    "redux": "latest",
+    "redux-devtools-extension": "latest",
+    "redux-form": "latest",
+    "redux-promise-middleware": "latest",
+    "redux-thunk": "latest",
+    "semantic-ui-css": "latest",
+    "semantic-ui-react": "latest"
+  },
+  "scripts": {
+    "start": "SET PORT=1971 && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
