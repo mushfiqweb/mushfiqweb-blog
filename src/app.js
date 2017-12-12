@@ -13,6 +13,7 @@ import ArticleViewer from './Pages/ArticleViewer';
 import AddArticle from './Pages/article.Add';
 import FroalaEditor from "./Pages/FroalaEditor";
 import ArticleListEdit from './Pages/ArticleListEdit';
+import ImageColor from './Pages/ImageColor';
 import { SocialLinks } from './Utils/constants';
 
 import { AnimatedSwitch, AnimatedRoute } from 'react-router-transition';
@@ -37,6 +38,7 @@ const style = {
         fontWeight: '600',
     }
 }
+
 
 
 const menuStyle = {
@@ -263,7 +265,7 @@ class App extends Component {
                             atEnter={{ opacity: 0 }}
                             atLeave={{ opacity: 0 }}
                             atActive={{ opacity: 1 }}
-                            
+
                             exact path="/" component={Home} accent={this.state.resumeColor} />
                         <AnimatedRoute
                             atEnter={{ opacity: 0 }}
@@ -275,11 +277,19 @@ class App extends Component {
                             atLeave={{ opacity: 0 }}
                             atActive={{ opacity: 1 }}
                             exact path='/articleadd' component={AddArticle} accent={this.state.resumeColor} />
+
+                        <AnimatedRoute
+                            atEnter={{ opacity: 0 }}
+                            atLeave={{ opacity: 0 }}
+                            atActive={{ opacity: 1 }}
+                            exact path='/imgcolor' component={ImageColor} accent={this.state.resumeColor} />
+
                         <AnimatedRoute
                             atEnter={{ opacity: 0 }}
                             atLeave={{ opacity: 0 }}
                             atActive={{ opacity: 1 }}
                             exact path='/:articleUrl' component={ArticleDetails} accent={this.state.resumeColor} />
+
 
                     </AnimatedSwitch>
 

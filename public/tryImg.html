@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Change Color Dynamically
+	</title>
+
+	<style>
+		img,
+		.color-input {
+			width: 1200px;
+			height: 675px;
+		}
+
+		.color-input {
+			/* removes default styling from input color element */
+			padding: 0;
+			border: none;
+			/* makes input (color swatch) 100% size of container */
+			position: absolute;
+			/* mix blend mode makes the color of the swatch alter the image behind it. */
+			mix-blend-mode: hue;
+			/* try screen, multiply or other blend modes for different effects */
+			cursor: pointer;
+		}
+		/* removes default styling from input color element */
+
+		 ::-webkit-color-swatch {
+			border: none;
+		}
+
+		 ::-webkit-color-swatch-wrapper {
+			padding: 0;
+		}
+
+		 ::-moz-color-swatch,
+		 ::-moz-focus-inner {
+			border: none;
+		}
+
+		 ::-moz-focus-inner {
+			padding: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h2>
+			Click anywhere in the img and choose color.
+		</h2>
+	</header>
+	<!-- CLICK TO CHANGE COLOR -->
+	<input class="color-input" type="color" value="#0000ff" />
+	<!--<img src="http://s3.amazonaws.com/Boomeon/categories/heros/000/001/214/original/interior_design.jpg?1490126877"> -->
+	<img src="pattern.jpg"
+	/>
+
+</body>
+
+</html>

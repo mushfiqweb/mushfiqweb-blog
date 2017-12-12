@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "latest",
+    "froala-editor": "^2.7.3",
     "glamor": "^2.20.40",
     "html-react-parser": "latest",
     "lodash": "latest",
