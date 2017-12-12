@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Segment, Dimmer, Loader, Divider, Item, Label, Icon } from 'semantic-ui-react';
-import { fetchArticles } from '../Actions/article.Actions';
+import { fetchArticles, getAccentColor } from '../Actions/article.Actions';
 import ArticleCard from '../Components/ArticleCard.Component'
 
 import ReactGA from 'react-ga';
@@ -17,6 +17,7 @@ class ArticleViewer extends Component {
 
 
     componentDidMount = () => {
+        this.props.getAccentColor(this.props.accent);
         if (window.location.hostname !== 'localhost') {
             ReactGA.set({ page: window.location.href });
             ReactGA.pageview(window.location.href);
@@ -62,44 +63,44 @@ class ArticleViewer extends Component {
             <div>
 
                 <Segment color={this.props.accent} style={{ minHeight: '80vh', width: '69vmax', margin: '0 auto' }}>
-                    
-                        <Dimmer active={this.props.loading && (this.props.articles.length === 0)} inverted>
-                            <Loader size='large'>
-                                fetching articles...
+
+                    <Dimmer active={this.props.loading && (this.props.articles.length === 0)} inverted>
+                        <Loader size='large'>
+                            fetching articles...
                         </Loader>
-                        </Dimmer>
+                    </Dimmer>
 
-                        <div style={{ margin: '0 auto', display: 'table' }}>
-                            <Item.Group relaxed divided unstackable>
-                                {
-                                    this.props.articles.length > 0 ? this.props.articles.map(article => {
-                                        return (
-                                            <ArticleCard key={article._id} article={article} accent={this.props.accent} />
-                                        )
-                                    }) : ''
-                                }
-                            </Item.Group>
-                        </div>
-                        <Divider color='grey' />
+                    <div style={{ margin: '0 auto', display: 'table' }}>
+                        <Item.Group relaxed divided unstackable>
+                            {
+                                this.props.articles.length > 0 ? this.props.articles.map(article => {
+                                    return (
+                                        <ArticleCard key={article._id} article={article} accent={this.props.accent} />
+                                    )
+                                }) : ''
+                            }
+                        </Item.Group>
+                    </div>
+                    <Divider color='grey' />
 
-                        <div style={{ margin: '0 auto', display: 'table' }}>
-                            <div>
-                                <Loader active={this.props.loading && (this.props.articles.length > 0)} size='medium' inline>
-                                    fetching more articles...
+                    <div style={{ margin: '0 auto', display: 'table' }}>
+                        <div>
+                            <Loader active={this.props.loading && (this.props.articles.length > 0)} size='medium' inline>
+                                fetching more articles...
                             </Loader>
+                        </div>
+                        <div style={{ display: this.props.loading ? 'none' : 'block' }}>
+                            <div style={{ display: this.props.articles.length === this.props.total ? 'none' : 'block' }}>
+                                <Label active={!((Number(this.props.skip) + 5) >= this.props.total)} onClick={this.loadMoreArticles} title='Load more articles' as='a' className='pulse' color={this.props.accent}> <strong> Load more... </strong> </Label>
                             </div>
-                            <div style={{ display: this.props.loading ? 'none' : 'block' }}>
-                                <div style={{ display: this.props.articles.length === this.props.total ? 'none' : 'block' }}>
-                                    <Label active={!((Number(this.props.skip) + 5) >= this.props.total)} onClick={this.loadMoreArticles} title='Load more articles' as='a' className='pulse' color={this.props.accent}> <strong> Load more... </strong> </Label>
-                                </div>
 
-                            </div>
-                            <div style={{ display: this.props.articles.length === this.props.total ? 'block' : 'none' }}>
-                                <strong>
-                                    Loaded everything <Icon name='smile' size='large' color={this.props.accent} />
-                                </strong>
-                            </div>
-                        </div>                    
+                        </div>
+                        <div style={{ display: this.props.articles.length === this.props.total ? 'block' : 'none' }}>
+                            <strong>
+                                Loaded everything <Icon name='smile' size='large' color={this.props.accent} />
+                            </strong>
+                        </div>
+                    </div>
                 </Segment>
                 <div style={{ display: 'block', height: '35px', marginTop: '32px' }}>
 
@@ -114,9 +115,10 @@ function mapStateToProps(state) {
         articles: state.articleStore.articles,
         skip: state.articleStore.skip,
         total: state.articleStore.total,
-        loading: state.articleStore.loading
+        loading: state.articleStore.loading,
+        accent: state.articleStore.AppAccentColor
     }
 }
 
-export default connect(mapStateToProps, { fetchArticles })(ArticleViewer);
+export default connect(mapStateToProps, { fetchArticles, getAccentColor })(ArticleViewer);
 

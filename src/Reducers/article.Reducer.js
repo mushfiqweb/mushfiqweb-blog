@@ -1,5 +1,7 @@
+import { getRandomColor } from '../Utils/utilFunctions';
 
 const defaultState = {
+    AppAccentColor: 'teal',
     editorText: '',
     article: '',
     skip: 0,
@@ -46,6 +48,14 @@ export default (state = defaultState, action = {}) => {
         FETCH_Student_REJECTED
         FETCH_Student_FULFILLED
         */
+
+        case 'GET_ACCENT': {
+            const col = getRandomColor();
+            return {
+                ...state,
+                AppAccentColor: getRandomColor(action.payload)
+            }
+        }
 
         case 'emptyArticle': {
             return {

@@ -1,6 +1,15 @@
 
 import { scraperClientProd, apiClientProd } from './';
 
+export function getAccentColor(page) {
+    return dispatch => {
+        dispatch({
+            type: 'GET_ACCENT',
+            payload: page
+        })
+    }
+}
+
 export function onEditorChange(textValue) {
     return dispatch => {
         dispatch({

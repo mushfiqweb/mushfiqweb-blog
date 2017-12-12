@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Segment, Dimmer, Loader, Header, Label } from 'semantic-ui-react';
-import { fetchArticle } from '../Actions/article.Actions';
+import { fetchArticle, getAccentColor } from '../Actions/article.Actions';
 import Parser from 'html-react-parser';
 
 import { Helmet } from "react-helmet";
@@ -32,6 +32,7 @@ class ArticleDetails extends Component {
     }
 
     componentDidMount = () => {
+        this.props.getAccentColor(this.props.accent);
         if (window.location.hostname !== 'localhost') {
             ReactGA.set({ page: window.location.href });
             ReactGA.pageview(window.location.href);
@@ -245,9 +246,10 @@ class ArticleDetails extends Component {
 function mapStateToProps(state) {
     return {
         article: state.articleStore.article,
-        loading: state.articleStore.loading
+        loading: state.articleStore.loading,
+        accent: state.articleStore.AppAccentColor
     }
 }
 
-export default connect(mapStateToProps, { fetchArticle })(ArticleDetails);
+export default connect(mapStateToProps, { fetchArticle, getAccentColor })(ArticleDetails);
 

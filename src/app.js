@@ -3,7 +3,7 @@ import { Route, Link, Switch } from "react-router-dom";
 
 import { Message, Divider, Visibility, Menu, Container, Icon } from 'semantic-ui-react';
 import _ from 'lodash';
-import { emptyArticle } from './Actions/article.Actions';
+import { emptyArticle, getAccentColor } from './Actions/article.Actions';
 import { connect } from 'react-redux';
 
 import Home from "./Pages/landingPage";
@@ -77,6 +77,9 @@ class App extends Component {
         };
     }
 
+    componentWillMount = () => {
+    }
+
     handleOverlayRef = (c) => {
         const { overlayRect } = this.state
 
@@ -92,6 +95,7 @@ class App extends Component {
     unStickTopMenu = () => this.setState({ menuFixed: false })
 
     componentDidMount = () => {
+        this.props.getAccentColor(this.props.AppAccentColor);
         console.clear();
         var seconds = 10000 * Math.random();
         //console.log(seconds);
@@ -108,10 +112,7 @@ class App extends Component {
     }
 
     componentWillReceiveProps = () => {
-
-
         var seconds = 10000 * Math.random();
-
         seconds = Math.floor(seconds) * new Date().getMonth();
         seconds = seconds / 2;
         if (seconds % 17 === 1) { console.log(5); this.setState({ blogColor: 'red', resumeColor: 'black' }); }
@@ -127,9 +128,9 @@ class App extends Component {
 
     getRandomColor = () => {
         let color = 'blue';
-        var seconds = 1500 * Math.random();
+        var seconds = 10000 * Math.random();
         seconds = Math.floor(seconds) * new Date().getMonth();
-        if (seconds % 11 === 0) {
+        if (seconds % 211 === 0) {
             color = 'orange';
         }
         else if (seconds % 7 === 0) {
@@ -204,7 +205,7 @@ class App extends Component {
         var fixedMenuStyleUpdated = {
             ...fixedMenuStyle,
             borderBottom: '2px solid',
-            borderBottomColor: this.state.resumeColor
+            borderBottomColor: this.props.AppAccentColor
         }
 
         var fixedMenuStyleUpdatedBottom = {
@@ -214,7 +215,7 @@ class App extends Component {
         var menuStyleUpdated = {
             ...menuStyle,
             borderBottom: '2px solid',
-            borderBottomColor: this.state.resumeColor
+            borderBottomColor: this.props.AppAccentColor
         }
 
         var menuStyleUpdatedBottom = {
@@ -253,8 +254,8 @@ class App extends Component {
                     </Menu>
                 </div>
 
-                <div>
 
+                <div>
                     <AnimatedSwitch atEnter={{ opacity: 0 }}
                         atLeave={{ opacity: 0 }}
                         atActive={{ opacity: 1 }}
@@ -351,50 +352,50 @@ class App extends Component {
                     <Message style={{ textAlign: 'center', width: '100%', borderRadius: '0' }}>
 
                         <Link to={SocialLinks.facebook} target='_blank' >
-                            <Icon name='facebook' title='View Facebook' color={this.state.resumeColor} size={socialIconSize} className='pulse' />
+                            <Icon name='facebook' title='View Facebook' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' />
                         </Link>
 
                         <Link to={SocialLinks.twitter} target='_blank' >
-                            <Icon name='twitter' color={this.state.resumeColor} size={socialIconSize} className='pulse' title='View Tweets' />
+                            <Icon name='twitter' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Tweets' />
                         </Link>
 
                         <Link to={SocialLinks.stackOverFlow} target='_blank' >
-                            <Icon name='stack overflow' size={socialIconSize} color={this.state.resumeColor} className='pulse' title='View StackOverflow' />
+                            <Icon name='stack overflow' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View StackOverflow' />
                         </Link>
 
                         <Link to={SocialLinks.github} target='_blank' >
-                            <Icon name='github' size={socialIconSize} color={this.state.resumeColor} className='pulse' title='View Repositories' />
+                            <Icon name='github' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Repositories' />
                         </Link>
 
                         <Link to={SocialLinks.instagram} target='_blank' >
-                            <Icon name='instagram' color={this.state.resumeColor} size={socialIconSize} className='pulse' title='View Instagram' />
+                            <Icon name='instagram' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Instagram' />
                         </Link>
 
                         <Link to={SocialLinks.flickr} target='_blank' >
-                            <Icon name='flickr' size={socialIconSize} color={this.state.resumeColor} className='pulse' title='View Photos' />
+                            <Icon name='flickr' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Photos' />
                         </Link>
 
                         <Link to={SocialLinks.gplus} target='_blank' >
-                            <Icon name='google plus' size={socialIconSize} color={this.state.resumeColor} className='pulse' title='View Google' />
+                            <Icon name='google plus' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Google' />
                         </Link>
 
                         <Link to={SocialLinks.lastfm} target='_blank' >
-                            <Icon name='lastfm' color={this.state.resumeColor} size={socialIconSize} className='pulse' title='View Scrobbles' />
+                            <Icon name='lastfm' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Scrobbles' />
                         </Link>
                         <Link to={SocialLinks.linkedIn} target='_blank' >
-                            <Icon name='linkedin' color={this.state.resumeColor} size={socialIconSize} className='pulse' title='View Pro Network' />
+                            <Icon name='linkedin' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Pro Network' />
                         </Link>
 
                         <Link to={SocialLinks.pinterest} target='_blank' >
-                            <Icon name='pinterest' size={socialIconSize} color={this.state.resumeColor} className='pulse' title='View Pins' />
+                            <Icon name='pinterest' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Pins' />
                         </Link>
 
                         <Link to={SocialLinks.tumblr} target='_blank' >
-                            <Icon name='tumblr' size={socialIconSize} color={this.state.resumeColor} className='pulse' title='View Tumblr' />
+                            <Icon name='tumblr' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Tumblr' />
                         </Link>
 
                         <Link to={SocialLinks.mail} target='_top'>
-                            <Icon name='mail' size={socialIconSize} color={this.state.resumeColor} className='pulse' title='Send Email' />
+                            <Icon name='mail' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='Send Email' />
                         </Link>
 
 
@@ -407,7 +408,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        article: state.articleStore.article
+        article: state.articleStore.article,
+        AppAccentColor: state.articleStore.AppAccentColor
     }
 }
-export default connect(mapStateToProps, { emptyArticle })(App);
+export default connect(mapStateToProps, { emptyArticle, getAccentColor })(App);
