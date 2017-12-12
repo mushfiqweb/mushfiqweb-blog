@@ -115,43 +115,6 @@ class ArticleDetails extends Component {
             return (<Label key={tag} color={colorProfile}>{tag}</Label>);
         });
 
-        const jsonLD = {
-            "@context": "http://schema.org",
-            "@type": "Article",
-            "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": metaUrl
-            },
-            "headline": metaTitle,
-            "alternativeHeadline": metaTitle,
-            "image": metaImage,
-            "author": {
-                "@type": "Person",
-                "name": "Mushfiqur Rahman Shishir"
-            },
-            "award": "Best article ever written",
-            "editor": {
-                "@type": "Person",
-                "name": "Mushfiqur Rahman Shishir"
-            },
-            "genre": this.props.article.articleCategory,
-            "keywords": this.props.article.metaKeys,
-            "publisher": {
-                "@type": "Person",
-                "name": "mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "https://mushfiqweb.com/favicon.ico"
-                }
-            },
-            "url": metaUrl,
-            "datePublished": "2015-09-20",
-            "dateCreated": "2015-09-20",
-            "dateModified": "2015-09-20",
-            "description": metaDescription,
-            "articleBody": this.props.article.articleSlug
-        };
-
         return (
             <div>
 
@@ -174,11 +137,7 @@ class ArticleDetails extends Component {
                         <meta name="twitter:title" content={metaTitle} />
                         <meta name="twitter:description" content={metaDescription} />
                         <meta name="twitter:image" content={metaImage} />
-                        <script type="application/ld+json" >
-                            {
-                                JSON.stringify(jsonLD)
-                            }
-                        </script>
+                    
                     </Helmet> : ''
                 }
 

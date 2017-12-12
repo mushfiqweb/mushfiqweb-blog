@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga';
-
+import { getAccentColor } from '../Actions/article.Actions';
+import Helmet from 'react-helmet';
 class HomeLayout extends Component {
 
     state = {
     }
 
     componentDidMount = () => {
+        this.props.getAccentColor(this.props.accent);
         if (window.location.hostname !== 'localhost') {
             ReactGA.set({ page: window.location.href });
             ReactGA.pageview(window.location.href);
@@ -42,6 +44,8 @@ class HomeLayout extends Component {
                 fontSize: '1.5rem'
             }
         }
+
+
         return (
             <div style={{ height: window.innerHeight - 120, textAlign: 'center' }}>
 
@@ -73,8 +77,9 @@ class HomeLayout extends Component {
 }
 function mapStateToProps(state) {
     return {
-        editorText: state.articleStore.editorText
+        editorText: state.articleStore.editorText,
+        accent: state.articleStore.AppAccentColor
     }
 }
-export default connect(mapStateToProps, {})(HomeLayout);
+export default connect(mapStateToProps, { getAccentColor })(HomeLayout);
 
