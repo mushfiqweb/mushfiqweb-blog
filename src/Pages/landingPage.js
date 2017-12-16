@@ -62,7 +62,7 @@ class HomeLayout extends Component {
                 <h2 style={window.innerWidth > 600 ? headerStyle.h2Large : headerStyle.h2Small}>I write code in javascript.</h2>
                 <h3 style={window.innerWidth > 600 ? headerStyle.h3Large : headerStyle.h3Small}>This is my blog and it's still being developed.</h3>
                 <Link to='/articles'>
-                    <Label className='pulse' color={this.props.accent}>
+                    <Label className='pulse Alegreya' color={this.props.accent}>
                         See my articles
                     </Label>
                 </Link>

@@ -14,6 +14,7 @@ import AddArticle from './Pages/article.Add';
 import FroalaEditor from "./Pages/FroalaEditor";
 import ArticleListEdit from './Pages/ArticleListEdit';
 import ImageColor from './Pages/ImageColor';
+import InstaFeed from './Pages/InstaFeed';
 import { SocialLinks } from './Utils/constants';
 
 import { AnimatedSwitch, AnimatedRoute } from 'react-router-transition';
@@ -222,7 +223,7 @@ class App extends Component {
             ...menuStyleBottom
         }
         return (
-            <Scrollbars autoHide style={{ height: '100vh' }}>
+            <div>
 
                 {/*                
                 <div>
@@ -246,54 +247,66 @@ class App extends Component {
                 <div>
                     <Menu secondary fixed='top' style={fixedMenuStyleUpdated} >
                         <Container>
-                            <Menu.Item as='a' name="Mushfiqur's Blog" content="Mushfiqur's Blog" style={style.menuItem} onClick={this.menuHandler} className='pulse' />
+                            <Menu.Item as='a' name="Mushfiqur's Blog" content="Mushfiqur's Blog" style={style.menuItem} onClick={this.menuHandler} className='focus-in-contract Alegreya' />
                             <Menu.Menu position='right'>
-                                <Menu.Item as='a' className='pulse' content='All Articles' name='All Posts' active={this.state.activeItem === 'all'} style={style.smallMenuItem} onClick={this.menuHandler} />
+                                <Menu.Item as='a' className='focus-in-contract Alegreya' content='All Articles' name='All Posts' active={this.state.activeItem === 'all'} style={style.smallMenuItem} onClick={this.menuHandler} />
                             </Menu.Menu>
                         </Container>
                     </Menu>
                 </div>
 
 
-                <div>
+                <div style={{ marginTop: '60px' }} className="slide-in-fwd-center">
+                    <Switch>
+                        <Route exact path='/' component={Home} className="scale-in-center" />
+                        <Route exact path='/articles' component={ArticleViewer} className="scale-in-center" />
+                        <Route exact path='/articleadd' component={AddArticle} className="scale-in-center" />
+                        <Route exact path='/InstaFeed' component={InstaFeed} />
+                        <Route exact path='/:articleUrl' component={ArticleDetails} className="scale-in-center" />
+                    </Switch>
+                    {/*
                     <AnimatedSwitch atEnter={{ opacity: 0 }}
                         atLeave={{ opacity: 0 }}
                         atActive={{ opacity: 1 }}
-                        className="switch-wrapper"
+                        className="switch-wrapper slide-in-fwd-center"
                     >
 
                         <AnimatedRoute
                             atEnter={{ opacity: 0 }}
                             atLeave={{ opacity: 0 }}
                             atActive={{ opacity: 1 }}
-
+                            className='slide-in-fwd-center'
                             exact path="/" component={Home} accent={this.state.resumeColor} />
                         <AnimatedRoute
                             atEnter={{ opacity: 0 }}
                             atLeave={{ opacity: 0 }}
                             atActive={{ opacity: 1 }}
+                            className='slide-in-fwd-center'
                             exact path='/articles' component={ArticleViewer} accent={this.state.resumeColor} />
                         <AnimatedRoute
                             atEnter={{ opacity: 0 }}
                             atLeave={{ opacity: 0 }}
                             atActive={{ opacity: 1 }}
+                            className='slide-in-fwd-center'
                             exact path='/articleadd' component={AddArticle} accent={this.state.resumeColor} />
 
                         <AnimatedRoute
                             atEnter={{ opacity: 0 }}
                             atLeave={{ opacity: 0 }}
                             atActive={{ opacity: 1 }}
+                            className='slide-in-fwd-center'
                             exact path='/imgcolor' component={ImageColor} accent={this.state.resumeColor} />
 
                         <AnimatedRoute
                             atEnter={{ opacity: 0 }}
                             atLeave={{ opacity: 0 }}
                             atActive={{ opacity: 1 }}
+                            className='slide-in-fwd-center'
                             exact path='/:articleUrl' component={ArticleDetails} accent={this.state.resumeColor} />
 
 
                     </AnimatedSwitch>
-
+*/}
                     {/*                    
                     <AnimatedSwitch
                         atEnter={{ opacity: 0 }}
@@ -352,11 +365,11 @@ class App extends Component {
                     <Message style={{ textAlign: 'center', width: '100%', borderRadius: '0' }}>
 
                         <Link to={SocialLinks.facebook} target='_blank' >
-                            <Icon name='facebook' title='View Facebook' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' />
+                            <Icon name='facebook square' title='View Facebook' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' />
                         </Link>
 
                         <Link to={SocialLinks.twitter} target='_blank' >
-                            <Icon name='twitter' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Tweets' />
+                            <Icon name='twitter square' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Tweets' />
                         </Link>
 
                         <Link to={SocialLinks.stackOverFlow} target='_blank' >
@@ -364,34 +377,34 @@ class App extends Component {
                         </Link>
 
                         <Link to={SocialLinks.github} target='_blank' >
-                            <Icon name='github' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Repositories' />
+                            <Icon name='github square' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Repositories' />
                         </Link>
 
                         <Link to={SocialLinks.instagram} target='_blank' >
-                            <Icon name='instagram' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Instagram' />
+                            <Icon name='instagram square' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Instagram' />
                         </Link>
 
                         <Link to={SocialLinks.flickr} target='_blank' >
-                            <Icon name='flickr' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Photos' />
+                            <Icon name='flickr square' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Photos' />
                         </Link>
 
                         <Link to={SocialLinks.gplus} target='_blank' >
-                            <Icon name='google plus' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Google' />
+                            <Icon name='google plus square' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Google' />
                         </Link>
 
                         <Link to={SocialLinks.lastfm} target='_blank' >
-                            <Icon name='lastfm' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Scrobbles' />
+                            <Icon name='lastfm square' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Scrobbles' />
                         </Link>
                         <Link to={SocialLinks.linkedIn} target='_blank' >
-                            <Icon name='linkedin' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Pro Network' />
+                            <Icon name='linkedin square' color={this.props.AppAccentColor} size={socialIconSize} className='pulse' title='View Pro Network' />
                         </Link>
 
                         <Link to={SocialLinks.pinterest} target='_blank' >
-                            <Icon name='pinterest' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Pins' />
+                            <Icon name='pinterest square' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Pins' />
                         </Link>
 
                         <Link to={SocialLinks.tumblr} target='_blank' >
-                            <Icon name='tumblr' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Tumblr' />
+                            <Icon name='tumblr square' size={socialIconSize} color={this.props.AppAccentColor} className='pulse' title='View Tumblr' />
                         </Link>
 
                         <Link to={SocialLinks.mail} target='_top'>
@@ -401,7 +414,7 @@ class App extends Component {
 
                     </Message>
                 </div>
-            </Scrollbars >
+            </div>
         );
     }
 }

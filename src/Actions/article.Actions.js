@@ -1,11 +1,27 @@
 
 import { scraperClientProd, apiClientProd } from './';
 
+import axios from 'axios';
 export function getAccentColor(page) {
     return dispatch => {
         dispatch({
             type: 'GET_ACCENT',
             payload: page
+        })
+    }
+}
+
+export function fetchInstaPhotos() {
+    const instagramClient = axios.create({
+        baseURL: 'https://www.instagram.com/graphql/query/?query_id=17888483320059182&variables={"id":"432531619","first":30,"after":null}',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    return dispatch => {
+        dispatch({
+            type: 'FETCH_INSTA',
+            payload: instagramClient.get()
         })
     }
 }
@@ -137,3 +153,12 @@ export function updateArticle(article) {
     }
 }
 
+String.prototype.replaceAll = function (search, replace) {
+    //if replace is not sent, return original string otherwise it will
+    //replace search string with 'undefined'.
+    if (replace === undefined) {
+        return this.toString();
+    }
+
+    return this.replace(new RegExp('[' + search + ']', 'g'), replace);
+};

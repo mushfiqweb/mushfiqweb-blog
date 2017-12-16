@@ -3,6 +3,8 @@ import { client } from './';
 
 const url = '/api/users';
 
+
+
 export function fetchUsers() {
     return dispatch => {
         dispatch({

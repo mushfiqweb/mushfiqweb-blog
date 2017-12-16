@@ -6,26 +6,26 @@ export const getRandomColor = (currentColor) => {
     if (seconds % 121 === 0 && currentColor != 'orange') {
         color = 'orange';
     }
-    else if (seconds % 7 === 0 && currentColor != 'olive') {
-        color = 'olive';
+    else if (seconds % 7 === 0 && currentColor != 'teal') {
+        color = 'violet';
     }
     else if (seconds % 8 === 0 && currentColor != 'teal') {
         color = 'teal';
     }
     else if (seconds % 9 === 0 && currentColor != 'violet') {
-        color = 'violet';
+        color = 'brown';
     }
     else if (seconds % 6 === 0 && currentColor != 'green') {
         color = 'green';
     }
-    else if (seconds % 4 === 0 && currentColor != 'yellow') {
-        color = 'yellow';
+    else if (seconds % 4 === 0 && currentColor != 'violet') {
+        color = 'red';
     }
     else if (seconds % 3 === 0 && currentColor != 'purple') {
         color = 'purple';
     }
     else if (seconds % 2 === 0 && currentColor != 'orange') {
-        color = 'orange';
+        color = 'grey';
     }
 
     return color;

@@ -91,7 +91,7 @@ class ArticleViewer extends Component {
                         </div>
                         <div style={{ display: this.props.loading ? 'none' : 'block' }}>
                             <div style={{ display: this.props.articles.length === this.props.total ? 'none' : 'block' }}>
-                                <Label active={!((Number(this.props.skip) + 5) >= this.props.total)} onClick={this.loadMoreArticles} title='Load more articles' as='a' className='pulse' color={this.props.accent}> <strong> Load more... </strong> </Label>
+                                <Label active={!((Number(this.props.skip) + 5) >= this.props.total)} onClick={this.loadMoreArticles} title='Load more articles' as='a' className='pulse Alegreya' color={this.props.accent}> <strong> Load more... </strong> </Label>
                             </div>
 
                         </div>

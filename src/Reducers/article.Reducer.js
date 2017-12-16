@@ -1,6 +1,7 @@
 import { getRandomColor } from '../Utils/utilFunctions';
 
 const defaultState = {
+    InstaPhotos: [],
     AppAccentColor: 'teal',
     editorText: '',
     article: '',
@@ -48,6 +49,32 @@ export default (state = defaultState, action = {}) => {
         FETCH_Student_REJECTED
         FETCH_Student_FULFILLED
         */
+
+
+        case 'FETCH_INSTA_FULFILLED': {
+            var tempArr = [];
+            for (var idx in action.payload.data.data.user.edge_owner_to_timeline_media.edges) {
+                console.log(idx);
+                var photoItem = {
+                    caption: action.payload.data.data.user.edge_owner_to_timeline_media.edges[idx].node.edge_media_to_caption.edges.length > 0 ? action.payload.data.data.user.edge_owner_to_timeline_media.edges[idx].node.edge_media_to_caption.edges[0].node.text : '',
+                    imgSource: action.payload.data.data.user.edge_owner_to_timeline_media.edges[idx].node.display_url,
+                    instagramUrl: 'https://www.instagram.com/p/' + action.payload.data.data.user.edge_owner_to_timeline_media.edges[idx].node.shortcode,
+                    totalComments: action.payload.data.data.user.edge_owner_to_timeline_media.edges[idx].node.edge_media_to_comment.count,
+                    totalLikes: action.payload.data.data.user.edge_owner_to_timeline_media.edges[idx].node.edge_media_preview_like.count,
+                    isVideo: action.payload.data.data.user.edge_owner_to_timeline_media.edges[idx].node.is_video,
+                    totalViews: action.payload.data.data.user.edge_owner_to_timeline_media.edges[idx].node.edge_media_preview_like.count,
+                    taken_at_timestamp: action.payload.data.data.user.edge_owner_to_timeline_media.edges[idx].node.taken_at_timestamp
+                }
+
+                tempArr.push(photoItem);
+            }
+            return {
+                ...state,
+                loading: false,
+                InstaPhotos: tempArr
+            }
+        }
+
 
         case 'GET_ACCENT': {
             const col = getRandomColor();
