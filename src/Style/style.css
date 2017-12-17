@@ -520,3 +520,12 @@ pre {
     list-style: none;
     background: #b1b1b1;
 }
+
+
+.git-shadow{
+    -webkit-box-shadow: 1px 0px 3px 0px rgba(50, 50, 50, 0.88);
+    -moz-box-shadow: 1px 0px 3px 0px rgba(50, 50, 50, 0.88);
+    box-shadow: 1px 0px 3px 0px rgba(50, 50, 50, 0.88);
+    padding: 20px 0px 10px 20px;
+    margin: 0px 0px 10px 0px;
+}

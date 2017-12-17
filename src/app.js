@@ -15,7 +15,9 @@ import FroalaEditor from "./Pages/FroalaEditor";
 import ArticleListEdit from './Pages/ArticleListEdit';
 import ImageColor from './Pages/ImageColor';
 import InstaFeed from './Pages/InstaFeed';
+import GithubTrends from './Pages/Github.Trends';
 import { SocialLinks } from './Utils/constants';
+import TransitionablePortalExampleControlled from './Pages/Transition.Portal';
 
 import { AnimatedSwitch, AnimatedRoute } from 'react-router-transition';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -224,17 +226,16 @@ class App extends Component {
         }
         return (
             <div>
-                <div>
-                    <Menu secondary fixed='top' style={fixedMenuStyleUpdated} >
-                        
+                {/*                
+                    <div>
+                        <Menu secondary fixed='top' style={fixedMenuStyleUpdated} >
                             <Menu.Item as='a' name="Mushfiqur's Blog" content="Mushfiqur's Blog" style={style.menuItem} onClick={this.menuHandler} className='focus-in-contract Alegreya' />
                             <Menu.Menu position='right'>
                                 <Menu.Item as='a' className='focus-in-contract Alegreya' content='All Articles' name='All Posts' active={this.state.activeItem === 'all'} style={style.smallMenuItem} onClick={this.menuHandler} />
                             </Menu.Menu>
-                        
-                    </Menu>
-                </div>
-
+                        </Menu>
+                    </div>
+                */}
 
                 <div style={{ marginTop: '60px' }}>
                     <Switch>
@@ -242,10 +243,13 @@ class App extends Component {
                         <Route exact path='/articles' component={ArticleViewer} />
                         <Route exact path='/articleadd' component={AddArticle} />
                         <Route exact path='/InstaFeed' component={InstaFeed} />
+                        <Route exact path='/GithubTrends' component={GithubTrends} />
+                        <Route exact path='/TransitionablePortalExampleControlled' component={TransitionablePortalExampleControlled} />
                         <Route exact path='/:articleUrl' component={ArticleDetails} />
                     </Switch>
 
                 </div>
+                {/*    TransitionablePortalExampleControlled            
                 <div className='ui secondary bottom fixed menu' style={menuFixed ? fixedMenuStyleUpdatedBottom : menuStyleUpdatedBottom}>
                     <Message style={{ textAlign: 'center', width: '100%', borderRadius: '0' }}>
 
@@ -299,6 +303,7 @@ class App extends Component {
 
                     </Message>
                 </div>
+                */}
             </div>
         );
     }
