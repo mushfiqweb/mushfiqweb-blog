@@ -7,7 +7,7 @@ import readingTime from 'reading-time';
 
 const spanStyle = {
     color: '#a7a7a7',
-    fontSize: '15px'
+    fontSize: '12px'
 }
 
 
@@ -18,23 +18,52 @@ const timeStringStyle = {
     fontWeight: '800'
 }
 
+const viewsStyle = {
+    ...timeStringStyle
+}
+
 export default function ArticleCard({ article, deleteStudent, accent }) {
 
     const articleStats = article.articleBody ? readingTime(article.articleBody) : '';
-    const tooltip = "You need approximately " + Math.ceil(articleStats.minutes) + " minutes to read this article"
+    const tooltip = "You need approximately " + Math.ceil(articleStats.minutes) + " minutes to read this article";
+
+    const styleSheet = {
+        LinkStyle: {
+            fontSize: '1.8rem',
+            fontWeight: '600',
+            color: 'black'
+        }
+    }
+
     return (
         <Item>
             <Item.Content verticalAlign='middle'>
-                <Item.Header > <div className='Alegreya' style={{ fontSize: '1.8rem' }}> {article.articleTitle} </div> </Item.Header>
-                <Item.Description style={{ textAlign: 'justify' }}>{article.articleSlug}  <span title={tooltip} style={spanStyle}> <strong>  .....{Math.ceil(articleStats.minutes)} minutes to read!</strong> </span>  </Item.Description>
+                <Item.Header > <div color={accent} style={{ fontSize: '2rem' }} className='cool-link Alegreya'>
+                    <Link to={`/${article.articleUrl}`}>
+                        <span style={styleSheet.LinkStyle}>
+                            {article.articleTitle}
+                        </span>
+                    </Link>
+                </div> </Item.Header>
+                <Item.Description style={{ textAlign: 'justify' }}>{article.articleSlug}  <span className='Alegreya' title={tooltip} style={spanStyle}> <strong>  .....{Math.ceil(articleStats.minutes)} minutes to read!</strong> </span>  </Item.Description>
                 <Item.Extra>
                     <div>
-                        <div style={timeStringStyle}>
+                        <div style={timeStringStyle} className='Alegreya'>
                             Posted @ <Moment format="hh:mm a">
-                                {article.createdAt}
+                                <span style={{ fontSize: '2rem' }}>
+                                    {article.createdAt}
+                                </span>
+
                             </Moment> On <Moment format="DD MMM YYYY">
-                                {article.createdAt}
+                                <span style={{ fontSize: '5rem' }}>
+                                    {article.createdAt}
+                                </span>
                             </Moment>
+                        </div>
+
+                        <div style={viewsStyle} className='Alegreya'>
+                            <span className="ant-divider" />
+                            {article.articleTotalViews} Views
                         </div>
                         <div>
                             <Link to={`/${article.articleUrl}`}>

@@ -77,6 +77,15 @@ export function newArticle() {
     }
 }
 
+export function fetchFakeArticles() {
+    return dispatch => {
+        dispatch({
+            type: 'FETCH_FakeArticles',
+            payload: apiClientProd.get('/api/article')
+        })
+    }
+}
+
 export function fetchArticles(limit, skip) {
     return dispatch => {
         dispatch({

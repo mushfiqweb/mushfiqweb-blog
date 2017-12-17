@@ -62,7 +62,7 @@ class ArticleViewer extends Component {
         return (
             <div>
 
-                <Segment color={this.props.accent} style={{ minHeight: '80vh', width: '69vmax', margin: '0 auto' }}>
+                <Segment color={this.props.accent} style={{ minHeight: '80vh', margin: '0 auto' }}>
 
                     <Dimmer active={this.props.loading && (this.props.articles.length === 0)} inverted>
                         <Loader size='large'>

@@ -12,8 +12,7 @@ import DisqusThread from '../Components/disqusThread';
 import SocialShareCompo from "../Components/socialShareCompo";
 
 const StyleSheet = {
-    articleContent: {
-        width: '69vmax',
+    articleContent: {        
         margin: '0 auto',
         padding: '1vmax',
         minHeight: '40vh'
@@ -250,7 +249,7 @@ class ArticleDetails extends Component {
                         fetching the article...
                         </Loader>
                 </Dimmer>
-                <Header as='h1' textAlign='center' style={{ maxWidth: '69vmax', margin: '0 auto' }}>
+                <Header as='h1' textAlign='center' style={{ margin: '0 auto' }}>
                     <div className='Alegreya' style={{ marginBottom: '15px' }}>
                         {metaTitle}
                     </div>

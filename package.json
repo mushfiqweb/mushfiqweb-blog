@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^3.0.1",
     "axios": "latest",
     "froala-editor": "^2.7.3",
     "glamor": "^2.20.40",

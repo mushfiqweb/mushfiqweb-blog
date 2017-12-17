@@ -224,142 +224,27 @@ class App extends Component {
         }
         return (
             <div>
-
-                {/*                
-                <div>
-                    <Visibility style={{ display: this.props.history.location.pathname === '/edit' ? 'none' : 'block', marginBottom: '15px' }}
-                        onBottomPassed={this.stickTopMenu} onBottomVisible={this.unStickTopMenu} once={false}
-                    >
-                        <Menu secondary fixed={menuFixed && 'top'} style={menuFixed ? fixedMenuStyleUpdated : menuStyleUpdated}>
-                            <Container>
-                                <Menu.Item as='a' name="Mushfiqur's Blog" content="Mushfiqur's Blog" style={style.menuItem} onClick={this.menuHandler} className='pulse' />
-                                <Menu.Menu position='right'>
-                                    <Menu.Item as='a' className='pulse' content='All Articles' name='All Posts' active={this.state.activeItem === 'all'} style={style.smallMenuItem} onClick={this.menuHandler} />
-                                </Menu.Menu>
-                            </Container>
-                        </Menu>
-                    </Visibility>
-                    <Divider />
-                </div>
-                */}
-
-
                 <div>
                     <Menu secondary fixed='top' style={fixedMenuStyleUpdated} >
-                        <Container>
+                        
                             <Menu.Item as='a' name="Mushfiqur's Blog" content="Mushfiqur's Blog" style={style.menuItem} onClick={this.menuHandler} className='focus-in-contract Alegreya' />
                             <Menu.Menu position='right'>
                                 <Menu.Item as='a' className='focus-in-contract Alegreya' content='All Articles' name='All Posts' active={this.state.activeItem === 'all'} style={style.smallMenuItem} onClick={this.menuHandler} />
                             </Menu.Menu>
-                        </Container>
+                        
                     </Menu>
                 </div>
 
 
-                <div style={{ marginTop: '60px' }} className="slide-in-fwd-center">
+                <div style={{ marginTop: '60px' }}>
                     <Switch>
-                        <Route exact path='/' component={Home} className="scale-in-center" />
-                        <Route exact path='/articles' component={ArticleViewer} className="scale-in-center" />
-                        <Route exact path='/articleadd' component={AddArticle} className="scale-in-center" />
+                        <Route exact path='/' component={Home} />
+                        <Route exact path='/articles' component={ArticleViewer} />
+                        <Route exact path='/articleadd' component={AddArticle} />
                         <Route exact path='/InstaFeed' component={InstaFeed} />
-                        <Route exact path='/:articleUrl' component={ArticleDetails} className="scale-in-center" />
+                        <Route exact path='/:articleUrl' component={ArticleDetails} />
                     </Switch>
-                    {/*
-                    <AnimatedSwitch atEnter={{ opacity: 0 }}
-                        atLeave={{ opacity: 0 }}
-                        atActive={{ opacity: 1 }}
-                        className="switch-wrapper slide-in-fwd-center"
-                    >
 
-                        <AnimatedRoute
-                            atEnter={{ opacity: 0 }}
-                            atLeave={{ opacity: 0 }}
-                            atActive={{ opacity: 1 }}
-                            className='slide-in-fwd-center'
-                            exact path="/" component={Home} accent={this.state.resumeColor} />
-                        <AnimatedRoute
-                            atEnter={{ opacity: 0 }}
-                            atLeave={{ opacity: 0 }}
-                            atActive={{ opacity: 1 }}
-                            className='slide-in-fwd-center'
-                            exact path='/articles' component={ArticleViewer} accent={this.state.resumeColor} />
-                        <AnimatedRoute
-                            atEnter={{ opacity: 0 }}
-                            atLeave={{ opacity: 0 }}
-                            atActive={{ opacity: 1 }}
-                            className='slide-in-fwd-center'
-                            exact path='/articleadd' component={AddArticle} accent={this.state.resumeColor} />
-
-                        <AnimatedRoute
-                            atEnter={{ opacity: 0 }}
-                            atLeave={{ opacity: 0 }}
-                            atActive={{ opacity: 1 }}
-                            className='slide-in-fwd-center'
-                            exact path='/imgcolor' component={ImageColor} accent={this.state.resumeColor} />
-
-                        <AnimatedRoute
-                            atEnter={{ opacity: 0 }}
-                            atLeave={{ opacity: 0 }}
-                            atActive={{ opacity: 1 }}
-                            className='slide-in-fwd-center'
-                            exact path='/:articleUrl' component={ArticleDetails} accent={this.state.resumeColor} />
-
-
-                    </AnimatedSwitch>
-*/}
-                    {/*                    
-                    <AnimatedSwitch
-                        atEnter={{ opacity: 0 }}
-                        atLeave={{ opacity: 0 }}
-                        atActive={{ opacity: 1 }}
-                        className="switch-wrapper">
-
-
-
-                        <AnimatedRoute
-                            atEnter={{ offset: -100 }}
-                            atLeave={{ offset: -100 }}
-                            atActive={{ offset: 0 }}
-                            exact path="/" component={Home} accent={this.state.resumeColor} />
-                        <AnimatedRoute
-                            atEnter={{ offset: -100 }}
-                            atLeave={{ offset: -100 }}
-                            atActive={{ offset: 0 }} exact path='/articles' component={ArticleViewer} accent={this.state.resumeColor} />
-                        <AnimatedRoute
-                            atEnter={{ offset: -100 }}
-                            atLeave={{ offset: -100 }}
-                            atActive={{ offset: 0 }} exact path='/articleadd' component={AddArticle} accent={this.state.resumeColor} />
-                        <AnimatedRoute
-                            atEnter={{ offset: -100 }}
-                            atLeave={{ offset: -100 }}
-                            atActive={{ offset: 0 }} exact path='/:articleUrl' component={ArticleDetails} accent={this.state.resumeColor} />
-
-                    </AnimatedSwitch>
-                    */}
-
-
-                    {/*                        
-                    <Route
-                        render={({ location }) => (
-                            <TransitionGroup component="main">
-                                <AnimatedSwitch key={location.key} location={location}>
-                                    <Route exact path="/" render={props => (<Home {...props} accent={this.state.resumeColor} />)} />
-                                    <Route exact path='/writer' render={props => (<AddArticle {...props} />)} />
-                                    <Route exact path='/articles' render={props => (<ArticleViewer {...props} accent={this.state.resumeColor} />)} />
-                                    <Route exact path='/resp' render={props => (<ResponsiveLayout {...props} accent={this.state.resumeColor} />)} />
-                                    <Route exact path='/edit' render={props => (<FroalaEditor {...props} accent={this.state.resumeColor} />)} />
-                                    <Route exact path='/articleadd' render={props => (<AddArticle {...props} accent={this.state.resumeColor} />)} />
-                                    <Route exact path='/pliste' render={props => (<ArticleListEdit {...props} accent={this.state.resumeColor} />)} />
-                                    <Route exact path='/pliste/:_id' render={props => (<FroalaEditor {...props} accent={this.state.resumeColor} />)} />
-                                    <Route exact path='/OnScrollLoad' render={props => (<OnScrollLoad {...props} accent={this.state.resumeColor} />)} />                                    
-                                    <Route exact path='/draftjs' component={MyEditor}/>
-                                    <Route exact path='/:articleUrl' render={props => (<ArticleDetails {...props} accent={this.state.resumeColor} />)} />
-                                    <Route component={Missed} />
-                                </AnimatedSwitch>
-                            </TransitionGroup>
-                        )}
-                    />
-                    */}
                 </div>
                 <div className='ui secondary bottom fixed menu' style={menuFixed ? fixedMenuStyleUpdatedBottom : menuStyleUpdatedBottom}>
                     <Message style={{ textAlign: 'center', width: '100%', borderRadius: '0' }}>

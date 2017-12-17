@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import { getAccentColor } from '../Actions/article.Actions';
+import { getAccentColor, fetchFakeArticles } from '../Actions/article.Actions';
 import Helmet from 'react-helmet';
 class HomeLayout extends Component {
 
@@ -12,6 +12,7 @@ class HomeLayout extends Component {
 
     componentDidMount = () => {
         this.props.getAccentColor(this.props.accent);
+        this.props.fetchFakeArticles();
         if (window.location.hostname !== 'localhost') {
             ReactGA.set({ page: window.location.href });
             ReactGA.pageview(window.location.href);
@@ -81,5 +82,5 @@ function mapStateToProps(state) {
         accent: state.articleStore.AppAccentColor
     }
 }
-export default connect(mapStateToProps, { getAccentColor })(HomeLayout);
+export default connect(mapStateToProps, { getAccentColor, fetchFakeArticles })(HomeLayout);
 
