@@ -22,3 +22,9 @@ https://mushfiqweb.com
 - [**Fundamentals of JavaScript ES6 Classes**](http://blog.mushfiqweb.com/75bFb3)
 - [**A quick intro guide to CSS Grid System**](http://blog.mushfiqweb.com/dFF4FF)
 - [**Getting started With ReactJs Development and Environment Setup**](http://blog.mushfiqweb.com/ob7FuF)
+
+
+https://www.pointblankdevelopment.com.au/blog/124/react-redux-with-aspnet-core-20-login-registration-tutorial-example
+http://jasonwatmore.com/post/2017/09/16/react-redux-user-registration-and-login-tutorial-example
+http://jasonwatmore.com/post/2017/12/07/react-redux-jwt-authentication-tutorial-example
+http://jasonwatmore.com/post/2017/03/14/react-pagination-example-with-logic-like-google
