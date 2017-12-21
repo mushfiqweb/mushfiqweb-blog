@@ -105,32 +105,17 @@ export function fetchArticle(url) {
 }
 
 export function saveArticle(article) {
-
-    /*
-
-
-  articleTitle: { type: String, required: false },
-  articlePostedDate: { type: String, required: false },
-  articleUpdatedDate: { type: String, required: false },
-  articleWriter: { type: String, required: false },
-  articleCategory: { type: String, required: false },
-  articleTag: { type: String, required: false },
-  articleBody: { type: String, required: false },
-  articleSummary: { type: String, required: false },
-
-  articleTotalViews: { type: String, required: false },
-  articleUrl: { type: String, required: false },
-  articleTotalComments: { type: String, required: false },
-  articleRatingHigh: { type: String, required: false },
-  articleRatingLow: { type: String, required: false },
-  articleRatingAvg: { type: String, required: false },
-
-    */
-
     var url = article.title.replaceAll(',', '');
     url = url.replaceAll('.', '');
     url = url.replace(/\s+/g, '-').toLowerCase();
     var articleJSON = {
+        articleTotalViews: 1,
+        articleTotalComments: 0,
+        articleRatingHigh: 0,
+        articleRatingLow: 0,
+        articleRatingAvg: 0,
+        articleTag: '',
+        articleWriter: '',
         articleBody: article.articleBody,
         articlePostedDate: new Date().getDate(),
         articleCategory: article.articleCategory,

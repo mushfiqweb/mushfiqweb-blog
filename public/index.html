@@ -32,6 +32,7 @@
 />
 
 
+
 <style>
   @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Federo|Londrina+Outline|Montserrat+Subrayada|Patrick+Hand+SC');
   /*
@@ -136,6 +137,11 @@
     height: 100%;
     padding: 10px;
   }
+
+  .chitikaAdBlock {
+    margin: 0 auto !important;
+    display: block !important;
+  }
 </style>
 <script type="application/ld+json">
   {
@@ -182,6 +188,26 @@
   }
 </script>
 
+
+<!-- Hotjar Tracking Code for http://mushfiqweb.com -->
+<script>
+  if (window.location.host != 'localhost') {
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () {
+        (h.hj.q = h.hj.q || []).push(arguments)
+      };
+      h._hjSettings = {
+        hjid: 725720,
+        hjsv: 6
+      };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script');
+      r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  }
+</script>
 </head>
 
 <body>
@@ -195,6 +221,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script>
   <script type="text/javascript" src="code_beautifier.min.js"></script>
   <script type="text/javascript" src="code_view.min.js"></script>
+
 
   <script>
     $(function () {
@@ -216,9 +243,11 @@
   <!-- ads22 -->
   <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-1938723723817363" data-ad-slot="8475274139"></ins>
   <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    if (window.location.host != 'localhost') {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    }
   </script>
-
+  <script async type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
 </body>
 
 </html>

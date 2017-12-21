@@ -13,6 +13,7 @@
     "prop-types": "^15.6.0",
     "react": "latest",
     "react-adsense": "0.0.3",
+    "react-cookie": "^2.1.2",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "latest",
     "react-froala-wysiwyg": "latest",
@@ -26,6 +27,7 @@
     "react-router-transition": "latest",
     "react-scripts": "latest",
     "react-share": "^1.18.0",
+    "react-slick": "^0.16.0",
     "reading-time": "latest",
     "redux": "latest",
     "redux-devtools-extension": "latest",
@@ -33,7 +35,8 @@
     "redux-promise-middleware": "latest",
     "redux-thunk": "latest",
     "semantic-ui-css": "latest",
-    "semantic-ui-react": "latest"
+    "semantic-ui-react": "latest",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "SET PORT=1971 && react-scripts start",

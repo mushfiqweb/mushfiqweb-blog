@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Segment } from 'semantic-ui-react'
 
 const SHORTNAME = 'mushfiqweb';
 const WEBSITE_URL = 'mushfiqweb.com';
@@ -20,7 +21,8 @@ class DisqusThread extends React.Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
-        path: PropTypes.string.isRequired
+        path: PropTypes.string.isRequired,
+        accent: PropTypes.string.isRequired
     };
 
     shouldComponentUpdate(nextProps) {
@@ -38,7 +40,7 @@ class DisqusThread extends React.Component {
     }
 
     render() {
-        let { id, title, path, ...other } = this.props;
+        let { id, title, path,accent, ...other } = this.props;
 
         if (process.env.BROWSER) {
             window.disqus_shortname = SHORTNAME;
@@ -47,7 +49,7 @@ class DisqusThread extends React.Component {
             window.disqus_url = WEBSITE_URL + path;
         }
 
-        return <div {...other} id="disqus_thread" />;
+        return <Segment color={accent} {...other} id="disqus_thread" />;
     }
 
 }

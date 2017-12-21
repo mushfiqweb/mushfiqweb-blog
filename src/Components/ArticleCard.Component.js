@@ -49,16 +49,8 @@ export default function ArticleCard({ article, deleteStudent, accent }) {
                 <Item.Extra>
                     <div>
                         <div style={timeStringStyle} className='Alegreya'>
-                            Posted @ <Moment format="hh:mm a">
-                                <span style={{ fontSize: '2rem' }}>
-                                    {article.createdAt}
-                                </span>
-
-                            </Moment> On <Moment format="DD MMM YYYY">
-                                <span style={{ fontSize: '5rem' }}>
-                                    {article.createdAt}
-                                </span>
-                            </Moment>
+                            Posted @<span> </span> <strong style={{ fontSize: '13px' }}><Moment format="hh:mm a">{new Date(article.createdAt)}</Moment> </strong>
+                            On <span> </span><strong style={{ fontSize: '13px' }}><Moment format="DD MMM YYYY">{article.createdAt}</Moment></strong>  
                         </div>
 
                         <div style={viewsStyle} className='Alegreya'>

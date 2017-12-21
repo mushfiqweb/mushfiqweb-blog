@@ -1,18 +1,36 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import _ from 'lodash';
-import { Segment, Dimmer, Loader, Header, Label, Icon, Rating } from 'semantic-ui-react';
+import readingTime from 'reading-time';
+import { Segment, Dimmer, Loader, Header, Label, Icon, Advertisement } from 'semantic-ui-react';
 import { fetchArticle, getAccentColor } from '../Actions/article.Actions';
 import Parser from 'html-react-parser';
+import Moment from 'react-moment';
+import moment from 'moment';
 import axios from 'axios';
 import AdSense from 'react-adsense';
 import { Helmet } from "react-helmet";
 import ReactGA from 'react-ga';
 import DisqusThread from '../Components/disqusThread';
 import SocialShareCompo from "../Components/socialShareCompo";
+import { withCookies, Cookies } from 'react-cookie';
+
+const spanStyle = {
+    color: '#a7a7a7',
+    fontSize: '12px'
+}
+
+
+const timeStringStyle = {
+    ...spanStyle,
+    float: 'left',
+    fontSize: '12px',
+    fontWeight: '800'
+}
 
 const StyleSheet = {
-    articleContent: {        
+    articleContent: {
         margin: '0 auto',
         padding: '1vmax',
         minHeight: '40vh'
@@ -24,6 +42,12 @@ const StyleSheet = {
     }
 }
 
+const webClient = axios.create({
+    baseURL: "https://mushfiqweb-api.herokuapp.com",
+    headers: {
+        "Content-Type": "application/json"
+    }
+});
 
 class ArticleDetails extends Component {
 
@@ -31,8 +55,9 @@ class ArticleDetails extends Component {
         menuFixed: false,
         overlayFixed: false,
         rating: '',
-        maxRating: ''
-
+        maxRating: '',
+        isRated: false,
+        ratingDoneMsg: 'Rate the article!'
     }
 
     componentDidMount = () => {
@@ -44,23 +69,14 @@ class ArticleDetails extends Component {
         this.props.fetchArticle(this.props.match.params.articleUrl);
     }
 
-
-    handleOverlayRef = (c) => {
-        const { overlayRect } = this.state
-
-        if (!overlayRect) this.setState({ overlayRect: _.pick(c.getBoundingClientRect(), 'height', 'width') })
-    }
-
     componentWillReceiveProps = (nextProps) => {
-        console.log('CWRP');
-        console.log(nextProps);
         if (nextProps.article) {
-            const webClient = axios.create({
-                baseURL: "https://mushfiqweb-api.herokuapp.com",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
+            if (sessionStorage.getItem('isViewed')) {
+                return;
+            }
+            else {
+                sessionStorage.setItem('isViewed', true);
+            }
             var articleObj = {
                 articleTitle: '',
                 articlePostedDate: '',
@@ -119,8 +135,8 @@ class ArticleDetails extends Component {
                     createdBy: nextProps.article.createdBy
                 }
             }
-
             if (articleObj._id !== '' && articleObj._id) {
+
                 webClient.put('/api/article/' + articleObj._id, articleObj).then(() => {
                     console.log('Done');
                 }).catch(() => {
@@ -130,7 +146,77 @@ class ArticleDetails extends Component {
         }
     }
 
-    handleRate = (e, { rating, maxRating }) => this.setState({ rating, maxRating })
+    handleRate = (e, { rating, maxRating }) => {
+
+        return;
+        var articleObj = {
+            articleTitle: '',
+            articlePostedDate: '',
+            articleUpdatedDate: '',
+            articleWriter: '',
+            articleCategory: '',
+            articleTag: '',
+            articleBody: '',
+            articleSlug: '',
+            articleTotalViews: '',
+            articleUrl: '',
+            articleTotalComments: '',
+            articleRatingHigh: '',
+            articleRatingLow: '',
+            articleRatingAvg: '',
+            metaUrl: '',
+            metaTitle: '',
+            metaImage: '',
+            metaDesc: '',
+            metaKeys: '',
+            _id: '',
+            isDeleted: 'false',
+            updatedAt: '',
+            createdAt: '',
+            updatedBy: '',
+            createdBy: ''
+
+        }
+        if (this.props.article) {
+
+            var avgRating = Number(this.props.article.articleRatingAvg) + rating;
+            avgRating = avgRating / (Number(this.props.article.articleRatingLow) + 1);
+            articleObj = {
+                _id: this.props.article._id,
+                articleTitle: this.props.article.articleTitle,
+                articlePostedDate: this.props.article.articlePostedDate,
+                articleUpdatedDate: this.props.article.articleUpdatedDate,
+                articleWriter: this.props.article.articleWriter,
+                articleCategory: this.props.article.articleCategory,
+                articleTag: this.props.article.articleTag,
+                articleBody: this.props.article.articleBody,
+                articleSlug: this.props.article.articleSlug,
+                articleTotalViews: Number(this.props.article.articleTotalViews) + 1,
+                articleUrl: this.props.article.articleUrl,
+                articleTotalComments: this.props.article.articleTotalComments,
+                articleRatingHigh: this.props.article.articleRatingHigh ? this.props.article.articleRatingHigh : maxRating,
+                articleRatingLow: this.props.article.articleRatingLow ? (Number(this.props.article.articleRatingLow) + 1) : 0,
+                articleRatingAvg: avgRating.toFixed(1),
+                metaUrl: this.props.article.metaUrl,
+                metaTitle: this.props.article.metaTitle,
+                metaImage: this.props.article.metaImage,
+                metaDesc: this.props.article.metaDesc,
+                metaKeys: this.props.article.metaKeys,
+                isDeleted: this.props.article.isDeleted,
+                updatedAt: this.props.article.updatedAt,
+                createdAt: this.props.article.createdAt,
+                updatedBy: this.props.article.updatedBy,
+                createdBy: this.props.article.createdBy
+            }
+        }
+        if (articleObj._id !== '' && articleObj._id) {
+            webClient.put('/api/article/' + articleObj._id, articleObj).then(() => {
+                console.log('Done');
+            }).catch(() => {
+                console.log('Error');
+            });
+        }
+    }
 
     render() {
         const articleSlug = this.props.article ? this.props.article.articleSlug : '<h1> </h1>';
@@ -174,43 +260,76 @@ class ArticleDetails extends Component {
         const tagCompo = _.map(tagsArray, function (tag, idx) {
 
             let colorProfile = 'grey';
+            let webLink = 'https://mushfiqweb.com';
             switch (tag.trim()) {
                 case 'Javascript':
-                    colorProfile = 'orange'
+                    colorProfile = 'orange';
+                    webLink = 'https://mushfiqweb.com';
                     break;
                 case 'CSS':
-                    colorProfile = 'teal'
+                    colorProfile = 'teal';
+                    webLink = 'https://mushfiqweb.com';
                     break;
 
                 case 'Angular':
-                    colorProfile = 'brown'
+                    colorProfile = 'brown';
+                    webLink = 'https://mushfiqweb.com';
                     break;
                 case 'React':
-                    colorProfile = 'blue'
+                    colorProfile = 'blue';
+                    webLink = 'https://mushfiqweb.com';
                     break;
 
                 case 'Tips':
-                    colorProfile = 'red'
+                    colorProfile = 'red';
+                    webLink = 'https://mushfiqweb.com';
                     break;
                 case 'ES6':
-                    colorProfile = 'yellow'
+                    colorProfile = 'yellow';
+                    webLink = 'https://mushfiqweb.com';
                     break;
 
                 case 'Build Tool':
-                    colorProfile = 'grey'
+                    colorProfile = 'grey';
+                    webLink = 'https://mushfiqweb.com';
                     break;
                 case 'Freebies':
-                    colorProfile = 'purple'
+                    colorProfile = 'purple';
+                    webLink = 'https://mushfiqweb.com';
                     break;
 
                 case 'Frontend Develpoment':
                     colorProfile = 'olive';
+                    webLink = 'https://mushfiqweb.com';
                     break;
                 default:
                     break;
             }
-            return (<Label style={{ fontSize: '1rem' }} className='Alegreya' key={tag} color={colorProfile}>{tag}</Label>);
+            return (
+                <Label style={{ fontSize: '1rem' }} className='Alegreya' key={tag} color={colorProfile}> {tag} </Label>
+            );
         });
+
+
+        var placement_id = 'chitikaAdBlock-';
+        if (this.props.article) {
+            if (window.CHITIKA === undefined) {
+                window.CHITIKA = {
+                    'units': []
+                };
+            };
+            var unit = {
+                "calltype": "async[2]",
+                "publisher": "mushfiqweb",
+                "width": 728,
+                "height": 90,
+                "sid": "Chitika Default"
+            };
+            placement_id = placement_id + window.CHITIKA.units.length;
+            window.CHITIKA.units.push(unit);
+        }
+
+        const articleStats = this.props.article ? readingTime(this.props.article.articleBody) : '';
 
         return (
             <div>
@@ -256,9 +375,11 @@ class ArticleDetails extends Component {
 
                 </Header>
                 {
-                    this.props.article.articleBody === 'No Article Found' ? <Segment color='red' style={{ marginTop: '200px', textAlign: 'center' }} > <Header color='red' >
+                    this.props.article.articleBody === 'No Article Found' ? <Segment color='red' style={{ marginTop: '200px' }} > <Header color='red' >
                         <div>
-                            <h1> Failed to pull article! Try reloading the page!</h1>
+                            <h2>Ahh...awkward!</h2>
+                            <h3>Seems like, it's a <Link className='cool-link pulse' target='_blank' to='http://www.checkupdown.com/status/E004.html'>bad URL</Link>!</h3>
+                            <h1>Please navigate to <Link className='cool-link pulse Alegreya' to='/articles'>Article List</Link>!</h1>
                         </div>
                     </Header>
                     </Segment> : <Segment style={StyleSheet.articleContent} color={this.props.accent} >
@@ -266,9 +387,21 @@ class ArticleDetails extends Component {
                                 <div style={StyleSheet.articleMeta}>
                                     Tag(s): {tagCompo}
                                 </div>
-                                <div className='Alegreya'>
-                                    Views: <strong> {articleTotalViews} </strong>
+                                <div>
+                                    <div style={timeStringStyle} className='Alegreya'>
+                                        Posted @<span> </span> <strong style={{ fontSize: '13px' }}><Moment format="hh:mm a">{new Date(this.props.article.createdAt)}</Moment> </strong>
+                                        On <span> </span><strong style={{ fontSize: '13px' }}><Moment format="DD MMM YYYY">{this.props.article.createdAt}</Moment></strong>
+                                    </div>
+                                    <div style={timeStringStyle} className='Alegreya'>
+                                        <span className="ant-divider" />
+                                        <strong>{articleTotalViews}</strong> Views
+                                    </div>
+                                    <div style={timeStringStyle} className='Alegreya'>
+                                        <span className="ant-divider" />
+                                        <strong>{Math.ceil(articleStats.minutes)}</strong> Minutes To Read
+                                    </div>
                                 </div>
+
                             </div>
 
                             <div>
@@ -282,16 +415,13 @@ class ArticleDetails extends Component {
                             <div>
                                 {
                                     metaUrl.length ?
-                                        <SocialShareCompo metaDescription={metaDescription} metaUrl={metaUrl} metaTitle={metaTitle} metaImage={metaImage} accent={this.props.accent} />
+                                        <SocialShareCompo accent={this.props.accent} metaDescription={metaDescription} metaUrl={metaUrl} handleRate={this.handleRate}
+                                            metaTitle={metaTitle} metaImage={metaImage} accent={this.props.accent} ratingDoneMsg={this.state.ratingDoneMsg} isRated={this.state.isRated} />
                                         : <div> </div>
                                 }
                             </div>
-                            <div>
-                                <Rating maxRating={5} onRate={this.handleRate} />
-                            </div>
-                            <div></div>
-                            <div> <DisqusThread id={this.props.article._id} title={metaTitle} path={this.props.article.articleUrl} /></div>
-                            <div style={{ display: 'block', height: '35px' }}></div>
+                            <Segment id={placement_id} color={this.props.accent} />
+                            <div><DisqusThread id={this.props.article._id} title={metaTitle} path={this.props.article.articleUrl} accent={this.props.accent} /></div>
                         </Segment>
                 }
             </div>

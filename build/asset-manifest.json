@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.1b1dc943.css",
-  "main.css.map": "static/css/main.1b1dc943.css.map",
-  "main.js": "static/js/main.df9ff5ad.js",
-  "main.js.map": "static/js/main.df9ff5ad.js.map",
+  "main.css": "static/css/main.b01424bd.css",
+  "main.css.map": "static/css/main.b01424bd.css.map",
+  "main.js": "static/js/main.bda69dce.js",
+  "main.js.map": "static/js/main.bda69dce.js.map",
   "static\\media\\ALLEGIANT-REGULAR.eot": "static/media/ALLEGIANT-REGULAR.53f92d23.eot",
   "static\\media\\ALLEGIANT-REGULAR.ttf": "static/media/ALLEGIANT-REGULAR.763e7bf3.ttf",
   "static\\media\\ALLEGIANT-REGULAR.woff": "static/media/ALLEGIANT-REGULAR.8e42f4ad.woff",
@@ -371,6 +371,10 @@
   "static\\media\\icons.ttf": "static/media/icons.b06871f2.ttf",
   "static\\media\\icons.woff": "static/media/icons.fee66e71.woff",
   "static\\media\\icons.woff2": "static/media/icons.af7ae505.woff2",
+  "static\\media\\slick.eot": "static/media/slick.ced611da.eot",
+  "static\\media\\slick.svg": "static/media/slick.f97e3bbf.svg",
+  "static\\media\\slick.ttf": "static/media/slick.d41f55a7.ttf",
+  "static\\media\\slick.woff": "static/media/slick.b7c9e1e4.woff",
   "static\\media\\srfmneon.eot": "static/media/srfmneon.4ff52eb2.eot",
   "static\\media\\srfmneon.ttf": "static/media/srfmneon.dd8f184d.ttf",
   "static\\media\\srfmneon.woff": "static/media/srfmneon.49691483.woff"
