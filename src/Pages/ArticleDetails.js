@@ -57,7 +57,7 @@ class ArticleDetails extends Component {
         rating: '',
         maxRating: '',
         isRated: false,
-        ratingDoneMsg: 'Rate the article!'
+        ratingDoneMsg: 'Rate The Article!'
     }
 
     componentDidMount = () => {
@@ -258,10 +258,18 @@ class ArticleDetails extends Component {
 
         const tagsArray = this.props.article.articleCategory ? this.props.article.articleCategory.split(',') : [];
         const tagCompo = _.map(tagsArray, function (tag, idx) {
-
+            //red orange yellow olive green teal blue violet purple pink brown grey black Web Development
             let colorProfile = 'grey';
             let webLink = 'https://mushfiqweb.com';
             switch (tag.trim()) {
+                case 'Web Development':
+                    colorProfile = 'violet';
+                    webLink = 'https://mushfiqweb.com';
+                    break;
+                case 'HTML':
+                    colorProfile = 'brown';
+                    webLink = 'https://mushfiqweb.com';
+                    break;
                 case 'Javascript':
                     colorProfile = 'orange';
                     webLink = 'https://mushfiqweb.com';
@@ -281,7 +289,7 @@ class ArticleDetails extends Component {
                     break;
 
                 case 'Tips':
-                    colorProfile = 'red';
+                    colorProfile = 'green';
                     webLink = 'https://mushfiqweb.com';
                     break;
                 case 'ES6':
@@ -410,7 +418,7 @@ class ArticleDetails extends Component {
                                 }</style>
                                 {
                                     Parser(htmlToRender)
-                                }
+                                }                                
                             </div>
                             <div>
                                 {
@@ -420,7 +428,7 @@ class ArticleDetails extends Component {
                                         : <div> </div>
                                 }
                             </div>
-                            <Segment id={placement_id} color={this.props.accent} />
+                            <Segment color={this.props.accent} id="SC_TBlock_451985" class="SC_TBlock">loading...</Segment>
                             <div><DisqusThread id={this.props.article._id} title={metaTitle} path={this.props.article.articleUrl} accent={this.props.accent} /></div>
                         </Segment>
                 }

@@ -1,4 +1,5 @@
 @import url(//fonts.googleapis.com/css?family=Lato:300i,400,400i,700|Raleway:400,500,600&amp;subset=latin-ext);
+@import url(//fonts.googleapis.com/css?family=Ubuntu+Mono|Source+Code+Pro);
 body {
     margin: 0;
     padding: 0;
@@ -14,18 +15,60 @@ kbd {
 }
 
 pre code {
-    font-size: 13px;
-    line-height: 1.6em;
+    font-size: 12px;
+    font-family: monospace;
+    line-height: 13px;
+    color: inherit;
+    font-weight: inherit;
+    background-color: inherit;
+    border-radius: 0;
+    border: none;
+}
+
+code {
+    white-space: pre-wrap;
+    /* CSS3 browsers  */
+    white-space: -moz-pre-wrap !important;
+    /* 1999+ Mozilla  */
+    white-space: -pre-wrap;
+    /* Opera 4 thru 6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 and up */
+    word-wrap: break-word;
+    /* IE 5.5+ and up */
+    font-family: monospace;
+    padding: 2px 3px 2px 3px;
+    color: #fff;
+    font-weight: 800;
+    background-color: #676767;
     font-size: 11px;
+    line-height: 1em;
+    border-radius: .28571429rem;
+    border: 1px solid #22242626;
 }
 
 pre {
-    font-size: 13px;
-    padding: 0.1em 0.5em 0.3em 0.7em;
+    white-space: pre-wrap;
+    /* CSS3 browsers  */
+    white-space: -moz-pre-wrap !important;
+    /* 1999+ Mozilla  */
+    white-space: -pre-wrap;
+    /* Opera 4 thru 6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 and up */
+    word-wrap: break-word;
+    /* IE 5.5+ and up */
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 13px;
+    background-color: #f3f3f3;
+    padding: 1em;
     border-left: 11px solid #ccc;
-    margin: 1.7em 0 1.7em 0.3em;
-    overflow: auto;
-    width: 93%;
+    overflow-y: hidden;
+    overflow: visible;
+    overflow-x: auto;
+    border-radius: .28571429rem;
+    border: 1px solid #22242626;
 }
 
 
@@ -258,10 +301,11 @@ font-family: 'Bowlby One SC',cursive;
 }
 
 .cool-link {
+    font-size: 110%;
     display: inline-block;
-    color: #838383;
+    color: #000;
     text-decoration: none;
-    font-weight: 400;
+    font-weight: bold;
 }
 
 .cool-link::after {

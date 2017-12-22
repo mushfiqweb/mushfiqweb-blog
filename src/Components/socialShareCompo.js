@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import { Segment, Header, Divider, Label, Rating, Loader, Dimmer } from 'semantic-ui-react'
+import { Segment, Header, Divider, Label, Rating, Loader, Dimmer, Icon } from 'semantic-ui-react'
 import {
     ShareButtons,
     ShareCounts,
@@ -46,19 +46,19 @@ class SocialShareCompo extends Component {
 
             <Segment style={{ display: 'flex', flexDirection: 'column', marginTop: '20px' }} color={this.props.accent}>
 
-                <div>
+                <div className='Alegreya'>
                     <Dimmer active={this.props.loading} inverted>
-                        <Loader size='mini'>
+                        <Loader size='mini' className='Alegreya'>
                             Rating the article...
                         </Loader>
                     </Dimmer>
-                    <Header> {this.props.ratingDoneMsg}</Header>
+                    <Header className='Alegreya'> {this.props.ratingDoneMsg}</Header>
                     <div>
                         <Rating color={this.props.accent} size='huge' maxRating={5} onRate={this.props.handleRate} />
                     </div>                
                 </div>                
                 
-                <Header>Spread the love! </Header>
+                <Header className='Alegreya'>Spread The Love <Icon name='smile' size='big' color={this.props.accent} /> </Header>
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
 
                     <div className='share-btn-div' title='Share on Facebook'>

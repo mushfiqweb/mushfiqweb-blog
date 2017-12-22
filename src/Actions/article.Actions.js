@@ -90,7 +90,7 @@ export function fetchArticles(limit, skip) {
     return dispatch => {
         dispatch({
             type: 'FETCH_Articles',
-            payload: apiClientProd.get('/api/article?$limit=' + limit + '&$skip=' + skip + '&$sort[createdAt]=-1')
+            payload: apiClientProd.get('/api/article?$limit=' + limit + '&$skip=' + skip + '&$sort[createdAt]=-1&isDeleted=false')
         })
     }
 }

@@ -95,9 +95,9 @@ class ArticleViewer extends Component {
                             </div>
 
                         </div>
-                        <div style={{ display: this.props.articles.length === this.props.total ? 'block' : 'none' }}>
+                        <div className='Alegreya' style={{ display: this.props.articles.length === this.props.total ? 'block' : 'none' }}>
                             <strong>
-                                Loaded everything <Icon name='smile' size='large' color={this.props.accent} />
+                                Loaded Everything <Icon name='smile' size='big' color={this.props.accent} />
                             </strong>
                         </div>
                     </div>

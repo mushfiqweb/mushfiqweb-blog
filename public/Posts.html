@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="semantic.min.css">
 
     <style type="text/css">
-    @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Federo|Londrina+Outline|Montserrat+Subrayada|Patrick+Hand+SC');
+        @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Federo|Londrina+Outline|Montserrat+Subrayada|Patrick+Hand+SC');
         body {
             background-color: #FFFFFF;
         }
@@ -53,17 +53,186 @@
             font-family: 'Alegreya Sans SC' !important;
             font-size: 18px;
         }
+
+
+        @import url(//fonts.googleapis.com/css?family=Lato:300i,400,400i,700|Raleway:400,500,600&amp;subset=latin-ext);
+        @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono|Source+Code+Pro);
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        code,
+        samp,
+        kbd {
+            font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+            font-size: 13px;
+            text-align: left;
+            color: #555;
+        }
+
+        pre code {
+            font-size: 13px;
+            line-height: 1.6em;
+            color: inherit;
+            font-weight: inherit;
+            background-color: inherit;
+            border-radius: 0;
+            border: none;
+        }
+
+        code {
+            padding: 2px 3px 2px 3px;
+            color: #fff;
+            font-weight: 800;
+            background-color: #676767;
+            font-size: 11px;
+            line-height: 1em;
+            border-radius: .28571429rem;
+            border: 1px solid #22242626;
+        }
+
+        pre {
+            background-color: #f3f3f3;
+            font-size: 13px;
+            padding: 1em;
+            border-left: 11px solid #ccc;
+            margin: 1.7em 0 1.7em 0.3em;
+            overflow: auto;
+            width: 93%;
+            border-radius: .28571429rem;
+            border: 1px solid #22242626;
+        }
+        /* target IE7 and IE6 */
+
+        *:first-child+html pre {
+            padding-bottom: 2em;
+            overflow-y: hidden;
+            overflow: visible;
+            overflow-x: auto;
+        }
+
+        * html pre {
+            padding-bottom: 2em;
+            overflow: visible;
+            overflow-x: auto;
+        }
+
+        .social-footer {
+            text-align: center !important;
+            display: block !important;
+            padding-top: 10px !important;
+        }
+
+        .menu-home {
+            font-weight: 800 !important;
+            padding: 0 !important;
+            font-family: 'Alegreya Sans SC' !important;
+            font-size: 35px;
+        }
+
+        .menu-home-small,
+        .menu-home:hover {
+            cursor: pointer;
+        }
+
+        .menu-home-small {
+            font-weight: 800 !important;
+            padding: 0 !important;
+            font-family: 'Alegreya Sans SC' !important;
+            font-size: 18px;
+        }
+
+        .Alegreya {
+            font-family: 'Alegreya Sans SC' !important;
+        }
+
+
+        .pulse:hover {
+            -webkit-animation-duration: 500ms;
+            -moz-animation-duration: 500ms;
+            -o-animation-duration: 500ms;
+            -ms-animation-duration: 500ms;
+            animation-duration: 500ms;
+            -webkit-animation-name: pulse;
+            -moz-animation-name: pulse;
+            -o-animation-name: pulse;
+            -ms-animation-name: pulse;
+            animation-name: pulse;
+        }
+        /*FadeIn*/
+
+        .cool-link {
+            display: inline-block;
+            color: #838383;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        .cool-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #a1a1a1;
+            transition: width .3s;
+            -moz-transition: width .3s;
+            -o-transition: width .3s;
+            -ms-transition: width .3s;
+        }
+
+        .cool-link:hover {
+            color: #4d4d4d;
+        }
+
+        .cool-link:hover::after {
+            width: 100%;
+        }
+
+
+        .ant-divider {
+            display: inline-block;
+            height: 0.9em;
+            width: 2px;
+            vertical-align: middle;
+            position: relative;
+            top: -0.06em;
+        }
+
+        .ant-divider {
+            font-weight: bolder;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #000000a6;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            margin: 0px 5px 0px 5px;
+            padding: 0;
+            list-style: none;
+            background: #b1b1b1;
+        }
+
+        .git-shadow {
+            -webkit-box-shadow: 1px 0px 3px 0px rgba(50, 50, 50, 0.88);
+            -moz-box-shadow: 1px 0px 3px 0px rgba(50, 50, 50, 0.88);
+            box-shadow: 1px 0px 3px 0px rgba(50, 50, 50, 0.88);
+            padding: 20px 0px 10px 20px;
+            margin: 0px 0px 10px 0px;
+        }
+
+        .width85vw {
+            width: 85vw !important;
+        }
     </style>
 
 </head>
 
 <body>
 
-    <div class="ui fixed  menu">
+    <div class="ui fixed fluid menu" style="border-bottom: 2px solid purple; box-shadow: rgba(8, 7, 7, 0.2) 0px 3px 5px;">
         <div class="ui container">
-            <div title="Mushfiqur's Blog" class="item borderless menu-home">Mushfiqur's Blog</div>
-
-            <div title='All Articles' class="item borderless right menu-home-small">All Articles</div>
+            <div title="Mushfiqur's Blog" class="item borderless menu-home pulse">Mushfiqur's Blog</div>
+            <div title="All Articles" class="item borderless right menu-home-small pulse">All Articles</div>
         </div>
     </div>
 

@@ -95,13 +95,13 @@ class App extends Component {
                             <Route exact path='/articles' component={ArticleViewer} />
                             <Route exact path='/articleadd' component={AddArticle} />
                             <Route exact path='/InstaFeed' component={InstaFeed} />
-                            <Route exact path='/GithubTrends' component={GithubTrends} />                            
+                            <Route exact path='/GithubTrends' component={GithubTrends} />
                             <Route exact path='/TransitionablePortalExampleControlled' component={TransitionablePortalExampleControlled} />
                             <Route exact path='/:articleUrl' component={ArticleDetails} />
                         </Switch>
                     </div>
                 </div>
-                <SocialMenu accent={this.props.AppAccentColor}  />
+                <SocialMenu accent={this.props.AppAccentColor} />
             </div>
         );
     }
@@ -114,3 +114,4 @@ function mapStateToProps(state) {
     }
 }
 export default connect(mapStateToProps, { emptyArticle, getAccentColor })(App);
+
