@@ -126,7 +126,16 @@ export function saveArticle(article) {
         metaImage: article.metaImage,
         metaUrl: article.metaUrl,
         articleSlug: article.articleSlug,
-        metaKeys: article.metaKeys
+        metaKeys: article.metaKeys,        
+        
+        serialNumber: '',
+        city: article.city,
+        country_code: article.country_code,
+        country_name: article.country_name,
+        ip: article.ip,
+        latitude: article.latitude,
+        longitude: article.longitude,
+        zip_code: article.zip_code
     }
     return dispatch => {
         dispatch({

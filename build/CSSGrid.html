@@ -8,7 +8,6 @@
   <title>Project Control v2</title>
 
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 
   <!-- Begin ProjectControl Code -->
@@ -117,61 +116,6 @@
   </div>
   <script>
 
-    $(function () {
-
-
-
-    });
-
-    function Submit() {
-
-      $.ajax({
-        type:'POST',
-        data: $('#myform').serialize(),
-        url: "https://mushfiqweb-api.herokuapp.com/api/product",
-        success: function (data) {
-          console.log(data);
-        },
-        dataType: 'json'
-
-      });
-    }
-
-
-
-    /*
-
-    $.ajax({
-        type        : 'POST', // define the type of HTTP verb we want to use
-        url         : 'url/', // the url where we want to POST
-        data        : formData, // our data object
-        dataType    : 'json', // what type of data do we expect back.
-        beforeSend : function() {
-        //this will run before sending an ajax request do what ever activity
-         you want like show loaded
-         },
-        success:function(response){
-            var obj = eval(response);
-            if(obj)
-            {
-                if(obj.error==0){
-                alert('success');
-                }
-            else{
-                alert('error');
-                }
-            }
-        },
-        complete : function() {
-           //this will run after sending an ajax complete
-                    },
-        error:function (xhr, ajaxOptions, thrownError){
-          alert('error occured');
-        // if any error occurs in request
-        }
-    });
-
-    */
 
   </script>
 

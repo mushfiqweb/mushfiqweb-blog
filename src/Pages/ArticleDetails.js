@@ -15,6 +15,7 @@ import ReactGA from 'react-ga';
 import DisqusThread from '../Components/disqusThread';
 import SocialShareCompo from "../Components/socialShareCompo";
 import { withCookies, Cookies } from 'react-cookie';
+import FacebookProvider, { Comments } from 'react-facebook';
 
 const spanStyle = {
     color: '#a7a7a7',
@@ -42,6 +43,8 @@ const StyleSheet = {
     }
 }
 
+const cookies = new Cookies();
+
 const webClient = axios.create({
     baseURL: "https://mushfiqweb-api.herokuapp.com",
     headers: {
@@ -54,7 +57,7 @@ class ArticleDetails extends Component {
     state = {
         menuFixed: false,
         overlayFixed: false,
-        rating: '',
+        rating: false,
         maxRating: '',
         isRated: false,
         ratingDoneMsg: 'Rate The Article!'
@@ -71,6 +74,16 @@ class ArticleDetails extends Component {
 
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.article) {
+
+            if (cookies.get(nextProps.article.articleUrl)) {
+                if (nextProps.article.articleUrl === cookies.get(nextProps.article.articleUrl)) {
+                    this.setState({
+                        isRated: true,
+                        ratingDoneMsg: 'Thanks for Rating!'
+                    });
+                }
+            }
+
             if (sessionStorage.getItem('isViewed')) {
                 return;
             }
@@ -92,6 +105,8 @@ class ArticleDetails extends Component {
                 articleRatingHigh: '',
                 articleRatingLow: '',
                 articleRatingAvg: '',
+                ratingSum: '0',
+                reviewCount: '0',
                 metaUrl: '',
                 metaTitle: '',
                 metaImage: '',
@@ -119,24 +134,32 @@ class ArticleDetails extends Component {
                     articleTotalViews: Number(nextProps.article.articleTotalViews) + 1,
                     articleUrl: nextProps.article.articleUrl,
                     articleTotalComments: nextProps.article.articleTotalComments,
-                    articleRatingHigh: nextProps.article.articleRatingHigh ? nextProps.article.articleRatingHigh : 0,
-                    articleRatingLow: nextProps.article.articleRatingLow ? nextProps.article.articleRatingLow : 0,
-                    articleRatingAvg: nextProps.article.articleRatingAvg ? nextProps.article.articleRatingAvg : 0,
+                    articleRatingHigh: nextProps.article.articleRatingHigh,
+                    articleRatingLow: nextProps.article.articleRatingLow,
+                    articleRatingAvg: nextProps.article.articleRatingAvg,
+                    ratingSum: nextProps.article.ratingSum,
+                    reviewCount: nextProps.article.reviewCount,
                     metaUrl: nextProps.article.metaUrl,
                     metaTitle: nextProps.article.metaTitle,
                     metaImage: nextProps.article.metaImage,
                     metaDesc: nextProps.article.metaDesc,
                     metaKeys: nextProps.article.metaKeys,
-
+                    serialNumber: nextProps.article.serialNumber,
                     isDeleted: nextProps.article.isDeleted,
                     updatedAt: nextProps.article.updatedAt,
                     createdAt: nextProps.article.createdAt,
                     updatedBy: nextProps.article.updatedBy,
-                    createdBy: nextProps.article.createdBy
+                    createdBy: nextProps.article.createdBy,
+                    city: nextProps.article.city,
+                    country_code: nextProps.article.country_code,
+                    country_name: nextProps.article.country_name,
+                    ip: nextProps.article.ip,
+                    latitude: nextProps.article.latitude,
+                    longitude: nextProps.article.longitude,
+                    zip_code: nextProps.article.zip_code
                 }
             }
             if (articleObj._id !== '' && articleObj._id) {
-
                 webClient.put('/api/article/' + articleObj._id, articleObj).then(() => {
                     console.log('Done');
                 }).catch(() => {
@@ -147,8 +170,7 @@ class ArticleDetails extends Component {
     }
 
     handleRate = (e, { rating, maxRating }) => {
-
-        return;
+        this.setState({ rating: true });
         var articleObj = {
             articleTitle: '',
             articlePostedDate: '',
@@ -164,6 +186,8 @@ class ArticleDetails extends Component {
             articleRatingHigh: '',
             articleRatingLow: '',
             articleRatingAvg: '',
+            ratingSum: '0',
+            reviewCount: '0',
             metaUrl: '',
             metaTitle: '',
             metaImage: '',
@@ -174,13 +198,24 @@ class ArticleDetails extends Component {
             updatedAt: '',
             createdAt: '',
             updatedBy: '',
-            createdBy: ''
+            createdBy: '',
+            city: '',
+            country_code: '',
+            country_name: '',
+            ip: '',
+            latitude: '',
+            longitude: '',
+            zip_code: '',
+            serialNumber: ''
 
         }
         if (this.props.article) {
 
-            var avgRating = Number(this.props.article.articleRatingAvg) + rating;
-            avgRating = avgRating / (Number(this.props.article.articleRatingLow) + 1);
+            var ratingSum = Number(this.props.article.ratingSum) + Number(rating);
+            var reviewCount = Number(this.props.article.reviewCount) + 1;
+            var articleRatingAvg = ratingSum / reviewCount;
+
+
             articleObj = {
                 _id: this.props.article._id,
                 articleTitle: this.props.article.articleTitle,
@@ -196,21 +231,40 @@ class ArticleDetails extends Component {
                 articleTotalComments: this.props.article.articleTotalComments,
                 articleRatingHigh: this.props.article.articleRatingHigh ? this.props.article.articleRatingHigh : maxRating,
                 articleRatingLow: this.props.article.articleRatingLow ? (Number(this.props.article.articleRatingLow) + 1) : 0,
-                articleRatingAvg: avgRating.toFixed(1),
+                articleRatingAvg: articleRatingAvg.toFixed(1),
+                ratingSum: ratingSum,
+                reviewCount: reviewCount,
                 metaUrl: this.props.article.metaUrl,
                 metaTitle: this.props.article.metaTitle,
                 metaImage: this.props.article.metaImage,
                 metaDesc: this.props.article.metaDesc,
                 metaKeys: this.props.article.metaKeys,
                 isDeleted: this.props.article.isDeleted,
+                serialNumber: this.props.article.serialNumber,
                 updatedAt: this.props.article.updatedAt,
                 createdAt: this.props.article.createdAt,
                 updatedBy: this.props.article.updatedBy,
-                createdBy: this.props.article.createdBy
+                createdBy: this.props.article.createdBy,
+
+                city: this.props.article.city,
+                country_code: this.props.article.country_code,
+                country_name: this.props.article.country_name,
+                ip: this.props.article.ip,
+                latitude: this.props.article.latitude,
+                longitude: this.props.article.longitude,
+                zip_code: this.props.article.zip_code
             }
         }
         if (articleObj._id !== '' && articleObj._id) {
             webClient.put('/api/article/' + articleObj._id, articleObj).then(() => {
+                this.setState({
+                    rating: false,
+                    ratingDoneMsg: 'Thanks for Rating!',
+                    isRated: true
+                });
+
+
+                cookies.set(articleObj.articleUrl, articleObj.articleUrl, { path: '/' + articleObj.articleUrl });
                 console.log('Done');
             }).catch(() => {
                 console.log('Error');
@@ -318,27 +372,26 @@ class ArticleDetails extends Component {
             );
         });
 
-
-        var placement_id = 'chitikaAdBlock-';
-        if (this.props.article) {
-            if (window.CHITIKA === undefined) {
-                window.CHITIKA = {
-                    'units': []
-                };
-            };
-            var unit = {
-                "calltype": "async[2]",
-                "publisher": "mushfiqweb",
-                "width": 728,
-                "height": 90,
-                "sid": "Chitika Default"
-            };
-            placement_id = placement_id + window.CHITIKA.units.length;
-            window.CHITIKA.units.push(unit);
-        }
-
+        /*
+                var placement_id = 'chitikaAdBlock-';
+                if (this.props.article) {
+                    if (window.CHITIKA === undefined) {
+                        window.CHITIKA = {
+                            'units': []
+                        };
+                    };
+                    var unit = {
+                        "calltype": "async[2]",
+                        "publisher": "mushfiqweb",
+                        "width": 728,
+                        "height": 90,
+                        "sid": "Chitika Default"
+                    };
+                    placement_id = placement_id + window.CHITIKA.units.length;
+                    window.CHITIKA.units.push(unit);
+                }
+        */
         const articleStats = this.props.article ? readingTime(this.props.article.articleBody) : '';
-
         return (
             <div>
 
@@ -408,6 +461,10 @@ class ArticleDetails extends Component {
                                         <span className="ant-divider" />
                                         <strong>{Math.ceil(articleStats.minutes)}</strong> Minutes To Read
                                     </div>
+                                    <div style={timeStringStyle} className='Alegreya'>
+                                        <span className="ant-divider" />
+                                        <strong>{this.props.article.articleRatingAvg && this.props.article.articleRatingAvg !== 'NaN' ? this.props.article.articleRatingAvg : '0'}</strong> Rating
+                                    </div>
                                 </div>
 
                             </div>
@@ -418,17 +475,17 @@ class ArticleDetails extends Component {
                                 }</style>
                                 {
                                     Parser(htmlToRender)
-                                }                                
+                                }
                             </div>
                             <div>
                                 {
                                     metaUrl.length ?
-                                        <SocialShareCompo accent={this.props.accent} metaDescription={metaDescription} metaUrl={metaUrl} handleRate={this.handleRate}
+                                        <SocialShareCompo accent={this.props.accent} metaDescription={metaDescription} metaUrl={metaUrl} handleRate={this.handleRate} loading={this.state.rating}
                                             metaTitle={metaTitle} metaImage={metaImage} accent={this.props.accent} ratingDoneMsg={this.state.ratingDoneMsg} isRated={this.state.isRated} />
                                         : <div> </div>
                                 }
                             </div>
-                            <Segment color={this.props.accent} id="SC_TBlock_451985" class="SC_TBlock">loading...</Segment>
+                            <Segment color={this.props.accent} id="chitikaAdBlock-0" />
                             <div><DisqusThread id={this.props.article._id} title={metaTitle} path={this.props.article.articleUrl} accent={this.props.accent} /></div>
                         </Segment>
                 }

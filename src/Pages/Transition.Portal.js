@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 import { Button, Header, Segment, TransitionablePortal, Embed } from 'semantic-ui-react';
 import GithubTrends from "./Github.Trends";
 
+import FacebookProvider, { Comments, Share } from 'react-facebook';
+
 export default class TransitionablePortalExampleControlled extends Component {
     state = { open: false }
 
@@ -34,6 +36,13 @@ export default class TransitionablePortalExampleControlled extends Component {
                     positive={!open}
                     onClick={this.handleClick}
                 />
+
+                <FacebookProvider appId="920812974736093">
+                    <Comments className='ui segment green container' href="https://mushfiqweb.com/TransitionablePortalExampleControlled" />
+                    <Share href="https://mushfiqweb.com/TransitionablePortalExampleControlled">
+                        <button type="button">Share</button>
+                    </Share>
+                </FacebookProvider>
 
                 <EmbedExampleCustom />
 

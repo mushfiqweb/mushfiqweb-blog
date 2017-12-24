@@ -11,10 +11,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 import 'semantic-ui-css/semantic.min.css';
 import './Style/style.css';
-import './Style/fonts/fonts.css';
-import './Style/froala_editor.pkgd.min.css';
-import './Style/froala_style.min.css';
-
 
 //global store
 import configureStore from './store';

@@ -1,21 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Segment, Header, Button, Divider, Loader, Dimmer, Input, Message, Label } from 'semantic-ui-react';
+import { Segment, Header, Button, Divider, Loader, Dimmer, Input, Message, Label, TextArea } from 'semantic-ui-react';
 import { onEditorChange, saveArticle, newArticle, updateArticle } from '../Actions/article.Actions';
-import ReactGA from 'react-ga';
-
-// Require Editor JS files.
-import 'froala-editor/js/froala_editor.pkgd.min.js';
-
-// Require Editor CSS files.
-import 'froala-editor/css/froala_style.min.css';
-import 'froala-editor/css/froala_editor.pkgd.min.css';
-
-// Require Font Awesome.
-import 'font-awesome/css/font-awesome.css';
-
-import FroalaEditor from 'react-froala-wysiwyg';
-
+import axios from 'axios';
 
 class AddArticle extends Component {
 
@@ -31,27 +18,11 @@ class AddArticle extends Component {
         articleSlug: '',
         metaUrl: '',
         metaKeys: '',
-        articleCategory: ''
+        articleCategory: '',
+        articleBody: ''
     }
 
     componentDidMount = () => {
-        if (window.location.hostname !== 'localhost') {
-            ReactGA.set({ page: window.location.href });
-            ReactGA.pageview(window.location.href);
-        }
-        var seconds = 10000 * Math.random();
-        seconds = Math.floor(seconds) * new Date().getMonth();
-        if (seconds % 11 === 0) { console.log(5); this.setState({ blogColor: 'red', resumeColor: 'black' }); }
-        else if (seconds % 7 === 0) { console.log(7); this.setState({ blogColor: 'orange', resumeColor: 'yellow' }); }
-        else if (seconds % 8 === 0) { console.log(8); this.setState({ blogColor: 'olive', resumeColor: 'green' }); }
-        else if (seconds % 9 === 0) { console.log(9); this.setState({ blogColor: 'teal', resumeColor: 'blue' }); }
-        else if (seconds % 6 === 0) { console.log(6); this.setState({ blogColor: 'violet', resumeColor: 'purple' }); }
-        else if (seconds % 4 === 0) { console.log(4); this.setState({ blogColor: 'green', resumeColor: 'red' }); }
-        else if (seconds % 3 === 0) { console.log(3); this.setState({ blogColor: 'black', resumeColor: 'orange' }); }
-        else if (seconds % 2 === 0) { console.log(2); this.setState({ blogColor: 'blue', resumeColor: 'orange' }); }
-
-
-
     }
 
     checkSecurityCode = (e, data) => {
@@ -59,23 +30,45 @@ class AddArticle extends Component {
     }
 
     triggerAction = () => {
-
         if (this.state.code === '0020ASD') {
             this.props.newArticle();
-            var article = {
-                articleBody: this.state.editorText,
-                title: this.state.title,
-                metaTitle: this.state.metaTitle,
-                metaDesc: this.state.metaDesc,
-                metaImage: this.state.metaImage,
-                metaUrl: this.state.metaUrl,
-                articleUrl: this.state.articleUrl,
-                articleSlug: this.state.articleSlug,
-                articleCategory: this.state.articleCategory,
-                metaKeys: this.state.metaKeys
-            }
-            setTimeout(() => this.props.saveArticle(article), 500);
-            this.setState({ focused: '' });
+            const ipClient = axios.get('https://freegeoip.net/json/').then((response) => {
+                if (response) {
+                    if (response.data) {                        
+                        var article = {
+                            articleBody: this.state.articleBody,
+                            title: this.state.title,
+                            metaTitle: this.state.metaTitle,
+                            metaDesc: this.state.metaDesc,
+                            metaImage: this.state.metaImage,
+                            metaUrl: this.state.metaUrl,
+                            articleUrl: this.state.articleUrl,
+                            articleSlug: this.state.articleSlug,
+                            articleCategory: this.state.articleCategory,
+                            metaKeys: this.state.metaKeys,
+
+                            city: response.data.city ? response.data.city : 'Dhaka',
+                            country_code: response.data.country_code ? response.data.country_code : 'BD',
+                            country_name: response.data.country_name ? response.data.country_name : 'Bangladesh',
+                            ip: response.data.ip ? response.data.ip : '192.168.10.1',
+                            latitude: response.data.latitude ? response.data.latitude : '0',
+                            longitude: response.data.longitude ? response.data.longitude : '0',
+                            zip_code: response.data.zip_code ? response.data.zip_code : '1212'
+
+                        }
+                        setTimeout(() => this.props.saveArticle(article), 500);
+                        this.setState({ focused: '' });
+                    }
+                    else {
+                        alert('No Data');
+                    }
+                } else {
+                    alert('No Data');
+                }
+            }).catch((err) => {
+                console.log(err)
+            });
+
         }
         else {
             this.setState({ focused: 't' });
@@ -89,6 +82,12 @@ class AddArticle extends Component {
             case 'title':
                 selfObj.setState({
                     title: e.target.value
+                });
+                break;
+            //articleBody
+            case 'articleBody':
+                selfObj.setState({
+                    articleBody: e.target.value
                 });
                 break;
 
@@ -159,49 +158,71 @@ class AddArticle extends Component {
             charCounterCount: false
         }
 
+        const marginBottomStyle = {
+            marginBottom: '15px'
+        }
+
+        const txtAreaStyleLarge = {
+            minHeight: '600px',
+            margin: 0,
+            padding: '.78571429em 1em',
+            background: '#fff',
+            border: '1px solid #22242626',
+            outline: '0',
+            color: '#000000',
+            borderRadius: '.28571429rem',
+            boxShadow: '0 0 0 0 transparent inset',
+            transition: 'color .1s ease, border - color .1s ease',
+            fontSize: '1em',
+            lineHeight: '1.2857',
+            resize: 'vertical'
+        }
+
+        const txtAreaStyleSmall = {
+            minHeight: '100px',
+            margin: 0,
+            padding: '.78571429em 1em',
+            background: '#fff',
+            border: '1px solid #22242626',
+            outline: '0',
+            color: '#000000',
+            borderRadius: '.28571429rem',
+            boxShadow: '0 0 0 0 transparent inset',
+            transition: 'color .1s ease, border - color .1s ease',
+            fontSize: '1em',
+            lineHeight: '1.2857',
+            resize: 'vertical'
+        }
+
+        const accentColor = 'ui segment ' + this.props.accent;
+
         return (
             <div>
-
-
-                <Segment color={this.props.accent} style={{ display: 'grid' }}>
-                    <Input name='title' placeholder='Article Title' size='huge' onBlur={this.inputHandler} />
-                    <Input name='metaTitle' placeholder='Meta Title' size='huge' onBlur={this.inputHandler} />
-                    <Input name='metaDesc' placeholder='Meta Description' size='huge' onBlur={this.inputHandler} />
-                    <Input name='metaImage' placeholder='Meta Image' size='huge' onBlur={this.inputHandler} />
-                    <Input name='metaUrl' placeholder='Meta Url' size='huge' onBlur={this.inputHandler} />
-                    <Input name='articleUrl' placeholder='Article Url' size='huge' onBlur={this.inputHandler} />
-                    <Input name='articleSlug' placeholder='Slug' size='huge' onBlur={this.inputHandler} />
-                    <Input name='articleCategory' placeholder='Article Category' size='huge' onBlur={this.inputHandler} />
-                    <Input name='metaKeys' placeholder='Meta Keys' size='huge' onBlur={this.inputHandler} />
+                <Segment color={this.props.accent} style={{ display: 'flex', flexDirection: 'column' }}>
+                    <Dimmer active={this.props.loading} inverted>
+                        <Loader size='large'>
+                            {this.props.loadingMessage}
+                        </Loader>
+                    </Dimmer>
+                    <TextArea className={accentColor} name='articleBody' placeholder='Article Body' style={txtAreaStyleLarge} onChange={this.inputHandler} />
+                    <Divider />
+                    <Input style={marginBottomStyle} name='title' placeholder='Article Title' onBlur={this.inputHandler} />
+                    <Input style={marginBottomStyle} name='metaTitle' placeholder='Meta Title' onBlur={this.inputHandler} />
+                    <TextArea className={accentColor} name='metaDesc' placeholder='Meta Description' style={txtAreaStyleSmall} onChange={this.inputHandler} />
+                    <Divider />
+                    <Input style={marginBottomStyle} name='metaImage' placeholder='Meta Image' onBlur={this.inputHandler} />
+                    <Input style={marginBottomStyle} name='metaUrl' placeholder='Meta Url' onBlur={this.inputHandler} />
+                    <Input style={marginBottomStyle} name='articleUrl' placeholder='Article Url' onBlur={this.inputHandler} />
+                    <TextArea className={accentColor} name='articleSlug' placeholder='Article Slug' style={txtAreaStyleSmall} onChange={this.inputHandler} />
+                    <Divider />
+                    <Input style={marginBottomStyle} name='articleCategory' placeholder='Article Category' onBlur={this.inputHandler} />
+                    <Input style={marginBottomStyle} name='metaKeys' placeholder='Meta Keys' onBlur={this.inputHandler} />
                 </Segment>
 
                 <div style={{ marginTop: '40px', marginBottom: '30px' }}>
                     <Input error={this.state.code === '0020ASD' ? false : true} placeholder='security code' onBlur={this.checkSecurityCode} />
                     <Button content='Post Article' icon='save' labelPosition='left' floated='right' loading={this.props.loading} onClick={this.triggerAction} />
                 </div>
-                <div style={{ display: this.state.focused === 't' ? 'block' : 'none' }} >
-                    <Message>
-                        <Header as='h3'>
-                            <Label color={this.state.code === '0020ASD' ? 'green' : 'red'}>
-                                Security Code
-                                </Label>
-                        </Header>
-                    </Message>
-                </div>
-
-                <Divider />
-
-                <div>
-                    <Dimmer active={this.props.loading} inverted>
-                        <Loader size='large'>
-                            {this.props.loadingMessage}
-                        </Loader>
-                    </Dimmer>
-                    <FroalaEditor tag='textarea' model={this.state.editorText} config={config}
-                        onModelChange={this.onEditorChange} />
-                </div>
-
-
             </div>
         );
     }
@@ -212,7 +233,8 @@ function mapStateToProps(state) {
         editorText: state.articleStore.editorText,
         loading: state.articleStore.loading,
         loadingMessage: state.articleStore.loadingMessage,
-        article: state.articleStore.article
+        article: state.articleStore.article,
+        accent: state.articleStore.AppAccentColor
     }
 }
 

@@ -223,6 +223,34 @@
         .width85vw {
             width: 85vw !important;
         }
+        /* progressive image CSS */
+
+        .placeholder {
+            background-color: #f6f6f6;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .placeholder img {
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: opacity 1s linear;
+        }
+
+        .placeholder img.loaded {
+            opacity: 1;
+        }
+
+        .img-small {
+            filter: blur(50px);
+            /* this is needed so Safari keeps sharp edges */
+            transform: scale(1);
+        }
     </style>
 
 </head>
@@ -236,6 +264,58 @@
         </div>
     </div>
 
+    <div style="width: 750px">
+        <div class="placeholder" data-large="https://s3-eu-west-1.amazonaws.com/froala-eu/temp_files%2F1513873774540-1513873774540.jpg">
+            <img src="https://dummyimage.com/600x400/bdbdbd/f5f5f5.png&text=mushfiqweb.com" class="img-small">
+            <div style="padding-bottom: 53%;"></div>
+        </div>
+    </div>
+
+
+    
+    <script>
+        window.onload = function () {
+
+            var placeholder = document.querySelector('.placeholder'),
+                small = placeholder.querySelector('.img-small')
+
+            // 1: load small image and show it
+            var img = new Image();
+            img.src = small.src;
+            img.onload = function () {
+                small.classList.add('loaded');
+            };
+
+            // 2: load large image
+            var imgLarge = new Image();
+            imgLarge.src = placeholder.dataset.large;
+            imgLarge.onload = function () {
+                imgLarge.classList.add('loaded');
+            };
+            placeholder.appendChild(imgLarge);
+        }
+    </script>
+
+    <script type="text/javascript">
+        (function () {
+            if (window.CHITIKA === undefined) {
+                window.CHITIKA = {
+                    'units': []
+                };
+            };
+            var unit = {
+                "calltype": "async[2]",
+                "publisher": "mushfiqweb",
+                "width": 728,
+                "height": 90,
+                "sid": "Chitika Default"
+            };
+            var placement_id = window.CHITIKA.units.length;
+            window.CHITIKA.units.push(unit);
+            document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+        }());
+    </script>
+    <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
 </body>
 
 </html>

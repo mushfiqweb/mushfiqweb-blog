@@ -7,7 +7,7 @@
 <meta name="description" content="mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast">
 <meta name="keywords" content="Frontend Developer, Javascript Developer, Full Stack Developer, Tech Geek, Mushfiq, Mushfiqur Rahman, Mushfiqur, Mushfiqweb, Mushfiqur's blog, React, Reactjs, React Developer, Reactjs developer"
 />
-<title>mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast</title>
+<title>Mushfiqur's Blog</title>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.mushfiqweb.com">
 <meta property="og:title" content="mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast">
@@ -22,7 +22,7 @@
 <meta name="twitter:title" content="mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast">
 <meta name="twitter:description" content="Welcome to my blog, mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast">
 <meta name="twitter:image" content="https://i.imgur.com/tO8R8sd.png">
-
+<meta property="fb:app_id" content="920812974736093" />
 <meta name="p:domain_verify" content="03c5661dfaaf44c99511beab42d1b6ba" />
 <meta name="google-site-verification" content="x722Fh0DXqHucppdfXIN55BaYesG728oAWoc9g3eb8M" />
 <meta name="msvalidate.01" content="6E12217175EA3B0ABE1852F04509885C" />
@@ -31,31 +31,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"
 />
 
-
-
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro|Alegreya+Sans+SC|Federo|Londrina+Outline|Montserrat+Subrayada|Patrick+Hand+SC');
-  /*
-    font-family: 'Alegreya Sans SC', sans-serif;
-    font-family: 'Federo', sans-serif;
-    font-family: 'Patrick Hand SC', cursive;
-    font-family: 'Montserrat Subrayada', sans-serif;
-    font-family: 'Londrina Outline', cursive;
-
-    Amsdam
-    Bohem Press
-    Break
-    BEYNO
-    ONE DAY
-    Stoked
-    Anurati
-    Starway
-    Aquatico
-    Cabo Slab
-    
-
-        */
-</style>
 
 
 <style type="text/css">
@@ -146,7 +121,7 @@
    ::selection {
     text-shadow: none !important;
     color: #fff !important;
-    background: #6d6d6d !important;
+    background: #424242 !important;
   }
 </style>
 <script type="application/ld+json">
@@ -223,28 +198,6 @@
 
   <div id="root"></div>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js"></script>
-  <script type="text/javascript" src="code_beautifier.min.js"></script>
-  <script type="text/javascript" src="code_view.min.js"></script>
-
-
-  <script>
-    $(function () {
-      $('textarea').froalaEditor({
-        theme: 'dark',
-        toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript',
-          'superscript',
-          '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat',
-          'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage',
-          'insertVideo', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR',
-          'selectAll', 'clearFormatting', '|', 'print', 'help', 'html', '|', 'undo', 'redo'
-        ],
-        pluginsEnabled: true
-      });
-    });
-  </script>
-
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- ads22 -->
   <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-1938723723817363" data-ad-slot="8475274139"></ins>
@@ -255,12 +208,24 @@
   </script>
 
   <script type="text/javascript">
-    (sc_adv_out = window.sc_adv_out || []).push({
-      id: "451985",
-      domain: "n.ads1-adnow.com"
-    });
+    (function () {
+      if (window.CHITIKA === undefined) {
+        window.CHITIKA = {
+          'units': []
+        };
+      };
+      var unit = {
+        "calltype": "async[2]",
+        "publisher": "mushfiqweb",
+        "width": 728,
+        "height": 90,
+        "sid": "Chitika Default"
+      };
+      var placement_id = window.CHITIKA.units.length;
+      window.CHITIKA.units.push(unit);
+    }());
   </script>
-  <script type="text/javascript" src="//st-n.ads1-adnow.com/js/adv_out.js"></script>
+  <script async type="text/javascript" src="//cdn.chitika.net/getads.js"></script>
 </body>
 
 </html>

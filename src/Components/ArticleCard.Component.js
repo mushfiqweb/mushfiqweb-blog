@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import { Label, Item, } from 'semantic-ui-react'
+import { Label, Item, Rating } from 'semantic-ui-react'
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import readingTime from 'reading-time';
@@ -50,12 +50,16 @@ export default function ArticleCard({ article, deleteStudent, accent }) {
                     <div>
                         <div style={timeStringStyle} className='Alegreya'>
                             Posted @<span> </span> <strong style={{ fontSize: '13px' }}><Moment format="hh:mm a">{new Date(article.createdAt)}</Moment> </strong>
-                            On <span> </span><strong style={{ fontSize: '13px' }}><Moment format="DD MMM YYYY">{article.createdAt}</Moment></strong>  
+                            On <span> </span><strong style={{ fontSize: '13px' }}><Moment format="DD MMM YYYY">{article.createdAt}</Moment></strong>
                         </div>
 
                         <div style={viewsStyle} className='Alegreya'>
                             <span className="ant-divider" />
-                            {article.articleTotalViews} Views
+                            <strong>{article.articleTotalViews}</strong> Views
+                        </div>
+                        <div style={viewsStyle} className='Alegreya'>
+                            <span className="ant-divider" />
+                            <strong> {article.articleRatingAvg} </strong> Rating
                         </div>
                         <div>
                             <Link to={`/${article.articleUrl}`}>
