@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import _ from 'lodash';
 import readingTime from 'reading-time';
-import { Segment, Dimmer, Loader, Header, Label, Icon, Advertisement } from 'semantic-ui-react';
+import { Segment, Dimmer, Loader, Header, Label, Icon, Advertisement, Image } from 'semantic-ui-react';
 import { fetchArticle, getAccentColor } from '../Actions/article.Actions';
 import Parser from 'html-react-parser';
 import Moment from 'react-moment';
@@ -102,6 +102,7 @@ class ArticleDetails extends Component {
                 articleTotalViews: '',
                 articleUrl: '',
                 articleTotalComments: '',
+                introImage: '',
                 articleRatingHigh: '',
                 articleRatingLow: '',
                 articleRatingAvg: '',
@@ -139,6 +140,7 @@ class ArticleDetails extends Component {
                     articleRatingAvg: nextProps.article.articleRatingAvg,
                     ratingSum: nextProps.article.ratingSum,
                     reviewCount: nextProps.article.reviewCount,
+                    introImage: nextProps.article.introImage,
                     metaUrl: nextProps.article.metaUrl,
                     metaTitle: nextProps.article.metaTitle,
                     metaImage: nextProps.article.metaImage,
@@ -245,6 +247,7 @@ class ArticleDetails extends Component {
                 createdAt: this.props.article.createdAt,
                 updatedBy: this.props.article.updatedBy,
                 createdBy: this.props.article.createdBy,
+                introImage: this.props.article.introImage,
 
                 city: this.props.article.city,
                 country_code: this.props.article.country_code,
@@ -391,6 +394,64 @@ class ArticleDetails extends Component {
                     window.CHITIKA.units.push(unit);
                 }
         */
+
+        {/*
+        red            : #B03060;
+        orange         : #FE9A76;
+        yellow         : #FFD700;
+        olive          : #32CD32;
+        green          : #016936;
+        teal           : #008080;
+        blue           : #0E6EB8;
+        violet         : #EE82EE;
+        purple         : #B413EC;
+        pink           : #FF1493;
+        brown          : #A52A2A;
+        grey           : #A0A0A0;
+        black          : #000000;
+
+    
+        color = 'orange';
+        color = 'violet';
+        color = 'teal';
+        color = 'brown';
+        color = 'green';
+        color = 'red';
+        color = 'purple';
+        color = 'grey';
+    
+
+
+        */}
+
+        var colorSwatchHex = '#0E6EB8';
+        if (this.props.accent === 'orange') {
+            colorSwatchHex = '#FE9A76';
+        }
+        else if (this.props.accent === 'teal') {
+            colorSwatchHex = '#008080';
+        }
+        else if (this.props.accent === 'violet') {
+            colorSwatchHex = '#EE82EE';
+        }
+        else if (this.props.accent === 'green') {
+            colorSwatchHex = '#016936';
+        }
+        else if (this.props.accent === 'purple') {
+            colorSwatchHex = '#B413EC';
+        }
+        else if (this.props.accent === 'grey') {
+            colorSwatchHex = '#A0A0A0';
+        }
+        else if (this.props.accent === 'red') {
+            colorSwatchHex = '#B03060';
+        }
+        else if (this.props.accent === 'brown') {
+            colorSwatchHex = '#A52A2A';
+        }
+
+        const blockquoteStyle = "border-left: 10px solid " + colorSwatchHex + "; border-right: 2px solid " + colorSwatchHex + ";"
+
         const articleStats = this.props.article ? readingTime(this.props.article.articleBody) : '';
         return (
             <div>
@@ -471,8 +532,14 @@ class ArticleDetails extends Component {
 
                             <div>
                                 <style>{
-                                    'img {max-width: 60% !important;}  p {text-align: justify;}'
+                                    'img {max-width: 60% !important;}  p {text-align: justify;}' +
+                                    ' blockquote { ' + blockquoteStyle + '} '
                                 }</style>
+
+                                <div style={{ display: this.props.article.introImage ? 'flex' : 'none', justifyContent: 'center' }}>
+                                    <input className="color-input" type="color" value={colorSwatchHex} disabled />
+                                    <img className='color-input-img' src={this.props.article.introImage} />
+                                </div>
                                 {
                                     Parser(htmlToRender)
                                 }

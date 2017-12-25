@@ -115,6 +115,51 @@ pre {
     border: 1px solid #22242626;
 }
 
+blockquote {
+    display: block;
+    background: #fff;
+    padding: 15px 20px 15px 25px;
+    margin: 30px 15px 30px 15px;
+    position: relative;
+    /*Font*/
+    font-family: 'Alegreya Sans SC', serif !important;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #666;
+    text-align: justify;
+    /*Borders - (Optional)*/
+    border-left: 15px solid #c76c0c;
+    border-right: 2px solid #c76c0c;
+    /*Box Shadow - (Optional)*/
+    -moz-box-shadow: 0px 0px 3px #ccc;
+    -webkit-box-shadow: 0px 0px 3px #ccc;
+    box-shadow: 0px 0px 3px #ccc;
+    text-transform: capitalize !important;
+}
+
+blockquote::before {
+    content: "\201C";
+    /*Unicode for Left Double Quote*/
+    /*Font*/
+    font-family: Georgia, serif;
+    font-size: 35px;
+    font-weight: bold;
+    color: #999;
+    /*Positioning*/
+    position: absolute;
+    left: 4px;
+    top: 5px;
+}
+
+blockquote::after {
+    /*Reset to make sure*/
+    content: "";
+}
+
+blockquote em {
+    font-style: italic;
+}
+
 
 /* target IE7 and IE6 */
 
@@ -266,4 +311,207 @@ pre {
 
 .Geomanistregular {
     font-family: 'geomanistregular' !important;
+}
+
+
+/*FadeIn*/
+
+.fadeIn {
+    display: inline;
+    text-indent: 8px;
+}
+
+.fadeIn span {
+    animation: fadeEffect 12.5s linear infinite 0s;
+    -ms-animation: fadeEffect 12.5s linear infinite 0s;
+    -webkit-animation: fadeEffect 12.5s linear infinite 0s;
+    color: #757777;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
+.fadeIn span:nth-child(2) {
+    animation-delay: 2.5s;
+    -ms-animation-delay: 2.5s;
+    -webkit-animation-delay: 2.5s;
+}
+
+.fadeIn span:nth-child(3) {
+    animation-delay: 5s;
+    -ms-animation-delay: 5s;
+    -webkit-animation-delay: 5s;
+}
+
+.fadeIn span:nth-child(4) {
+    animation-delay: 7.5s;
+    -ms-animation-delay: 7.5s;
+    -webkit-animation-delay: 7.5s;
+}
+
+.fadeIn span:nth-child(5) {
+    animation-delay: 10s;
+    -ms-animation-delay: 10s;
+    -webkit-animation-delay: 10s;
+}
+
+
+/*FadeIn Animation*/
+
+@-moz-keyframes fadeEffect {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 0;
+        -moz-transform: translateY(0px);
+    }
+    10% {
+        opacity: 1;
+        -moz-transform: translateY(0px);
+    }
+    25% {
+        opacity: 1;
+        -moz-transform: translateY(0px);
+    }
+    30% {
+        opacity: 0;
+        -moz-transform: translateY(0px);
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fadeEffect {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 0;
+        -webkit-transform: translateY(0px);
+    }
+    10% {
+        opacity: 1;
+        -webkit-transform: translateY(0px);
+    }
+    25% {
+        opacity: 1;
+        -webkit-transform: translateY(0px);
+    }
+    30% {
+        opacity: 0;
+        -webkit-transform: translateY(0px);
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-ms-keyframes fadeEffect {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 0;
+        -ms-transform: translateY(0px);
+    }
+    10% {
+        opacity: 1;
+        -ms-transform: translateY(0px);
+    }
+    25% {
+        opacity: 1;
+        -ms-transform: translateY(0px);
+    }
+    30% {
+        opacity: 0;
+        -ms-transform: translateY(0px);
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.color-input,
+.color-input-img {
+    width: 350px;
+    height: 280px;
+}
+
+.color-input {
+    /* removes default styling from input color element */
+    padding: 0;
+    border: none;
+    /* makes input (color swatch) 100% size of container */
+    position: absolute;
+    /* mix blend mode makes the color of the swatch alter the image behind it. */
+    mix-blend-mode: hue;
+    /* try screen, multiply or other blend modes for different effects */
+    cursor: pointer;
+}
+
+.color-input-img:hover,
+.color-input:hover {
+    cursor: auto;
+}
+
+
+/* removes default styling from input color element */
+
+ ::-webkit-color-swatch {
+    border: none;
+}
+
+ ::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+ ::-moz-color-swatch,
+ ::-moz-focus-inner {
+    border: none;
+}
+
+ ::-moz-focus-inner {
+    padding: 0;
+}
+
+.cool-link-two {
+    font-size: 110%;
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cool-link-two:hover {
+    color: rgb(66, 66, 66);
+}
+
+.cool-link-two:after {
+    display: block;
+    content: '';
+    border-bottom: solid 1px rgb(48, 45, 45);
+    -webkit-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: -webkit-transform 250ms ease-in-out;
+    transition: -webkit-transform 250ms ease-in-out;
+    transition: transform 250ms ease-in-out;
+    transition: transform 250ms ease-in-out, -webkit-transform 250ms ease-in-out
+}
+
+.cool-link-two:hover:after {
+    -webkit-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    transform: scaleX(1)
 }

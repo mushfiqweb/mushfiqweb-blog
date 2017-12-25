@@ -126,8 +126,8 @@ export function saveArticle(article) {
         metaImage: article.metaImage,
         metaUrl: article.metaUrl,
         articleSlug: article.articleSlug,
-        metaKeys: article.metaKeys,        
-        
+        metaKeys: article.metaKeys,
+        introImage: article.introImage,
         serialNumber: '',
         city: article.city,
         country_code: article.country_code,

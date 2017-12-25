@@ -15,6 +15,7 @@ class AddArticle extends Component {
         metaTitle: '',
         metaDesc: '',
         metaImage: '',
+        introImage:'',
         articleSlug: '',
         metaUrl: '',
         metaKeys: '',
@@ -46,7 +47,7 @@ class AddArticle extends Component {
                             articleSlug: this.state.articleSlug,
                             articleCategory: this.state.articleCategory,
                             metaKeys: this.state.metaKeys,
-
+                            introImage: this.state.introImage,
                             city: response.data.city ? response.data.city : 'Dhaka',
                             country_code: response.data.country_code ? response.data.country_code : 'BD',
                             country_name: response.data.country_name ? response.data.country_name : 'Bangladesh',
@@ -84,7 +85,13 @@ class AddArticle extends Component {
                     title: e.target.value
                 });
                 break;
-            //articleBody
+            //introImage
+            case 'introImage':
+                selfObj.setState({
+                    introImage: e.target.value
+                });
+                break;
+                    
             case 'articleBody':
                 selfObj.setState({
                     articleBody: e.target.value
@@ -213,6 +220,8 @@ class AddArticle extends Component {
                     <Input style={marginBottomStyle} name='metaImage' placeholder='Meta Image' onBlur={this.inputHandler} />
                     <Input style={marginBottomStyle} name='metaUrl' placeholder='Meta Url' onBlur={this.inputHandler} />
                     <Input style={marginBottomStyle} name='articleUrl' placeholder='Article Url' onBlur={this.inputHandler} />
+
+                    <Input style={marginBottomStyle} name='introImage' placeholder='intro Image Url' onBlur={this.inputHandler} />
                     <TextArea className={accentColor} name='articleSlug' placeholder='Article Slug' style={txtAreaStyleSmall} onChange={this.inputHandler} />
                     <Divider />
                     <Input style={marginBottomStyle} name='articleCategory' placeholder='Article Category' onBlur={this.inputHandler} />

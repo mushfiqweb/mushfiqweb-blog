@@ -28,6 +28,7 @@
     "react-redux": "latest",
     "react-router-dom": "latest",
     "react-router-transition": "latest",
+    "react-samy-svg": "^2.1.0",
     "react-scripts": "latest",
     "react-share": "^1.18.0",
     "react-slick": "^0.16.0",
