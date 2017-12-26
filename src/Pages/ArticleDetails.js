@@ -16,6 +16,20 @@ import DisqusThread from '../Components/disqusThread';
 import SocialShareCompo from "../Components/socialShareCompo";
 import { withCookies, Cookies } from 'react-cookie';
 import FacebookProvider, { Comments } from 'react-facebook';
+import ReactPlaceholder from 'react-placeholder';
+import { TextBlock, MediaBlock, TextRow, RectShape, RoundShape } from 'react-placeholder/lib/placeholders';
+
+const awesomePlaceholder = () => {
+    return (
+        <div>
+
+            <MediaBlock color='#E0E0E0' rows={4} />
+            <TextBlock color='#E0E0E0' rows={4} />
+
+        </div>
+    );
+}
+
 
 const spanStyle = {
     color: '#a7a7a7',
@@ -69,7 +83,10 @@ class ArticleDetails extends Component {
             ReactGA.set({ page: window.location.href });
             ReactGA.pageview(window.location.href);
         }
-        this.props.fetchArticle(this.props.match.params.articleUrl);
+
+        setTimeout(() => {
+            this.props.fetchArticle(this.props.match.params.articleUrl);
+        }, 30000);
     }
 
     componentWillReceiveProps = (nextProps) => {
@@ -319,6 +336,11 @@ class ArticleDetails extends Component {
             let colorProfile = 'grey';
             let webLink = 'https://mushfiqweb.com';
             switch (tag.trim()) {
+                case 'Windows':
+                    colorProfile = 'blue';
+                    webLink = 'https://mushfiqweb.com';
+                    break;
+
                 case 'Web Development':
                     colorProfile = 'violet';
                     webLink = 'https://mushfiqweb.com';
@@ -485,77 +507,88 @@ class ArticleDetails extends Component {
                 }
 
 
-                <Dimmer active={this.props.loading} inverted>
-                    <Loader size='large'>
-                        fetching the article...
-                        </Loader>
-                </Dimmer>
-                <Header as='h1' textAlign='center' style={{ margin: '0 auto' }}>
-                    <div className='Alegreya' style={{ marginBottom: '15px' }}>
-                        {metaTitle}
-                    </div>
 
-                </Header>
-                {
-                    this.props.article.articleBody === 'No Article Found' ? <Segment color='red' style={{ marginTop: '200px' }} > <Header color='red' >
-                        <div>
-                            <h2>Ahh...awkward!</h2>
-                            <h3>Seems like, it's a <Link className='cool-link pulse' target='_blank' to='http://www.checkupdown.com/status/E004.html'>bad URL</Link>!</h3>
-                            <h1>Please navigate to <Link className='cool-link pulse Alegreya' to='/articles'>Article List</Link>!</h1>
+                <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='text' delay={1000} ready={this.props.article ? true : false} rows={3}>
+                    <Header as='h1' textAlign='center' style={{ margin: '0 auto' }}>
+                        <div className='Alegreya' style={{ marginBottom: '15px' }}>
+                            {metaTitle}
                         </div>
                     </Header>
-                    </Segment> : <Segment style={StyleSheet.articleContent} color={this.props.accent} >
-                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <div style={StyleSheet.articleMeta}>
-                                    Tag(s): {tagCompo}
-                                </div>
+                </ReactPlaceholder>
+
+                {
+                    this.props.article.articleBody === 'No Article Found' ? <Segment color='red' style={{ marginTop: '200px' }} >
+                        <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='media' delay={1000} ready={this.props.article ? true : false} rows={6}>
+                            <Header color='red' >
                                 <div>
-                                    <div style={timeStringStyle} className='Alegreya'>
-                                        Posted @<span> </span> <strong style={{ fontSize: '13px' }}><Moment format="hh:mm a">{new Date(this.props.article.createdAt)}</Moment> </strong>
-                                        On <span> </span><strong style={{ fontSize: '13px' }}><Moment format="DD MMM YYYY">{this.props.article.createdAt}</Moment></strong>
-                                    </div>
-                                    <div style={timeStringStyle} className='Alegreya'>
-                                        <span className="ant-divider" />
-                                        <strong>{articleTotalViews}</strong> Views
-                                    </div>
-                                    <div style={timeStringStyle} className='Alegreya'>
-                                        <span className="ant-divider" />
-                                        <strong>{Math.ceil(articleStats.minutes)}</strong> Minutes To Read
-                                    </div>
-                                    <div style={timeStringStyle} className='Alegreya'>
-                                        <span className="ant-divider" />
-                                        <strong>{this.props.article.articleRatingAvg && this.props.article.articleRatingAvg !== 'NaN' ? this.props.article.articleRatingAvg : '0'}</strong> Rating
-                                    </div>
+                                    <h2>Ahh...awkward!</h2>
+                                    <h3>Seems like, it's a <Link className='cool-link pulse' target='_blank' to='http://www.checkupdown.com/status/E004.html'>bad URL</Link>!</h3>
+                                    <h1>Please navigate to <Link className='cool-link pulse Alegreya' to='/articles'>Article List</Link>!</h1>
                                 </div>
+                            </Header>
+                        </ReactPlaceholder>
+                    </Segment> : <Segment style={StyleSheet.articleContent} color={this.props.accent} >
+                            <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='text' delay={1000} ready={this.props.article ? true : false} rows={3}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <div style={StyleSheet.articleMeta}>
+                                        Tag(s): {tagCompo}
+                                    </div>
+                                    <div>
+                                        <div style={timeStringStyle} className='Alegreya'>
+                                            Posted @<span> </span> <strong style={{ fontSize: '13px' }}><Moment format="hh:mm a">{new Date(this.props.article.createdAt)}</Moment> </strong>
+                                            On <span> </span><strong style={{ fontSize: '13px' }}><Moment format="DD MMM YYYY">{this.props.article.createdAt}</Moment></strong>
+                                        </div>
+                                        <div style={timeStringStyle} className='Alegreya'>
+                                            <span className="ant-divider" />
+                                            <strong>{articleTotalViews}</strong> Views
+                                    </div>
+                                        <div style={timeStringStyle} className='Alegreya'>
+                                            <span className="ant-divider" />
+                                            <strong>{Math.ceil(articleStats.minutes)}</strong> Minutes To Read
+                                    </div>
+                                        <div style={timeStringStyle} className='Alegreya'>
+                                            <span className="ant-divider" />
+                                            <strong>{this.props.article.articleRatingAvg && this.props.article.articleRatingAvg !== 'NaN' ? this.props.article.articleRatingAvg : '0'}</strong> Rating
+                                    </div>
+                                    </div>
 
-                            </div>
-
-                            <div>
-                                <style>{
-                                    'img {max-width: 60% !important;}  p {text-align: justify;}' +
-                                    ' blockquote { ' + blockquoteStyle + '} '
-                                }</style>
-
-                                <div style={{ display: this.props.article.introImage ? 'flex' : 'none', justifyContent: 'center' }}>
-                                    <input className="color-input" type="color" value={colorSwatchHex} disabled />
-                                    <img className='color-input-img' src={this.props.article.introImage} />
                                 </div>
-                                {
-                                    Parser(htmlToRender)
-                                }
-                            </div>
-                            <div>
-                                {
-                                    metaUrl.length ?
-                                        <SocialShareCompo accent={this.props.accent} metaDescription={metaDescription} metaUrl={metaUrl} handleRate={this.handleRate} loading={this.state.rating}
-                                            metaTitle={metaTitle} metaImage={metaImage} accent={this.props.accent} ratingDoneMsg={this.state.ratingDoneMsg} isRated={this.state.isRated} />
-                                        : <div> </div>
-                                }
-                            </div>
-                            <Segment color={this.props.accent} id="chitikaAdBlock-0" />
-                            <div><DisqusThread id={this.props.article._id} title={metaTitle} path={this.props.article.articleUrl} accent={this.props.accent} /></div>
+                            </ReactPlaceholder>
+
+                            <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='media' delay={1000} ready={this.props.article ? true : false} rows={10}>
+                                <div>
+                                    <style>{
+                                        'img {max-width: 60% !important;}  p {text-align: justify;}' +
+                                        ' blockquote { ' + blockquoteStyle + '} '
+                                    }</style>
+
+                                    <div style={{ display: this.props.article.introImage ? 'flex' : 'none', justifyContent: 'center' }}>
+                                        <input className="color-input" type="color" value={colorSwatchHex} disabled />
+                                        <img className='color-input-img' src={this.props.article.introImage} />
+                                    </div>
+                                    {
+                                        Parser(htmlToRender)
+                                    }
+                                </div>
+                            </ReactPlaceholder>
+
+                            <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='media' delay={1000} ready={this.props.article ? true : false} rows={5}>
+                                
+                                    {
+                                        metaUrl.length ?
+                                            <SocialShareCompo accent={this.props.accent} metaDescription={metaDescription} metaUrl={metaUrl} handleRate={this.handleRate} loading={this.state.rating}
+                                                metaTitle={metaTitle} metaImage={metaImage} accent={this.props.accent} ratingDoneMsg={this.state.ratingDoneMsg} isRated={this.state.isRated} />
+                                            : <div> </div>
+                                    }
+                                
+                                <Segment color={this.props.accent} id="chitikaAdBlock-0" />
+                            </ReactPlaceholder>
+                            <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='text' delay={1000} ready={this.props.article ? true : false} rows={5}>
+                                <DisqusThread id={this.props.article._id} title={metaTitle} path={this.props.article.articleUrl} accent={this.props.accent} />
+                            </ReactPlaceholder>
                         </Segment>
                 }
+
             </div>
         );
     }

@@ -47,6 +47,10 @@
 body {
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-font-smoothing: antialiased !important;
+    -ms-font-smoothing: antialiased !important;
+    -o-font-smoothing: antialiased !important;
 }
 
 code,
@@ -186,6 +190,7 @@ blockquote em {
     font-weight: 800 !important;
     padding: 0 !important;
     font-family: 'Alegreya Sans SC', serif !important;
+    text-transform: capitalize;
     font-size: 35px;
 }
 
@@ -198,15 +203,18 @@ blockquote em {
     font-weight: 800 !important;
     padding: 0 !important;
     font-family: 'Alegreya Sans SC', serif !important;
+    text-transform: capitalize;
     font-size: 18px;
 }
 
 .Alegreya {
     font-family: 'Alegreya Sans SC', serif !important;
+    text-transform: capitalize;
 }
 
 .button-font {
     font-family: 'Alegreya Sans SC', serif !important;
+    text-transform: capitalize;
     font-weight: 600;
 }
 
@@ -514,4 +522,134 @@ blockquote em {
     -webkit-transform: scaleX(1);
     -ms-transform: scaleX(1);
     transform: scaleX(1)
+}
+
+
+/* effect-shine */
+
+.effect-shine:hover {
+    -webkit-mask-image: linear-gradient(-75deg, rgba(0, 0, 0, .6) 30%, #000 50%, rgba(0, 0, 0, .6) 70%);
+    -webkit-mask-size: 200%;
+    animation: shine 2s infinite;
+}
+
+@-webkit-keyframes shine {
+    from {
+        -webkit-mask-position: 150%;
+    }
+    to {
+        -webkit-mask-position: -50%;
+    }
+}
+
+
+/* Ilin */
+
+.link--ilin {
+    overflow: hidden;
+}
+
+.link--ilin span {
+    font-family: 'Alegreya Sans SC',
+    serif !important;
+    text-transform: capitalize;
+    position: relative;
+    display: inline-block;
+    -webkit-transition: color 0.8s;
+    transition: color 0.8s;
+}
+
+.link--ilin:hover span:first-of-type {
+    color: rgb(36, 36, 36);
+}
+
+.link--ilin:hover span:last-of-type {
+    color: #1e1a1b;
+}
+
+.link--ilin span::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    line-height: 0.8;
+    -webkit-transition: -webkit-transform 0.8s;
+    transition: transform 0.8s;
+}
+
+.link--ilin span:last-of-type::before {
+    background: #1e1a1b;
+}
+
+.link--ilin:hover span:last-of-type::before,
+.link--ilin span:first-of-type::before {
+    -webkit-transform: translate3d(0, -150%, 0);
+    transform: translate3d(0, -150%, 0);
+}
+
+.link--ilin:hover span:first-of-type::before,
+.link--ilin span:last-of-type::before {
+    -webkit-transform: translate3d(0, 150%, 0);
+    transform: translate3d(0, 150%, 0);
+}
+
+.cool-link-three {
+    font-size: 20px;
+    color: #584E4A;
+    position: relative;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+.cool-link-three :before,
+.cool-link-three :after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #F37272;
+}
+
+.cool-link-three :before {
+    opacity: 0;
+    -webkit-transform: translateY(-8px);
+    -ms-transform: translateY(-8px);
+    transform: translateY(-8px);
+    -webkit-transition: -webkit-transform 0s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s;
+    transition: transform 0s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s;
+}
+
+.cool-link-three :after {
+    opacity: 0;
+    -webkit-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    transform: translateY(4px);
+    -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+}
+
+.cool-link-three :hover:before,
+.cool-link-three :hover:after,
+.cool-link-three :focus:before,
+.cool-link-three :focus:after {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.cool-link-three :hover:before,
+.cool-link-three :focus:before {
+    -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+}
+
+.cool-link-three :hover:after,
+.cool-link-three :focus:after {
+    -webkit-transition: -webkit-transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s 0.2s;
+    transition: transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s 0.2s;
 }

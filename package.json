@@ -24,6 +24,7 @@
     "react-helmet": "latest",
     "react-moment": "latest",
     "react-motion": "latest",
+    "react-placeholder": "^2.0.0",
     "react-quill": "latest",
     "react-redux": "latest",
     "react-router-dom": "latest",

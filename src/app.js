@@ -24,8 +24,7 @@ import { AnimatedSwitch, AnimatedRoute } from 'react-router-transition';
 class App extends Component {
 
     componentDidMount = () => {
-        this.props.getAccentColor(this.props.AppAccentColor);
-        console.clear();
+        this.props.getAccentColor(this.props.AppAccentColor);    
     }
 
 
@@ -77,14 +76,17 @@ class App extends Component {
                 boxShadow: '0px 3px 5px rgba(8, 7, 7, 0.2)'
             }
         }
-
         return (
             <div>
                 <div className="ui fixed fluid menu" style={newMenu.menuFixedNew}>
                     <div className="ui container">
-                        <div title="Mushfiqur's Blog" className="item borderless menu-home pulse" onClick={this.menuHandler}>Mushfiqur's Blog</div>
+                        <div title="Mushfiqur's Blog" className="item borderless menu-home pulse effect-shine link--ilin" onClick={this.menuHandler}>
+                            <span title="Mushfiqur's Blog" >Mushfiqur's</span><span title="Mushfiqur's Blog" >Blog</span>
+                        </div>
 
-                        <div title='All Articles' className="item borderless right menu-home-small pulse" onClick={this.menuHandler}>All Articles</div>
+                        <div title='All Articles' className="item borderless right menu-home-small pulse effect-shine" onClick={this.menuHandler}>
+                            All Articles
+                        </div>
                     </div>
                 </div>
 
