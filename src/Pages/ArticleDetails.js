@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import _ from 'lodash';
 import readingTime from 'reading-time';
 import { Segment, Dimmer, Loader, Header, Label, Icon, Advertisement, Image } from 'semantic-ui-react';
-import { fetchArticle, getAccentColor } from '../Actions/article.Actions';
+import { fetchArticle, getAccentColor, emptyArticle } from '../Actions/article.Actions';
 import Parser from 'html-react-parser';
 import Moment from 'react-moment';
 import moment from 'moment';
@@ -18,17 +18,6 @@ import { withCookies, Cookies } from 'react-cookie';
 import FacebookProvider, { Comments } from 'react-facebook';
 import ReactPlaceholder from 'react-placeholder';
 import { TextBlock, MediaBlock, TextRow, RectShape, RoundShape } from 'react-placeholder/lib/placeholders';
-
-const awesomePlaceholder = () => {
-    return (
-        <div>
-
-            <MediaBlock color='#E0E0E0' rows={4} />
-            <TextBlock color='#E0E0E0' rows={4} />
-
-        </div>
-    );
-}
 
 
 const spanStyle = {
@@ -57,8 +46,6 @@ const StyleSheet = {
     }
 }
 
-const cookies = new Cookies();
-
 const webClient = axios.create({
     baseURL: "https://mushfiqweb-api.herokuapp.com",
     headers: {
@@ -73,6 +60,7 @@ class ArticleDetails extends Component {
         overlayFixed: false,
         rating: false,
         maxRating: '',
+        adsPlacement: '',
         isRated: false,
         ratingDoneMsg: 'Rate The Article!'
     }
@@ -83,15 +71,72 @@ class ArticleDetails extends Component {
             ReactGA.set({ page: window.location.href });
             ReactGA.pageview(window.location.href);
         }
-
         setTimeout(() => {
             this.props.fetchArticle(this.props.match.params.articleUrl);
-        }, 30000);
+        }, 1000);
+    }
+
+    componentWillUnmount = () => {
+        this.props.emptyArticle();
+    }
+
+    showImages = () => {
+        var allimages = document.getElementsByTagName('img');
+        for (var i = 0; i < allimages.length; i++) {
+            if (!allimages[i].classList.contains('color-input-img')) {
+                allimages[i].classList.add('animated-img');
+                allimages[i].classList.add('fadeOut-img');
+
+                if (allimages[i].getAttribute('data-src')) {
+                    allimages[i].setAttribute('src', allimages[i].getAttribute('data-src'));
+                }
+
+                if (allimages[i].getAttribute('data-width')) {
+                    allimages[i].setAttribute('width', allimages[i].getAttribute('data-width'));
+                }
+
+                if (allimages[i].getAttribute('data-height')) {
+                    allimages[i].setAttribute('height', allimages[i].getAttribute('data-height'));
+                }
+
+                allimages[i].classList.remove('fadeOut-img');
+                allimages[i].classList.add('fadeIn-img');
+            }
+        }
     }
 
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.article) {
 
+            if (window.CHITIKA === undefined) {
+                window.CHITIKA = {
+                    'units': []
+                };
+            };
+            var unit = {
+                "calltype": "async[2]",
+                "publisher": "mushfiqweb",
+                "width": 728,
+                "height": 90,
+                "sid": "Chitika Default"
+            };
+
+            window.CHITIKA.units.push(unit);
+            var placement_id = window.CHITIKA.units.length - 1;
+            const adsPlacement = "chitikaAdBlock-" + placement_id;
+            this.setState({ adsPlacement: adsPlacement });
+
+            const articleStats = nextProps.article ? readingTime(nextProps.article.articleBody) : '';
+            let imgDelay = articleStats.minutes ? Math.ceil(articleStats.minutes) : 2;
+            if (imgDelay >= 7) {
+                imgDelay = 9;
+            }
+            imgDelay = imgDelay * 1000;
+            setTimeout(() => {
+                this.showImages();
+            }, imgDelay);
+
+            const cookies = new Cookies();
             if (cookies.get(nextProps.article.articleUrl)) {
                 if (nextProps.article.articleUrl === cookies.get(nextProps.article.articleUrl)) {
                     this.setState({
@@ -282,10 +327,8 @@ class ArticleDetails extends Component {
                     ratingDoneMsg: 'Thanks for Rating!',
                     isRated: true
                 });
-
-
+                const cookies = new Cookies();
                 cookies.set(articleObj.articleUrl, articleObj.articleUrl, { path: '/' + articleObj.articleUrl });
-                console.log('Done');
             }).catch(() => {
                 console.log('Error');
             });
@@ -397,25 +440,7 @@ class ArticleDetails extends Component {
             );
         });
 
-        /*
-                var placement_id = 'chitikaAdBlock-';
-                if (this.props.article) {
-                    if (window.CHITIKA === undefined) {
-                        window.CHITIKA = {
-                            'units': []
-                        };
-                    };
-                    var unit = {
-                        "calltype": "async[2]",
-                        "publisher": "mushfiqweb",
-                        "width": 728,
-                        "height": 90,
-                        "sid": "Chitika Default"
-                    };
-                    placement_id = placement_id + window.CHITIKA.units.length;
-                    window.CHITIKA.units.push(unit);
-                }
-        */
+
 
         {/*
         red            : #B03060;
@@ -442,8 +467,6 @@ class ArticleDetails extends Component {
         color = 'purple';
         color = 'grey';
     
-
-
         */}
 
         var colorSwatchHex = '#0E6EB8';
@@ -475,6 +498,7 @@ class ArticleDetails extends Component {
         const blockquoteStyle = "border-left: 10px solid " + colorSwatchHex + "; border-right: 2px solid " + colorSwatchHex + ";"
 
         const articleStats = this.props.article ? readingTime(this.props.article.articleBody) : '';
+
         return (
             <div>
 
@@ -506,9 +530,7 @@ class ArticleDetails extends Component {
                     </Helmet> : ''
                 }
 
-
-
-                <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='text' delay={1000} ready={this.props.article ? true : false} rows={3}>
+                <ReactPlaceholder style={{ marginBottom: '50px', marginTop: '100px' }} showLoadingAnimation type='text' ready={this.props.article ? true : false} rows={3}>
                     <Header as='h1' textAlign='center' style={{ margin: '0 auto' }}>
                         <div className='Alegreya' style={{ marginBottom: '15px' }}>
                             {metaTitle}
@@ -518,7 +540,7 @@ class ArticleDetails extends Component {
 
                 {
                     this.props.article.articleBody === 'No Article Found' ? <Segment color='red' style={{ marginTop: '200px' }} >
-                        <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='media' delay={1000} ready={this.props.article ? true : false} rows={6}>
+                        <ReactPlaceholder style={{ marginBottom: '50px', marginTop: '50px' }} showLoadingAnimation type='media' ready={this.props.article ? true : false} rows={3}>
                             <Header color='red' >
                                 <div>
                                     <h2>Ahh...awkward!</h2>
@@ -528,7 +550,7 @@ class ArticleDetails extends Component {
                             </Header>
                         </ReactPlaceholder>
                     </Segment> : <Segment style={StyleSheet.articleContent} color={this.props.accent} >
-                            <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='text' delay={1000} ready={this.props.article ? true : false} rows={3}>
+                            <ReactPlaceholder style={{ marginBottom: '50px', marginTop: '50px' }} showLoadingAnimation type='text' ready={this.props.article ? true : false} rows={3}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <div style={StyleSheet.articleMeta}>
                                         Tag(s): {tagCompo}
@@ -555,10 +577,10 @@ class ArticleDetails extends Component {
                                 </div>
                             </ReactPlaceholder>
 
-                            <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='media' delay={1000} ready={this.props.article ? true : false} rows={10}>
+                            <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='media' ready={this.props.article ? true : false} rows={5}>
                                 <div>
                                     <style>{
-                                        'img {max-width: 60% !important;}  p {text-align: justify;}' +
+                                        'img {max-width: 800px !important;}  p {text-align: justify;}' +
                                         ' blockquote { ' + blockquoteStyle + '} '
                                     }</style>
 
@@ -572,20 +594,22 @@ class ArticleDetails extends Component {
                                 </div>
                             </ReactPlaceholder>
 
-                            <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='media' delay={1000} ready={this.props.article ? true : false} rows={5}>
-                                
-                                    {
-                                        metaUrl.length ?
-                                            <SocialShareCompo accent={this.props.accent} metaDescription={metaDescription} metaUrl={metaUrl} handleRate={this.handleRate} loading={this.state.rating}
-                                                metaTitle={metaTitle} metaImage={metaImage} accent={this.props.accent} ratingDoneMsg={this.state.ratingDoneMsg} isRated={this.state.isRated} />
-                                            : <div> </div>
-                                    }
-                                
-                                <Segment color={this.props.accent} id="chitikaAdBlock-0" />
+                            <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='media' ready={this.props.article ? true : false} rows={4}>
+
+                                {
+                                    metaUrl.length ?
+                                        <SocialShareCompo accent={this.props.accent} metaDescription={metaDescription} metaUrl={metaUrl} handleRate={this.handleRate} loading={this.state.rating}
+                                            metaTitle={metaTitle} metaImage={metaImage} accent={this.props.accent} ratingDoneMsg={this.state.ratingDoneMsg} isRated={this.state.isRated} />
+                                        : <div> </div>
+                                }
+
+                                <Segment color={this.props.accent} id={this.state.adsPlacement} />
                             </ReactPlaceholder>
-                            <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='text' delay={1000} ready={this.props.article ? true : false} rows={5}>
+                            <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='text' ready={this.props.article ? true : false} rows={3}>
                                 <DisqusThread id={this.props.article._id} title={metaTitle} path={this.props.article.articleUrl} accent={this.props.accent} />
                             </ReactPlaceholder>
+
+
                         </Segment>
                 }
 
@@ -601,5 +625,5 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { fetchArticle, getAccentColor })(ArticleDetails);
+export default withCookies(connect(mapStateToProps, { fetchArticle, getAccentColor, emptyArticle })(ArticleDetails));
 

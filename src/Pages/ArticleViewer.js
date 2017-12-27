@@ -5,16 +5,17 @@ import { fetchArticles, getAccentColor } from '../Actions/article.Actions';
 import ArticleCard from '../Components/ArticleCard.Component'
 
 import ReactGA from 'react-ga';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container/Container';
 
 class ArticleViewer extends Component {
-
-
     state = {
         anime: 'fadeIn',
+        adsPlacementOne: '',
+        adsPlacementTwo: '',
+        adsPlacementThree: '',
+        adsLoaded: false,
         headerColor: 'green'
     }
-
-
 
     componentDidMount = () => {
         this.props.getAccentColor(this.props.accent);
@@ -26,21 +27,69 @@ class ArticleViewer extends Component {
         if (this.props.articles.length === 0) {
             this.props.fetchArticles(5, 0);
         }
-        /*
-                if (this.props.articles.length === 0) {
-                    this.props.fetchArticles(5, 0);
-                }
-                else {
-                    if (this.props.total && this.props.total === this.props.articles.length) {
-                        //this.props.fetchArticles(this.props.total, 0);
-                    }
-                    else {
-                        this.props.fetchArticles(5, Number(this.props.skip) + 5);
-                    }
-                }
-        */
+        else if(this.props.articles.length > 0){
+            this.setState({adsLoaded:true});
+        }
     }
 
+    modifyAdsStyle = () => {
+        document.getElementsByClassName('chitikaAdBlock')[0].removeAttribute('width');
+        document.getElementsByClassName('chitikaAdBlock')[1].removeAttribute('width');
+        document.getElementsByClassName('chitikaAdBlock')[2].removeAttribute('width');
+        this.setState({ adsLoaded: true });
+    }
+
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.articles.length > 0) {
+            if (window.CHITIKA === undefined) {
+                window.CHITIKA = {
+                    'units': []
+                };
+            };
+            if(this.props.articles.length < 5){
+            var unit = {
+                "calltype": "async[2]",
+                "publisher": "mushfiqweb",
+                "width": 550,
+                "height": 250,
+                "sid": "Chitika Default"
+            };
+            window.CHITIKA.units.push(unit);
+
+            var unit = {
+                "calltype": "async[2]",
+                "publisher": "mushfiqweb",
+                "width": 550,
+                "height": 250,
+                "sid": "Chitika Default"
+            };
+            window.CHITIKA.units.push(unit);
+
+            var unit = {
+                "calltype": "async[2]",
+                "publisher": "mushfiqweb",
+                "width": 550,
+                "height": 250,
+                "sid": "Chitika Default"
+            };
+            window.CHITIKA.units.push(unit);
+
+            var placement_id = window.CHITIKA.units.length - 1;
+
+            const adsPlacementOne = "chitikaAdBlock-" + placement_id;
+            placement_id = placement_id - 1;
+
+            const adsPlacementTwo = "chitikaAdBlock-" + placement_id;
+            placement_id = placement_id - 1;
+
+            const adsPlacementThree = "chitikaAdBlock-" + placement_id;
+            this.setState({ adsPlacementOne: adsPlacementOne, adsPlacementTwo: adsPlacementTwo, adsPlacementThree: adsPlacementThree });
+            setTimeout(() => {
+                this.modifyAdsStyle();
+            }, 2000);
+            }            
+        }
+    }
     loadMoreArticles = () => {
         var selfObj = this;
         if (selfObj.props.articles.length === 0) {
@@ -102,10 +151,17 @@ class ArticleViewer extends Component {
                         </div>
                     </div>
                 </Segment>
-                <div style={{ display: 'block', height: '35px', marginTop: '32px' }}>
 
-                </div>
-
+                <Segment style={{ display: 'flex', flexFlow: 'row', justifyContent: 'space-between', minHeight:'100px' }} color={this.props.accent}>
+                    <Dimmer active={!(this.state.adsLoaded && (this.props.articles.length > 0))} inverted>
+                        <Loader size='small'>
+                            fetching ads...
+                        </Loader>
+                    </Dimmer>
+                    <div style={{ maxWidth: '350px !important', display:this.state.adsLoaded?'block':'none' }} className='ui segment' id={this.state.adsPlacementOne} />
+                    <div style={{ maxWidth: '350px !important', display:this.state.adsLoaded?'block':'none' }} className='ui segment' id={this.state.adsPlacementTwo} />
+                    <div style={{ maxWidth: '350px !important', display:this.state.adsLoaded?'block':'none' }} className='ui segment' id={this.state.adsPlacementThree} />
+                </Segment>
             </div >
         );
     }

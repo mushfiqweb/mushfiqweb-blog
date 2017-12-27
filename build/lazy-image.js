@@ -1,4 +1,5 @@
 window.addEventListener('load', function () {
+  /*
   var allimages = document.getElementsByTagName('img');
   for (var i = 0; i < allimages.length; i++) {
     if (allimages[i].getAttribute('data-src')) {
@@ -13,4 +14,5 @@ window.addEventListener('load', function () {
       allimages[i].setAttribute('height', allimages[i].getAttribute('data-height'));
     }
   }
+  */
 }, false);

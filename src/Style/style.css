@@ -527,6 +527,7 @@ blockquote em {
 
 /* effect-shine */
 
+.effect-shine-image,
 .effect-shine:hover {
     -webkit-mask-image: linear-gradient(-75deg, rgba(0, 0, 0, .6) 30%, #000 50%, rgba(0, 0, 0, .6) 70%);
     -webkit-mask-size: 200%;
@@ -550,13 +551,12 @@ blockquote em {
 }
 
 .link--ilin span {
-    font-family: 'Alegreya Sans SC',
-    serif !important;
+    font-family: 'Alegreya Sans SC', serif !important;
     text-transform: capitalize;
     position: relative;
     display: inline-block;
-    -webkit-transition: color 0.8s;
-    transition: color 0.8s;
+    -webkit-transition: color 0.5s;
+    transition: color 0.5s;
 }
 
 .link--ilin:hover span:first-of-type {
@@ -574,8 +574,8 @@ blockquote em {
     height: 100%;
     background: #fff;
     line-height: 0.8;
-    -webkit-transition: -webkit-transform 0.8s;
-    transition: transform 0.8s;
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
 }
 
 .link--ilin span:last-of-type::before {
@@ -652,4 +652,63 @@ blockquote em {
 .cool-link-three :focus:after {
     -webkit-transition: -webkit-transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s 0.2s;
     transition: transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s 0.2s;
+}
+
+.animated-img {
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+    -ms-animation-duration: 2s;
+    -o-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn-img {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn-img {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeIn-img {
+    -webkit-animation-name: fadeIn-img;
+    animation-name: fadeIn-img;
+}
+
+@-webkit-keyframes fadeOut-img {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut-img {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.fadeOut-img {
+    -webkit-animation-name: fadeOut-img;
+    animation-name: fadeOut-img;
 }
