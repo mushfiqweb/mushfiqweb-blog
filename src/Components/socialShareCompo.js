@@ -89,7 +89,7 @@ class SocialShareCompo extends Component {
                             </TwitterShareButton>
                         </div>
 
-                        <div className='share-btn-div' title='Post on Google Plus'>
+                        <div className='share-btn-div' title='Post on Google Plus' >
                             <GooglePlusShareButton className='share-btn-margin pulse'
                                 url={this.props.metaUrl}
                                 quote={this.props.metaTitle}>
@@ -107,60 +107,66 @@ class SocialShareCompo extends Component {
 
                         </div>
 
-                        <div className='share-btn-div' title='Post on LinkedIn'>
-                            <LinkedinShareButton className='share-btn-margin pulse'
-                                url={this.props.metaUrl}
-                                title={this.props.metaTitle} description={this.props.metaDescription}>
-                                <LinkedinIcon
-                                    size={32}
-                                />
-                            </LinkedinShareButton>
+                        {
+                            window.innerWidth > 850 ? <div className='share-btn-div' title='Post on LinkedIn'>
+                                <LinkedinShareButton className='share-btn-margin pulse'
+                                    url={this.props.metaUrl}
+                                    title={this.props.metaTitle} description={this.props.metaDescription}>
+                                    <LinkedinIcon
+                                        size={32}
+                                    />
+                                </LinkedinShareButton>
 
-                            <Label style={{ backgroundColor: '#0077B5' }} className='share-counter-text'>
-                                <LinkedinShareCount
-                                    url={this.props.metaUrl}>
-                                    {count => count}
-                                </LinkedinShareCount>
-                            </Label>
+                                <Label style={{ backgroundColor: '#0077B5' }} className='share-counter-text'>
+                                    <LinkedinShareCount
+                                        url={this.props.metaUrl}>
+                                        {count => count}
+                                    </LinkedinShareCount>
+                                </Label>
 
-                        </div>
+                            </div> : ''
+                        }
 
-                        <div className='share-btn-div' title='Pint it!'>
-                            <PinterestShareButton className='share-btn-margin pulse'
-                                url={this.props.metaUrl} media={this.props.metaImage}
-                                description={this.props.metaTitle}>
-                                <PinterestIcon
-                                    size={32}
-                                />
-                            </PinterestShareButton>
+                        {
+                            window.innerWidth > 850 ?
+                            <div className='share-btn-div' title='Pint it!'>
+                                <PinterestShareButton className='share-btn-margin pulse'
+                                    url={this.props.metaUrl} media={this.props.metaImage}
+                                    description={this.props.metaTitle}>
+                                    <PinterestIcon
+                                        size={32}
+                                    />
+                                </PinterestShareButton>
 
-                            <Label style={{ backgroundColor: '#bd081c' }} className='share-counter-text'>
-                                <PinterestShareCount
-                                    url={this.props.metaUrl}>
-                                    {count => count}
-                                </PinterestShareCount>
-                            </Label>
+                                <Label style={{ backgroundColor: '#bd081c' }} className='share-counter-text'>
+                                    <PinterestShareCount
+                                        url={this.props.metaUrl}>
+                                        {count => count}
+                                    </PinterestShareCount>
+                                </Label>
 
-                        </div>
+                            </div> : ''
+                        }
 
-                        <div className='share-btn-div' title='Share on Reddit'>
-                            <RedditShareButton className='share-btn-margin pulse'
-                                url={this.props.metaUrl}
-                                title={this.props.metaTitle}>
-                                <RedditIcon
-                                    size={32}
-                                />
-                            </RedditShareButton>
+                        {window.innerWidth > 850 ?
+                            <div className='share-btn-div' title='Share on Reddit'>
+                                <RedditShareButton className='share-btn-margin pulse'
+                                    url={this.props.metaUrl}
+                                    title={this.props.metaTitle}>
+                                    <RedditIcon
+                                        size={32}
+                                    />
+                                </RedditShareButton>
 
-                            <Label style={{ backgroundColor: '#5f99cf' }} className='share-counter-text'>
-                                <RedditShareCount
-                                    url={this.props.metaUrl}>
-                                    {count => count}
-                                </RedditShareCount>
-                            </Label>
+                                <Label style={{ backgroundColor: '#5f99cf' }} className='share-counter-text'>
+                                    <RedditShareCount
+                                        url={this.props.metaUrl}>
+                                        {count => count}
+                                    </RedditShareCount>
+                                </Label>
 
-                        </div>
-
+                            </div>:''
+                        }
                         <div className='share-btn-div' title='Send anyone as email'>
                             <EmailShareButton className='share-btn-margin pulse'
                                 url={this.props.metaUrl} body={body}
@@ -172,6 +178,8 @@ class SocialShareCompo extends Component {
                         </div>
                     </div>
                 </div>
+
+
             </Segment>
         );
     }

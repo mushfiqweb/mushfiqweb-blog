@@ -48,9 +48,9 @@ class HomeLayout extends Component {
 
 
         return (
-            <div style={{ height: window.innerHeight - 120, textAlign: 'center' }}>
+            <div className='fade-in-top' style={{ height: window.innerHeight - 520, textAlign: 'center' }}>
 
-                <h1 style={window.innerWidth > 600 ? headerStyle.h1Large : headerStyle.h1Small} className="sentence">Hi, I'm Mushfiqur Rahman. I am a
+                <h1 style={window.innerWidth > 850 ? headerStyle.h1Large : headerStyle.h1Small} className="sentence">Hi, I'm Mushfiqur Rahman. I am a
                     <div className="fadeIn">
                         <span>software developer.</span>
                         <span>photographer.</span>
@@ -60,16 +60,14 @@ class HomeLayout extends Component {
                     </div>
                 </h1>
 
-                <h2 style={window.innerWidth > 600 ? headerStyle.h2Large : headerStyle.h2Small}>I write code in javascript.</h2>
-                <h3 style={window.innerWidth > 600 ? headerStyle.h3Large : headerStyle.h3Small}>This is my blog and it's still being developed.</h3>
+                <h2 style={window.innerWidth > 850 ? headerStyle.h2Large : headerStyle.h2Small}>I write code in javascript.</h2>
+                <h3 style={window.innerWidth > 850 ? headerStyle.h3Large : headerStyle.h3Small}>This is my blog and it's still being developed.</h3>
                 <Link to='/articles'>
                     <Label className='pulse Alegreya' color={this.props.accent}>
                         See my articles
                     </Label>
                 </Link>
-                <div style={{ minHeight: '50vh' }}>
-
-                </div>
+                
 
             </div >
 

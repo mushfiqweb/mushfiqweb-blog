@@ -113,11 +113,18 @@ class ArticleDetails extends Component {
                     'units': []
                 };
             };
+
+            var w = 728;
+            var h = 90;
+            if (window.innerWidth < 850) {
+                w = 300;
+                h = 600;
+            }
             var unit = {
                 "calltype": "async[2]",
                 "publisher": "mushfiqweb",
-                "width": 728,
-                "height": 90,
+                "width": w,
+                "height": h,
                 "sid": "Chitika Default"
             };
 
@@ -499,8 +506,16 @@ class ArticleDetails extends Component {
 
         const articleStats = this.props.article ? readingTime(this.props.article.articleBody) : '';
 
+        var imgWidth = window.innerWidth > 850 ? '800px' : '75%';
+
+        const metaStyleRow = {
+            display: 'flex', justifyContent: 'space-between', flexDirection: 'row'
+        };
+        const metaStyleColumn = {
+            display: 'flex', justifyContent: 'space-between', flexDirection: 'column'
+        };
         return (
-            <div>
+            <div >
 
                 {
                     this.props.article ? <Helmet>
@@ -531,7 +546,7 @@ class ArticleDetails extends Component {
                 }
 
                 <ReactPlaceholder style={{ marginBottom: '50px', marginTop: '100px' }} showLoadingAnimation type='text' ready={this.props.article ? true : false} rows={3}>
-                    <Header as='h1' textAlign='center' style={{ margin: '0 auto' }}>
+                    <Header className='slide-in-fwd-top' as='h1' textAlign='center' style={{ margin: '0 auto' }}>
                         <div className='Alegreya' style={{ marginBottom: '15px' }}>
                             {metaTitle}
                         </div>
@@ -541,7 +556,7 @@ class ArticleDetails extends Component {
                 {
                     this.props.article.articleBody === 'No Article Found' ? <Segment color='red' style={{ marginTop: '200px' }} >
                         <ReactPlaceholder style={{ marginBottom: '50px', marginTop: '50px' }} showLoadingAnimation type='media' ready={this.props.article ? true : false} rows={3}>
-                            <Header color='red' >
+                            <Header color='red' className='slide-in-fwd-top' >
                                 <div>
                                     <h2>Ahh...awkward!</h2>
                                     <h3>Seems like, it's a <Link className='cool-link pulse' target='_blank' to='http://www.checkupdown.com/status/E004.html'>bad URL</Link>!</h3>
@@ -551,7 +566,7 @@ class ArticleDetails extends Component {
                         </ReactPlaceholder>
                     </Segment> : <Segment style={StyleSheet.articleContent} color={this.props.accent} >
                             <ReactPlaceholder style={{ marginBottom: '50px', marginTop: '50px' }} showLoadingAnimation type='text' ready={this.props.article ? true : false} rows={3}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <div style={window.innerWidth > 850 ? metaStyleRow : metaStyleColumn} className='slide-in-fwd-top'>
                                     <div style={StyleSheet.articleMeta}>
                                         Tag(s): {tagCompo}
                                     </div>
@@ -563,24 +578,24 @@ class ArticleDetails extends Component {
                                         <div style={timeStringStyle} className='Alegreya'>
                                             <span className="ant-divider" />
                                             <strong>{articleTotalViews}</strong> Views
-                                    </div>
+                                        </div>
                                         <div style={timeStringStyle} className='Alegreya'>
                                             <span className="ant-divider" />
                                             <strong>{Math.ceil(articleStats.minutes)}</strong> Minutes To Read
-                                    </div>
+                                        </div>
                                         <div style={timeStringStyle} className='Alegreya'>
                                             <span className="ant-divider" />
                                             <strong>{this.props.article.articleRatingAvg && this.props.article.articleRatingAvg !== 'NaN' ? this.props.article.articleRatingAvg : '0'}</strong> Rating
+                                        </div>
                                     </div>
-                                    </div>
-
                                 </div>
                             </ReactPlaceholder>
 
                             <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='media' ready={this.props.article ? true : false} rows={5}>
                                 <div>
+
                                     <style>{
-                                        'img {max-width: 800px !important;}  p {text-align: justify;}' +
+                                        'img {max-width: ' + imgWidth + ' !important;}  p {text-align: justify;}' +
                                         ' blockquote { ' + blockquoteStyle + '} '
                                     }</style>
 

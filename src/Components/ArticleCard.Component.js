@@ -29,6 +29,7 @@ export default function ArticleCard({ article, deleteStudent, accent }) {
 
     const styleSheet = {
         LinkStyle: {
+            lineHeight:'23px',
             fontSize: '1.8rem',
             fontWeight: '600',
             color: 'black'
@@ -36,7 +37,7 @@ export default function ArticleCard({ article, deleteStudent, accent }) {
     }
 
     return (
-        <Item>
+        <Item className='fade-in-top'>
             <Item.Content verticalAlign='middle'>
                 <Item.Header > <div color={accent} style={{ fontSize: '2rem' }} className='cool-link Alegreya'>
                     <Link to={`/${article.articleUrl}`}>
@@ -63,7 +64,7 @@ export default function ArticleCard({ article, deleteStudent, accent }) {
                         </div>
                         <div>
                             <Link to={`/${article.articleUrl}`}>
-                                <Label color={accent} style={{ float: 'right', fontFamily: 'Alegreya Sans SC !important' }} className='button-font pulse' content='Read More.'>
+                                <Label color={accent} style={{marginTop:'10px', float: 'right', fontFamily: 'Alegreya Sans SC !important' }} className='button-font pulse' content='Read More.'>
                                 </Label>
                             </Link>
                         </div>

@@ -24,7 +24,7 @@ import { AnimatedSwitch, AnimatedRoute } from 'react-router-transition';
 class App extends Component {
 
     componentDidMount = () => {
-        this.props.getAccentColor(this.props.AppAccentColor);    
+        this.props.getAccentColor(this.props.AppAccentColor);
     }
 
 
@@ -70,38 +70,61 @@ class App extends Component {
 
     render() {
         const newMenu = {
-            menuFixedNew: {
+            menuFixedRow: {
                 borderBottom: '2px solid',
                 borderBottomColor: this.props.AppAccentColor,
-                boxShadow: '0px 3px 5px rgba(8, 7, 7, 0.2)'
+                boxShadow: '0px 3px 5px rgba(8, 7, 7, 0.2)',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                left: '0',
+                top: '0',
+                position: 'fixed',
+                zIndex: '101',
+                margin: '0',
+                background: '#FFF',
+                width: '99vw'
+            },
+            menuFixedColumn: {
+                borderBottom: '2px solid',
+                borderBottomColor: this.props.AppAccentColor,
+                boxShadow: '0px 3px 5px rgba(8, 7, 7, 0.2)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-around',
+                left: '0',
+                top: '0',
+                position: 'fixed',
+                zIndex: '101',
+                margin: '0',
+                background: '#FFF',
+                width: '99vw'
             }
         }
         return (
             <div>
-                <div className="ui fixed fluid menu" style={newMenu.menuFixedNew}>
-                    <div className="ui container">
-                        <div title="Mushfiqur's Blog" className="item borderless menu-home pulse effect-shine link--ilin" onClick={this.menuHandler}>
-                            <span title="Mushfiqur's Blog" >Mushfiqur's</span><span title="Mushfiqur's Blog" >Blog</span>
-                        </div>
-
-                        <div title='All Articles' className="item borderless right menu-home-small pulse effect-shine" onClick={this.menuHandler}>
-                            All Articles
-                        </div>
+                <div style={window.innerWidth > 850 ? newMenu.menuFixedRow : newMenu.menuFixedColumn}>
+                    <div title="Mushfiqur's Blog" className="item borderless menu-home pulse effect-shine link--ilin" onClick={this.menuHandler}>
+                        <span title="Mushfiqur's Blog" >Mushfiqur's </span>  <span title="Mushfiqur's Blog" > Blog</span>
                     </div>
+
+                    <div title='All Articles' className="item borderless right menu-home-small pulse effect-shine" onClick={this.menuHandler}>
+                        All Articles
+                        </div>
                 </div>
 
-                <div style={{ marginTop: '65px' }}>
-                    <div className="ui container">
-                        <Switch>
-                            <Route exact path='/' component={Home} />
-                            <Route exact path='/articles' component={ArticleViewer} />
-                            <Route exact path='/articleadd' component={AddArticle} />
-                            <Route exact path='/InstaFeed' component={InstaFeed} />
-                            <Route exact path='/GithubTrends' component={GithubTrends} />
-                            <Route exact path='/TransitionablePortalExampleControlled' component={TransitionablePortalExampleControlled} />
-                            <Route exact path='/:articleUrl' component={ArticleDetails} />
-                        </Switch>
-                    </div>
+                <div className="ui container" style={{ marginTop: window.innerWidth > 850 ? '65px' : '100px' }}>
+
+                    <Switch>
+                        <Route exact path='/' component={Home} />
+                        <Route exact path='/articles' component={ArticleViewer} />
+                        <Route exact path='/articleadd' component={AddArticle} />
+                        <Route exact path='/InstaFeed' component={InstaFeed} />
+                        <Route exact path='/GithubTrends' component={GithubTrends} />
+                        <Route exact path='/TransitionablePortalExampleControlled' component={TransitionablePortalExampleControlled} />
+                        <Route exact path='/:articleUrl' component={ArticleDetails} />
+                    </Switch>
+
                 </div>
                 <SocialMenu accent={this.props.AppAccentColor} />
             </div>

@@ -131,6 +131,13 @@ export default (state = defaultState, action = {}) => {
             }
         }
 
+        case 'initFetch': {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+
         case 'FETCH_Markdown_FULFILLED': {
 
             return {

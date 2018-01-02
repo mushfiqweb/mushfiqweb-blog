@@ -61,6 +61,14 @@ export function emptyArticle() {
     }
 }
 
+export function initFetch() {
+    return dispatch => {
+        dispatch({
+            type: 'initFetch'
+        })
+    }
+}
+
 export function newMarkdown() {
     return dispatch => {
         dispatch({
