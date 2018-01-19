@@ -61,13 +61,23 @@ class HomeLayout extends Component {
                 </h1>
 
                 <h2 style={window.innerWidth > 850 ? headerStyle.h2Large : headerStyle.h2Small}>I write code in javascript.</h2>
-                <h3 style={window.innerWidth > 850 ? headerStyle.h3Large : headerStyle.h3Small}>This is my blog and it's still being developed.</h3>
+                <h3 style={window.innerWidth > 850 ? headerStyle.h3Large : headerStyle.h3Small}>Read My Articles.</h3>
                 <Link to='/articles'>
                     <Label className='pulse Alegreya' color={this.props.accent}>
                         See my articles
                     </Label>
                 </Link>
-                
+                <div>
+                    &nbsp;
+                </div>
+                <h4 style={window.innerWidth > 850 ? headerStyle.h3Large : headerStyle.h3Small}>Check out the following app created using <Link target="_blank" to='https://github.com/facebookincubator/create-react-app' className="cool-link Alegreya">Create React App</Link>, <Link target="_blank" to='https://redux.js.org/' className="cool-link Alegreya">Redux</Link>, and <Link target="_blank" to='https://firebase.google.com/' className="cool-link Alegreya">Firebase</Link>.</h4>
+
+
+                <Link target="_blank" to='https://mushfiqweb-todo.firebaseapp.com/'>
+                    <Label className='pulse Alegreya' color={this.props.accent}>
+                        A Simple Todo App
+                    </Label>
+                </Link>
 
             </div >
 

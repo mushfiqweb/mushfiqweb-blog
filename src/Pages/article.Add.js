@@ -1,8 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Segment, Header, Button, Divider, Loader, Dimmer, Input, Message, Label, TextArea } from 'semantic-ui-react';
-import { onEditorChange, saveArticle, newArticle, updateArticle } from '../Actions/article.Actions';
+import { onEditorChange, saveArticle, newArticle, updateArticle, fetchSerialNumber } from '../Actions/article.Actions';
+import _ from 'lodash'
 import axios from 'axios';
+
+
 
 class AddArticle extends Component {
 
@@ -15,15 +18,29 @@ class AddArticle extends Component {
         metaTitle: '',
         metaDesc: '',
         metaImage: '',
-        introImage:'',
+        introImage: '',
         articleSlug: '',
         metaUrl: '',
         metaKeys: '',
         articleCategory: '',
-        articleBody: ''
+        articleBody: '',
+        serialNumber: ''
     }
 
     componentDidMount = () => {
+        const webClient = axios.get('https://mushfiqweb-api.herokuapp.com/api/article?$select[]=serialNumber').then((response) => {
+            if (response.data.data) {
+                let max = 0;
+                response.data.data.map((item) => {
+                    if (Number(item.serialNumber) > max) {
+                        max = item.serialNumber;
+                    }
+                });
+                max++;
+                this.setState({ serialNumber: max })
+                //alert(this.state.serialNumber);
+            }
+        });
     }
 
     checkSecurityCode = (e, data) => {
@@ -35,7 +52,7 @@ class AddArticle extends Component {
             this.props.newArticle();
             const ipClient = axios.get('https://freegeoip.net/json/').then((response) => {
                 if (response) {
-                    if (response.data) {                        
+                    if (response.data) {
                         var article = {
                             articleBody: this.state.articleBody,
                             title: this.state.title,
@@ -48,12 +65,14 @@ class AddArticle extends Component {
                             articleCategory: this.state.articleCategory,
                             metaKeys: this.state.metaKeys,
                             introImage: this.state.introImage,
+                            serialNumber: this.state.serialNumber,
                             city: response.data.city ? response.data.city : 'Dhaka',
                             country_code: response.data.country_code ? response.data.country_code : 'BD',
                             country_name: response.data.country_name ? response.data.country_name : 'Bangladesh',
                             ip: response.data.ip ? response.data.ip : '192.168.10.1',
                             latitude: response.data.latitude ? response.data.latitude : '0',
                             longitude: response.data.longitude ? response.data.longitude : '0',
+                            
                             zip_code: response.data.zip_code ? response.data.zip_code : '1212'
 
                         }
@@ -91,7 +110,7 @@ class AddArticle extends Component {
                     introImage: e.target.value
                 });
                 break;
-                    
+
             case 'articleBody':
                 selfObj.setState({
                     articleBody: e.target.value
@@ -243,10 +262,11 @@ function mapStateToProps(state) {
         loading: state.articleStore.loading,
         loadingMessage: state.articleStore.loadingMessage,
         article: state.articleStore.article,
+        serialNumberArray: state.articleStore.serialNumberArray,
         accent: state.articleStore.AppAccentColor
     }
 }
 
 
-export default connect(mapStateToProps, { onEditorChange, saveArticle, newArticle, updateArticle })(AddArticle);
+export default connect(mapStateToProps, { onEditorChange, saveArticle, newArticle, updateArticle, fetchSerialNumber })(AddArticle);
 

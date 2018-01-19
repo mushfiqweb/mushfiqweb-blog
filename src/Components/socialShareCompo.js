@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Segment, Header, Divider, Label, Rating, Loader, Dimmer, Icon } from 'semantic-ui-react'
 import {
@@ -45,24 +46,33 @@ class SocialShareCompo extends Component {
         const iconName = this.props.isRated ? 'smile' : 'frown';
         return (
 
-            <Segment style={{ display: 'flex', flexDirection: 'column', marginTop: '20px' }} color={this.props.accent}>
+            <Segment style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }} color={this.props.accent}>
 
-                <div className='ui segment Alegreya'>
-                    <Dimmer active={this.props.loading} inverted>
-                        <Loader size='mini' className='Alegreya'>
-                            Rating the article...
-                        </Loader>
-                    </Dimmer>
-                    <Header className='Alegreya'> {this.props.ratingDoneMsg} <Icon name='smile' size='big' color={this.props.isRated ? this.props.accent : 'grey'} /> </Header>
-                    <div style={{ display: this.props.isRated ? 'none' : 'block' }}>
-                        <Rating color={this.props.accent} size='huge' maxRating={5} onRate={this.props.handleRate} />
+                <div className='ui segment Alegreya' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <div>
+                        <Dimmer active={this.props.loading} inverted>
+                            <Loader size='mini' className='Alegreya'>
+                                Rating the article...
+                            </Loader>
+                        </Dimmer>
+                        <Header className='Alegreya'> {this.props.ratingDoneMsg} <Icon name='smile' size='big' color={this.props.isRated ? this.props.accent : 'grey'} /> </Header>
+                        <div style={{ display: this.props.isRated ? 'none' : 'block' }}>
+                            <Rating color={this.props.accent} size='huge' maxRating={5} onRate={this.props.handleRate} />
+                        </div>
+                    </div>
+                    <div>
+                        <Dimmer active={false} inverted>
+                            <Loader size='mini' className='Alegreya'>
+                                Rating the article...
+                            </Loader>
+                        </Dimmer>
+                        <Header className='Alegreya' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>  <Icon name='coffee' size='big' color={this.props.accent} /> <Link className='cool-link' to='https://www.buymeacoffee.com/6RvYw3S' target='_blank'> Buy Me A Coffee </Link> <Icon name='smile' size='big' color={this.props.accent} /> </Header>
                     </div>
                 </div>
 
 
                 <div className='ui segment Alegreya'>
                     <Header className='Alegreya'>Spread The Love <Icon name='smile' size='big' color={this.props.accent} /> </Header>
-
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                         <div className='share-btn-div' title='Share on Facebook'>
                             <FacebookShareButton className='share-btn-margin pulse'
@@ -129,23 +139,23 @@ class SocialShareCompo extends Component {
 
                         {
                             window.innerWidth > 850 ?
-                            <div className='share-btn-div' title='Pint it!'>
-                                <PinterestShareButton className='share-btn-margin pulse'
-                                    url={this.props.metaUrl} media={this.props.metaImage}
-                                    description={this.props.metaTitle}>
-                                    <PinterestIcon
-                                        size={32}
-                                    />
-                                </PinterestShareButton>
+                                <div className='share-btn-div' title='Pint it!'>
+                                    <PinterestShareButton className='share-btn-margin pulse'
+                                        url={this.props.metaUrl} media={this.props.metaImage}
+                                        description={this.props.metaTitle}>
+                                        <PinterestIcon
+                                            size={32}
+                                        />
+                                    </PinterestShareButton>
 
-                                <Label style={{ backgroundColor: '#bd081c' }} className='share-counter-text'>
-                                    <PinterestShareCount
-                                        url={this.props.metaUrl}>
-                                        {count => count}
-                                    </PinterestShareCount>
-                                </Label>
+                                    <Label style={{ backgroundColor: '#bd081c' }} className='share-counter-text'>
+                                        <PinterestShareCount
+                                            url={this.props.metaUrl}>
+                                            {count => count}
+                                        </PinterestShareCount>
+                                    </Label>
 
-                            </div> : ''
+                                </div> : ''
                         }
 
                         {window.innerWidth > 850 ?
@@ -165,7 +175,7 @@ class SocialShareCompo extends Component {
                                     </RedditShareCount>
                                 </Label>
 
-                            </div>:''
+                            </div> : ''
                         }
                         <div className='share-btn-div' title='Send anyone as email'>
                             <EmailShareButton className='share-btn-margin pulse'
@@ -178,6 +188,10 @@ class SocialShareCompo extends Component {
                         </div>
                     </div>
                 </div>
+
+
+
+
 
 
             </Segment>

@@ -5,12 +5,14 @@
   "dependencies": {
     "antd": "^3.0.1",
     "axios": "latest",
+    "colors": "^1.1.2",
     "facebook-plugins": "^1.0.5",
     "froala-editor": "^2.7.3",
     "glamor": "^2.20.40",
     "html-react-parser": "latest",
     "ip": "^1.1.5",
     "lodash": "latest",
+    "logrocket": "^0.6.2",
     "moment": "^2.19.3",
     "prop-types": "^15.6.0",
     "react": "latest",
@@ -41,7 +43,8 @@
     "redux-thunk": "latest",
     "semantic-ui-css": "latest",
     "semantic-ui-react": "latest",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "twit": "^2.2.9"
   },
   "scripts": {
     "start": "SET PORT=1971 && react-scripts start",

@@ -2,6 +2,7 @@ import { getRandomColor } from '../Utils/utilFunctions';
 
 const defaultState = {
     InstaPhotos: [],
+    serialNumberArray:[],
     AppAccentColor: 'teal',
     editorText: '',
     article: '',
@@ -77,7 +78,8 @@ export default (state = defaultState, action = {}) => {
 
 
         case 'GET_ACCENT': {
-            const col = getRandomColor();
+            console.log(action.payload);
+            console.log(getRandomColor(action.payload));
             return {
                 ...state,
                 AppAccentColor: getRandomColor(action.payload)
@@ -146,10 +148,27 @@ export default (state = defaultState, action = {}) => {
                 loading: false
             }
         }
+        
 
+        case 'FETCH_SerialNumber': {
 
-
+            return {
+                ...state,
+                serialNumberArray: action.payload.data,
+                loading: false
+            }
+        }
+        
         case 'FETCH_Article_PENDING': {
+
+            return {
+                ...state,
+                loading: true
+            }
+        }    
+
+
+        case 'FETCH_SerialNumber_PENDING': {
 
             return {
                 ...state,

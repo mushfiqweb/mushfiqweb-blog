@@ -35,6 +35,7 @@ export function onEditorChange(textValue) {
     }
 }
 
+
 export function fetchMarkdown() {
     return dispatch => {
         dispatch({
@@ -81,6 +82,17 @@ export function newArticle() {
     return dispatch => {
         dispatch({
             type: 'NEW_Article'
+        })
+    }
+}
+
+//https://mushfiqweb-api.herokuapp.com/api/article?$select[]=serialNumber
+
+export function fetchSerialNumber() {
+    return dispatch => {
+        dispatch({
+            type: 'FETCH_SerialNumber',
+            payload: apiClientProd.get('/api/article?$select[]=serialNumber')
         })
     }
 }
@@ -136,7 +148,7 @@ export function saveArticle(article) {
         articleSlug: article.articleSlug,
         metaKeys: article.metaKeys,
         introImage: article.introImage,
-        serialNumber: '',
+        serialNumber: article.serialNumber,
         city: article.city,
         country_code: article.country_code,
         country_name: article.country_name,

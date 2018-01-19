@@ -1,45 +1,31 @@
 @import url(//fonts.googleapis.com/css?family=Lato:300i,400,400i,700|Raleway:400,500,600&amp;subset=latin-ext);
+@import url("https://use.typekit.net/grg6bry.css");
 @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono|Source+Code+Pro|Alegreya+Sans+SC|Alegreya+SC);
 @font-face {
-    font-family: 'bariolregular';
-    src: url('fonts/Bariol/bariol_regular-webfont.eot');
-    src: url('fonts/Bariol/bariol_regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/Bariol/bariol_regular-webfont.woff2') format('woff2'), url('fonts/Bariol/bariol_regular-webfont.woff') format('woff'), url('fonts/Bariol/bariol_regular-webfont.ttf') format('truetype'), url('fonts/Bariol/bariol_regular-webfont.svg#bariolregular') format('svg');
-    font-weight: normal;
+    font-family: PantonRegular;
+    font-weight: 600;
     font-style: normal;
+    src: url('fonts/Panton/Regular.woff2') format("woff2"), url('fonts/Panton/Regular.woff') format("woff")
 }
 
 @font-face {
-    font-family: 'ArvinBold';
-    src: url('fonts/Arvin/Arvin Bold.ttf') format('truetype');
-    font-weight: bold;
+    font-family: PantonLight;
+    font-weight: 300;
+    font-style: normal;
+    src: url('fonts/Panton/Light.woff2') format("woff2"), url('fonts/Panton/Light.woff') format("woff")
+}
+
+@font-face {
+    font-family: PantonBold;
+    font-weight: 600;
     font-style: bold;
+    src: url('fonts/Panton/Bold.woff2') format("woff2"), url('fonts/Panton/Bold.woff') format("woff")
 }
 
 @font-face {
-    font-family: 'ArvinBoldItalic';
-    src: url('fonts/Arvin/Arvin Bold Italic.ttf') format('truetype');
-    font-weight: bold;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'ArvinItalic';
-    src: url('fonts/Arvin/Arvin Italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'ArvinRegular';
-    src: url('fonts/Arvin/Arvin.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'geomanistregular';
-    src: url('fonts/Geomanist/geomanist-regular-webfont.eot');
-    src: url('fonts/Geomanist/geomanist-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/Geomanist/geomanist-regular-webfont.woff2') format('woff2'), url('fonts/Geomanist/geomanist-regular-webfont.woff') format('woff'), url('fonts/Geomanist/geomanist-regular-webfont.ttf') format('truetype'), url('fonts/Geomanist/geomanist-regular-webfont.svg#geomanistregular') format('svg');
+    font-family: 'GestaWOFF';
+    src: url('Gesta-Regular-webfont.eot');
+    src: url('Gesta-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('Gesta-Regular-webfont.woff') format('woff'), url('Gesta-Regular-webfont.ttf') format('truetype'), url('Gesta-Regular-webfont.svg#GestaRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -51,6 +37,24 @@ body {
     -moz-font-smoothing: antialiased !important;
     -ms-font-smoothing: antialiased !important;
     -o-font-smoothing: antialiased !important;
+}
+
+p {
+    font-family: gesta !important;
+    font-style: normal !important;
+    font-size: 110% !important;
+    font-weight: 500 !important;
+    -webkit-text-size-adjust: 100%;
+    /* Font varient */
+    font-variant-ligatures: none;
+    -webkit-font-variant-ligatures: none;
+    /* Smoothing */
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-decoration-skip: ink;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
 }
 
 code,
@@ -201,7 +205,7 @@ blockquote em {
 
 .menu-home-small {
     font-weight: 800 !important;
-    padding: 7px !important;
+    padding: 15px !important;
     font-family: 'Alegreya Sans SC', serif !important;
     text-transform: capitalize;
     font-size: 18px;
@@ -210,6 +214,9 @@ blockquote em {
 .Alegreya {
     font-family: 'Alegreya Sans SC', serif !important;
     text-transform: capitalize;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
 }
 
 .button-font {
@@ -787,12 +794,10 @@ blockquote em {
     }
 }
 
-
 .fade-in-fwd {
     -webkit-animation: fade-in-fwd 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) alternate both;
     animation: fade-in-fwd 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) alternate both;
 }
-
 
 @-webkit-keyframes fade-in-fwd {
     0% {
@@ -818,4 +823,12 @@ blockquote em {
         transform: translateZ(0);
         opacity: 1;
     }
+}
+
+.coffee-button {
+    margin: 25px 0px 0px 0px;
+    height: 41px !important;
+    width: 174px !important;
+    box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;
+    -webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;
 }

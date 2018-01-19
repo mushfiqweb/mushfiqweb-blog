@@ -81,6 +81,7 @@ class ArticleDetails extends Component {
     }
 
     showImages = () => {
+        var selfObj = this;
         var allimages = document.getElementsByTagName('img');
         for (var i = 0; i < allimages.length; i++) {
             if (!allimages[i].classList.contains('color-input-img')) {
@@ -101,6 +102,10 @@ class ArticleDetails extends Component {
 
                 allimages[i].classList.remove('fadeOut-img');
                 allimages[i].classList.add('fadeIn-img');
+
+                allimages[i].classList.add('ui');
+                allimages[i].classList.add('segment');
+                allimages[i].classList.add(selfObj.props.accent);
             }
         }
     }
@@ -152,6 +157,8 @@ class ArticleDetails extends Component {
                     });
                 }
             }
+
+            
 
             if (sessionStorage.getItem('isViewed')) {
                 return;
@@ -540,8 +547,6 @@ class ArticleDetails extends Component {
                         <script type="application/ld+json">
                             {JSON.stringify(jsonLD)}
                         </script>
-
-
                     </Helmet> : ''
                 }
 
@@ -572,8 +577,8 @@ class ArticleDetails extends Component {
                                     </div>
                                     <div>
                                         <div style={timeStringStyle} className='Alegreya'>
-                                            Posted @<span> </span> <strong style={{ fontSize: '13px' }}><Moment format="hh:mm a">{new Date(this.props.article.createdAt)}</Moment> </strong>
-                                            On <span> </span><strong style={{ fontSize: '13px' }}><Moment format="DD MMM YYYY">{this.props.article.createdAt}</Moment></strong>
+                                            Posted @<span> </span> <strong><Moment format="hh:mm A">{new Date(this.props.article.createdAt)}</Moment> </strong>
+                                            On <span> </span><strong><Moment format="DD MMM YYYY">{this.props.article.createdAt}</Moment></strong>
                                         </div>
                                         <div style={timeStringStyle} className='Alegreya'>
                                             <span className="ant-divider" />
@@ -623,8 +628,6 @@ class ArticleDetails extends Component {
                             <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='text' ready={this.props.article ? true : false} rows={3}>
                                 <DisqusThread id={this.props.article._id} title={metaTitle} path={this.props.article.articleUrl} accent={this.props.accent} />
                             </ReactPlaceholder>
-
-
                         </Segment>
                 }
 

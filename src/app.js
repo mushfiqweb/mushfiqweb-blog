@@ -17,14 +17,45 @@ import ImageColor from './Pages/ImageColor';
 import InstaFeed from './Pages/InstaFeed';
 import GithubTrends from './Pages/Github.Trends';
 import SocialMenu from './Components/SocialMenu';
+import SubscribeMe from './Pages/Subscribe';
 import TransitionablePortalExampleControlled from './Pages/Transition.Portal';
 import { AnimatedSwitch, AnimatedRoute } from 'react-router-transition';
+import LogRocket from 'logrocket';
+import IP from 'ip';
+import axios from 'axios';
 
+const myIP = '103.218.26.182';
 
 class App extends Component {
 
     componentDidMount = () => {
         this.props.getAccentColor(this.props.AppAccentColor);
+
+        if (window.location.host != 'localhost') {
+            LogRocket.init('tkuxd2/mushfiqweb');
+            var client = axios.create({
+                baseURL: "https://ipapi.co/",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            client.get('json').then((response) => {                
+                if (!response.data.ip) {
+                    return;
+                }
+                if (response.data.ip !== myIP) {
+                    LogRocket.identify(response.data.ip, {
+                        Country: response.data.country_name,
+                        City: response.data.city,
+                        IP: response.data.ip
+                    });
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+
     }
 
 
@@ -105,7 +136,7 @@ class App extends Component {
             <div>
                 <div style={window.innerWidth > 850 ? newMenu.menuFixedRow : newMenu.menuFixedColumn}>
                     <div title="Mushfiqur's Blog" className="item borderless menu-home pulse effect-shine link--ilin" onClick={this.menuHandler}>
-                        <span title="Mushfiqur's Blog" >Mushfiqur's </span>  <span title="Mushfiqur's Blog" > Blog</span>
+                        <span title="Mushfiqur's Blog" >Mushfiqur's </span>  <span title="Mushfiqur's Blog" style={{ backgroundColor: '#2d2d2d', lineHeight: '30px', color: '#fff' }}> Blog </span>
                     </div>
 
                     <div title='All Articles' className="item borderless right menu-home-small pulse effect-shine" onClick={this.menuHandler}>
@@ -121,6 +152,7 @@ class App extends Component {
                         <Route exact path='/articleadd' component={AddArticle} />
                         <Route exact path='/InstaFeed' component={InstaFeed} />
                         <Route exact path='/GithubTrends' component={GithubTrends} />
+                        <Route exact path='/Subscribe' component={SubscribeMe} />
                         <Route exact path='/TransitionablePortalExampleControlled' component={TransitionablePortalExampleControlled} />
                         <Route exact path='/:articleUrl' component={ArticleDetails} />
                     </Switch>
