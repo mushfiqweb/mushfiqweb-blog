@@ -32,3 +32,4 @@ export const getRandomColor = (currentColor) => {
 
     return color;
 }
+

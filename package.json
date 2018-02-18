@@ -23,6 +23,8 @@
     "react-facebook": "^4.2.1",
     "react-froala-wysiwyg": "latest",
     "react-ga": "latest",
+    "react-gist-embed": "0.0.3",
+    "react-gists": "^1.0.0",
     "react-helmet": "latest",
     "react-moment": "latest",
     "react-motion": "latest",
@@ -43,7 +45,9 @@
     "redux-thunk": "latest",
     "semantic-ui-css": "latest",
     "semantic-ui-react": "latest",
+    "shortid": "^2.2.8",
     "slick-carousel": "^1.8.1",
+    "super-react-gist": "^1.0.1",
     "twit": "^2.2.9"
   },
   "scripts": {

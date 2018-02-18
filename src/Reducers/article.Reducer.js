@@ -1,8 +1,16 @@
 import { getRandomColor } from '../Utils/utilFunctions';
 
 const defaultState = {
+    nextPost: {
+        postTitle: '',
+        postUrl: ''
+    },
+    prevPost: {
+        postTitle: '',
+        postUrl: ''
+    },
     InstaPhotos: [],
-    serialNumberArray:[],
+    serialNumberArray: [],
     AppAccentColor: 'teal',
     editorText: '',
     article: '',
@@ -148,7 +156,7 @@ export default (state = defaultState, action = {}) => {
                 loading: false
             }
         }
-        
+
 
         case 'FETCH_SerialNumber': {
 
@@ -158,14 +166,14 @@ export default (state = defaultState, action = {}) => {
                 loading: false
             }
         }
-        
+
         case 'FETCH_Article_PENDING': {
 
             return {
                 ...state,
                 loading: true
             }
-        }    
+        }
 
 
         case 'FETCH_SerialNumber_PENDING': {

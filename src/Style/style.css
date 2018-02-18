@@ -168,7 +168,6 @@ blockquote em {
     font-style: italic;
 }
 
-
 /* target IE7 and IE6 */
 
 *:first-child+html pre {
@@ -262,6 +261,10 @@ blockquote em {
     color: #4d4d4d;
 }
 
+.one-rem-font {
+    font-size: 1rem !important;
+}
+
 .cool-link:hover::after {
     width: 100%;
 }
@@ -328,7 +331,6 @@ blockquote em {
     font-family: 'geomanistregular' !important;
 }
 
-
 /*FadeIn*/
 
 .fadeIn {
@@ -369,7 +371,6 @@ blockquote em {
     -ms-animation-delay: 10s;
     -webkit-animation-delay: 10s;
 }
-
 
 /*FadeIn Animation*/
 
@@ -480,23 +481,22 @@ blockquote em {
     cursor: auto;
 }
 
-
 /* removes default styling from input color element */
 
- ::-webkit-color-swatch {
+::-webkit-color-swatch {
     border: none;
 }
 
- ::-webkit-color-swatch-wrapper {
+::-webkit-color-swatch-wrapper {
     padding: 0;
 }
 
- ::-moz-color-swatch,
- ::-moz-focus-inner {
+::-moz-color-swatch,
+::-moz-focus-inner {
     border: none;
 }
 
- ::-moz-focus-inner {
+::-moz-focus-inner {
     padding: 0;
 }
 
@@ -531,7 +531,6 @@ blockquote em {
     transform: scaleX(1)
 }
 
-
 /* effect-shine */
 
 .effect-shine-image,
@@ -549,7 +548,6 @@ blockquote em {
         -webkit-mask-position: -50%;
     }
 }
-
 
 /* Ilin */
 
@@ -831,4 +829,8 @@ blockquote em {
     width: 174px !important;
     box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;
     -webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;
+}
+
+dialog+.backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
 }

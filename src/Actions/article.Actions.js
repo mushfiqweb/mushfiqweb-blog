@@ -115,6 +115,25 @@ export function fetchArticles(limit, skip) {
     }
 }
 
+export function fetchNext(serialNumber) {
+    return dispatch => {
+        dispatch({
+            type: 'FETCH_Article',
+            payload: apiClientProd.get('/api/article?serialNumber=' + serialNumber)
+        })
+    }
+}
+
+export function fetchPrev(serialNumber) {
+    return dispatch => {
+        dispatch({
+            type: 'FETCH_Article',
+            payload: apiClientProd.get('/api/article?serialNumber=' + serialNumber)
+        })
+    }
+}
+
+
 export function fetchArticle(url) {
     return dispatch => {
         dispatch({

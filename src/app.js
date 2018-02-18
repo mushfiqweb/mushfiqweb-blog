@@ -40,7 +40,7 @@ class App extends Component {
                 }
             });
 
-            client.get('json').then((response) => {                
+            client.get('json').then((response) => {
                 if (!response.data.ip) {
                     return;
                 }
@@ -171,4 +171,5 @@ function mapStateToProps(state) {
     }
 }
 export default connect(mapStateToProps, { emptyArticle, getAccentColor })(App);
+
 

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import _ from 'lodash';
 import readingTime from 'reading-time';
-import { Segment, Dimmer, Loader, Header, Label, Icon, Advertisement, Image } from 'semantic-ui-react';
+import { Segment, Dimmer, Loader, Header, Label, Icon, Advertisement, Image, Embed, Grid } from 'semantic-ui-react';
 import { fetchArticle, getAccentColor, emptyArticle } from '../Actions/article.Actions';
 import Parser from 'html-react-parser';
 import Moment from 'react-moment';
@@ -18,6 +19,7 @@ import { withCookies, Cookies } from 'react-cookie';
 import FacebookProvider, { Comments } from 'react-facebook';
 import ReactPlaceholder from 'react-placeholder';
 import { TextBlock, MediaBlock, TextRow, RectShape, RoundShape } from 'react-placeholder/lib/placeholders';
+import Gist from 'react-gists';
 
 
 const spanStyle = {
@@ -62,7 +64,13 @@ class ArticleDetails extends Component {
         maxRating: '',
         adsPlacement: '',
         isRated: false,
-        ratingDoneMsg: 'Rate The Article!'
+        ratingDoneMsg: 'Rate The Article!',
+        nextUrl: '',
+        nextTitle: '',
+        nextColor: '',
+        prevTitle: '',
+        prevUrl: '',
+        prevColor: ''
     }
 
     componentDidMount = () => {
@@ -112,6 +120,44 @@ class ArticleDetails extends Component {
 
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.article) {
+            console.log('serial >>' + nextProps.article.serialNumber);
+
+            var prev = Number(nextProps.article.serialNumber) - 1;
+            var next = Number(nextProps.article.serialNumber) + 1;
+
+            var prevTitle = '';
+            var prevUrl = '';
+
+            var nextTitle = '';
+            var nextUrl = '';
+
+            if (prev > 0) {
+                setTimeout(() => {
+                    webClient.get('/api/article?serialNumber=' + prev).then((response) => {
+                        var articleCategory = response.data.data[0].articleCategory;
+                        this.setState({
+                            prevTitle: response.data.data[0].articleTitle,
+                            prevUrl: 'https://mushfiqweb.com/' + response.data.data[0].articleUrl,
+                            prevColor: this.getColor(articleCategory.split(',')[0])
+                        });
+                    }).catch(() => {
+                        console.log('Error');
+                    });
+                }, 500);
+            }
+
+            setTimeout(() => {
+                webClient.get('/api/article?serialNumber=' + next).then((response) => {
+                    var articleCategory = response.data.data[0].articleCategory;
+                    this.setState({
+                        nextTitle: response.data.data[0].articleTitle,
+                        nextUrl: 'https://mushfiqweb.com/' + response.data.data[0].articleUrl,
+                        nextColor: this.getColor(articleCategory.split(',')[0])
+                    });
+                }).catch(() => {
+                    console.log('Error');
+                });
+            }, 500);
 
             if (window.CHITIKA === undefined) {
                 window.CHITIKA = {
@@ -158,7 +204,7 @@ class ArticleDetails extends Component {
                 }
             }
 
-            
+
 
             if (sessionStorage.getItem('isViewed')) {
                 return;
@@ -239,7 +285,9 @@ class ArticleDetails extends Component {
             }
             if (articleObj._id !== '' && articleObj._id) {
                 webClient.put('/api/article/' + articleObj._id, articleObj).then(() => {
-                    console.log('Done');
+                    //articleObj.serialNumber
+
+
                 }).catch(() => {
                     console.log('Error');
                 });
@@ -349,6 +397,56 @@ class ArticleDetails extends Component {
         }
     }
 
+    getColor = (tag) => {
+        let colorProfile = 'grey';
+        switch (tag.trim()) {
+            case 'Windows':
+                colorProfile = 'blue';
+                break;
+
+            case 'Web Development':
+                colorProfile = 'violet';
+                break;
+            case 'HTML':
+                colorProfile = 'brown';
+                break;
+            case 'Javascript':
+                colorProfile = 'orange';
+                break;
+            case 'CSS':
+                colorProfile = 'teal';
+                break;
+            case 'Angular':
+                colorProfile = 'brown';
+                break;
+            case 'React':
+                colorProfile = 'blue';
+                break;
+            case 'Tips':
+                colorProfile = 'green';
+                break;
+            case 'ES6':
+                colorProfile = 'yellow';
+                break;
+            case 'Build Tool':
+                colorProfile = 'grey';
+                break;
+            case 'Freebies':
+                colorProfile = 'purple';
+                break;
+            case 'Frontend Develpoment':
+                colorProfile = 'olive';
+                break;
+            case 'Android':
+                colorProfile = 'green';
+                break;
+            default:
+                break;
+        }
+
+        return colorProfile;
+    }
+
     render() {
         const articleSlug = this.props.article ? this.props.article.articleSlug : '<h1> </h1>';
         const htmlToRender = this.props.article ? this.props.article.articleBody : '<div style="min-height:60vh;"><h1>fetching the article...</h1></div>';
@@ -444,6 +542,11 @@ class ArticleDetails extends Component {
 
                 case 'Frontend Develpoment':
                     colorProfile = 'olive';
+                    webLink = 'https://mushfiqweb.com';
+                    break;
+
+                case 'Android':
+                    colorProfile = 'green';
                     webLink = 'https://mushfiqweb.com';
                     break;
                 default:
@@ -613,6 +716,24 @@ class ArticleDetails extends Component {
                                     }
                                 </div>
                             </ReactPlaceholder>
+
+                            <Segment color={this.props.accent}>
+                                <Grid columns={2}>
+                                    <Grid.Column>
+                                        <Segment>
+                                            <Label className='Alegreya one-rem-font' color={this.state.prevColor} ribbon>Previous</Label>
+                                            <span>{this.state.prevTitle.length > 58 ? this.state.prevTitle.substring(0, 58) + '...' : this.state.prevTitle}</span>
+                                        </Segment>
+                                    </Grid.Column>
+
+                                    <Grid.Column>
+                                        <Segment>
+                                            <Label className='Alegreya one-rem-font' color={this.state.nextColor} ribbon='right'>Next</Label>
+                                            <span style={{ marginLeft: '-45px' }}>{this.state.nextTitle.length > 68 ? this.state.nextTitle.substring(0, 68) + '...' : this.state.nextTitle}</span>
+                                        </Segment>
+                                    </Grid.Column>
+                                </Grid>
+                            </Segment>
 
                             <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='media' ready={this.props.article ? true : false} rows={4}>
 

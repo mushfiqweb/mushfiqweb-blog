@@ -12,8 +12,8 @@
         "destination": "/index.html"
       },
       {
-        "source": "/todo/**",
-        "destination": "/todo/index.html"
+        "source": "/edit/*",
+        "destination": "/edit/index.html"
       }
     ]
   }
