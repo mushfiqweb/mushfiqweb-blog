@@ -110,11 +110,11 @@ class App extends Component {
                 justifyContent: 'space-around',
                 left: '0',
                 top: '0',
-                position: 'fixed',
+                position:'sticky',
                 zIndex: '101',
                 margin: '0',
                 background: '#FFF',
-                width: '99vw'
+                width: '100vw'
             },
             menuFixedColumn: {
                 borderBottom: '2px solid',
@@ -125,11 +125,11 @@ class App extends Component {
                 justifyContent: 'space-around',
                 left: '0',
                 top: '0',
-                position: 'fixed',
+                position: 'sticky',
                 zIndex: '101',
                 margin: '0',
                 background: '#FFF',
-                width: '99vw'
+                width: '100vw'
             }
         }
         return (
@@ -144,7 +144,7 @@ class App extends Component {
                         </div>
                 </div>
 
-                <div className="ui container" style={{ marginTop: window.innerWidth > 850 ? '65px' : '100px' }}>
+                <div className="ui container" style={{ minHeight:'80vh' }}>
 
                     <Switch>
                         <Route exact path='/' component={Home} />

@@ -13,11 +13,11 @@ export default function SocialMenu({ accent }) {
         padding: '10px 0px 10px 0px',
         left: '0',    
         bottom: '0',
-        position: 'fixed',
+        position:'fixed',
         zIndex: '101',
         margin: '0 auto',
         background: '#FFF',
-        width: '99vw',
+        width: '100vw',
         textAlign: 'center'
     };
     return (
