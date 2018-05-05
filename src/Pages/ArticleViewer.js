@@ -172,20 +172,7 @@ class ArticleViewer extends Component {
                             </strong>
                         </div>
                     </div>
-                </Segment>
-
-                <Segment style={{ minHeight: '100px' }} color={this.props.accent} className='fade-in-top'>
-                    <Dimmer active={!(this.state.adsLoaded && (this.props.articles.length > 0))} inverted>
-                        <Loader size='small'>
-                            fetching ads...
-                        </Loader>
-                    </Dimmer>
-                    <div style={window.innerWidth < 850 ? adsStyleColumn : adsStyleRow}>
-                        <div style={{ maxWidth: '350px !important', display: this.state.adsLoaded ? 'block' : 'none' }} className='ui segment' id={this.state.adsPlacementOne} />
-                        <div style={{ maxWidth: '350px !important', display: this.state.adsLoaded ? 'block' : 'none' }} className='ui segment' id={this.state.adsPlacementTwo} />
-                        <div style={{ maxWidth: '350px !important', display: this.state.adsLoaded ? 'block' : 'none' }} className='ui segment' id={this.state.adsPlacementThree} />
-                    </div>
-                </Segment>
+                </Segment>             
             </div >
         );
     }

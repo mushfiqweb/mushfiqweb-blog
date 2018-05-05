@@ -743,8 +743,7 @@ class ArticleDetails extends Component {
                                             metaTitle={metaTitle} metaImage={metaImage} accent={this.props.accent} ratingDoneMsg={this.state.ratingDoneMsg} isRated={this.state.isRated} />
                                         : <div> </div>
                                 }
-
-                                <Segment color={this.props.accent} id={this.state.adsPlacement} />
+                                
                             </ReactPlaceholder>
                             <ReactPlaceholder style={{ marginBottom: '50px' }} showLoadingAnimation type='text' ready={this.props.article ? true : false} rows={3}>
                                 <DisqusThread id={this.props.article._id} title={metaTitle} path={this.props.article.articleUrl} accent={this.props.accent} />
