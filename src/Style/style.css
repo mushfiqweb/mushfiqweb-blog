@@ -30,6 +30,38 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Fira Code';
+    src: url('fonts/eot/FiraCode-Light.eot');
+    src: url('fonts/eot/FiraCode-Light.eot') format('embedded-opentype'), url('fonts/woff2/FiraCode-Light.woff2') format('woff2'), url('fonts/woff/FiraCode-Light.woff') format('woff'), url('fonts/ttf/FiraCode-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    src: url('fonts/eot/FiraCode-Regular.eot');
+    src: url('fonts/eot/FiraCode-Regular.eot') format('embedded-opentype'), url('fonts/woff2/FiraCode-Regular.woff2') format('woff2'), url('fonts/woff/FiraCode-Regular.woff') format('woff'), url('fonts/ttf/FiraCode-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    src: url('fonts/eot/FiraCode-Medium.eot');
+    src: url('fonts/eot/FiraCode-Medium.eot') format('embedded-opentype'), url('fonts/woff2/FiraCode-Medium.woff2') format('woff2'), url('fonts/woff/FiraCode-Medium.woff') format('woff'), url('fonts/ttf/FiraCode-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    src: url('fonts/eot/FiraCode-Bold.eot');
+    src: url('fonts/eot/FiraCode-Bold.eot') format('embedded-opentype'), url('fonts/woff2/FiraCode-Bold.woff2') format('woff2'), url('fonts/woff/FiraCode-Bold.woff') format('woff'), url('fonts/ttf/FiraCode-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -60,7 +92,7 @@ p {
 code,
 samp,
 kbd {
-    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font-family: 'Fira Code';
     font-size: 13px;
     text-align: left;
     color: #555;
@@ -68,7 +100,7 @@ kbd {
 
 pre code {
     font-size: 12px;
-    font-family: monospace;
+    font-family: 'Fira Code';
     line-height: 13px;
     color: inherit;
     font-weight: inherit;
@@ -88,7 +120,7 @@ code {
     /* Opera 7 and up */
     word-wrap: break-word;
     /* IE 5.5+ and up */
-    font-family: monospace;
+    font-family: 'Fira Code';
     padding: 1px 2px 1px 2px;
     color: #fff;
     font-weight: 800;
@@ -110,7 +142,7 @@ pre {
     /* Opera 7 and up */
     word-wrap: break-word;
     /* IE 5.5+ and up */
-    font-family: monospace;
+    font-family: 'Fira Code';
     font-size: 12px;
     line-height: 13px;
     background-color: #f3f3f3;
@@ -335,7 +367,7 @@ blockquote em {
 
 .fadeIn {
     display: inline;
-    text-indent: 8px;
+    text-indent: 2px;
 }
 
 .fadeIn span {
@@ -833,4 +865,58 @@ blockquote em {
 
 dialog+.backdrop {
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+    /**CSS**/
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    /**CSS**/
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    /**CSS**/
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /**CSS**/
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+    /**CSS**/
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+    /**CSS**/
 }

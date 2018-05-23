@@ -27,7 +27,7 @@ class HomeLayout extends Component {
 
         const headerStyle = {
             h1Small: {
-                marginRight: '115px', fontSize: '1rem'
+                marginRight: '115px', fontSize: '0.9rem'
             },
             h1Large: {
                 marginRight: '115px', fontSize: '2rem'
@@ -50,8 +50,7 @@ class HomeLayout extends Component {
         return (
             <div className='fade-in-top' style={{ height: window.innerHeight - 520, textAlign: 'center' }}>
 
-                <h1 style={window.innerWidth > 850 ? headerStyle.h1Large : headerStyle.h1Small} className="sentence">Hi, I'm Mushfiqur Rahman. I am a
-                    <div className="fadeIn">
+                <h1 style={window.innerWidth > 850 ? headerStyle.h1Large : headerStyle.h1Small} className="sentence">Hi, I'm Mushfiqur Rahman. I am a<div className="fadeIn">
                         <span>software developer.</span>
                         <span>photographer.</span>
                         <span>freelancer.</span>
