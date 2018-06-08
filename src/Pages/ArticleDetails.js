@@ -25,7 +25,6 @@ import Parser from "html-react-parser";
 import Moment from "react-moment";
 import moment from "moment";
 import axios from "axios";
-import AdSense from "react-adsense";
 import { Helmet } from "react-helmet";
 import ReactGA from "react-ga";
 import DisqusThread from "../Components/disqusThread";
@@ -80,8 +79,7 @@ class ArticleDetails extends Component {
     menuFixed: false,
     overlayFixed: false,
     rating: false,
-    maxRating: "",
-    adsPlacement: "",
+    maxRating: "",    
     isRated: false,
     ratingDoneMsg: "Rate The Article!",
     nextUrl: "",
@@ -195,30 +193,7 @@ class ArticleDetails extends Component {
           });
       }, 500);
 
-      if (window.CHITIKA === undefined) {
-        window.CHITIKA = {
-          units: []
-        };
-      }
 
-      var w = 728;
-      var h = 90;
-      if (window.innerWidth < 850) {
-        w = 300;
-        h = 600;
-      }
-      var unit = {
-        calltype: "async[2]",
-        publisher: "mushfiqweb",
-        width: w,
-        height: h,
-        sid: "Chitika Default"
-      };
-
-      window.CHITIKA.units.push(unit);
-      var placement_id = window.CHITIKA.units.length - 1;
-      const adsPlacement = "chitikaAdBlock-" + placement_id;
-      this.setState({ adsPlacement: adsPlacement });
 
       const articleStats = nextProps.article
         ? readingTime(nextProps.article.articleBody)

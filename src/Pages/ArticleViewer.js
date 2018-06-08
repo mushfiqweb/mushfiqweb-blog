@@ -9,11 +9,7 @@ import Container from 'semantic-ui-react/dist/commonjs/elements/Container/Contai
 
 class ArticleViewer extends Component {
     state = {
-        anime: 'fadeIn',
-        adsPlacementOne: '',
-        adsPlacementTwo: '',
-        adsPlacementThree: '',
-        adsLoaded: false,
+        anime: 'fadeIn',        
         headerColor: 'green'
     }
 
@@ -28,79 +24,19 @@ class ArticleViewer extends Component {
             this.props.fetchArticles(5, 0);
         }
         else if (this.props.articles.length > 0) {
-            this.loadAds();
+            
         }
     }
-
-    modifyAdsStyle = () => {
-        if (document.getElementsByClassName('chitikaAdBlock')[0] && document.getElementsByClassName('chitikaAdBlock')[1] && document.getElementsByClassName('chitikaAdBlock')[2]) {
-            document.getElementsByClassName('chitikaAdBlock')[0].removeAttribute('width');
-            document.getElementsByClassName('chitikaAdBlock')[1].removeAttribute('width');
-            document.getElementsByClassName('chitikaAdBlock')[2].removeAttribute('width');
-            this.setState({ adsLoaded: true });
-        }
-    }
-
 
 
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.articles.length > 0) {
             if (this.props.articles.length < 5) {
-                this.loadAds();
+                
             }
         }
     }
 
-    loadAds = () => {
-        if (window.CHITIKA === undefined) {
-            window.CHITIKA = {
-                'units': []
-            };
-        };
-        if (this.props.articles.length < 5) {
-            var unit = {
-                "calltype": "async[2]",
-                "publisher": "mushfiqweb",
-                "width": 550,
-                "height": 250,
-                "sid": "Chitika Default"
-            };
-            window.CHITIKA.units.push(unit);
-
-            var unit = {
-                "calltype": "async[2]",
-                "publisher": "mushfiqweb",
-                "width": 550,
-                "height": 250,
-                "sid": "Chitika Default"
-            };
-            window.CHITIKA.units.push(unit);
-
-            var unit = {
-                "calltype": "async[2]",
-                "publisher": "mushfiqweb",
-                "width": 550,
-                "height": 250,
-                "sid": "Chitika Default"
-            };
-            window.CHITIKA.units.push(unit);
-        }
-
-        var placement_id = window.CHITIKA.units.length - 1;
-
-        const adsPlacementOne = "chitikaAdBlock-" + placement_id;
-        placement_id = placement_id - 1;
-
-        const adsPlacementTwo = "chitikaAdBlock-" + placement_id;
-        placement_id = placement_id - 1;
-
-        const adsPlacementThree = "chitikaAdBlock-" + placement_id;
-        this.setState({ adsPlacementOne: adsPlacementOne, adsPlacementTwo: adsPlacementTwo, adsPlacementThree: adsPlacementThree });
-        setTimeout(() => {
-            this.modifyAdsStyle();
-        }, 2000);
-
-    }
     loadMoreArticles = () => {
         var selfObj = this;
         selfObj.props.initFetch();
@@ -124,16 +60,6 @@ class ArticleViewer extends Component {
 
     render() {
 
-        const adsStyleRow = {
-            display: 'flex',
-            flexFlow: 'row',
-            justifyContent: 'space-between'
-        };
-        const adsStyleColumn = {
-            display: 'flex',
-            flexFlow: 'column',
-            justifyContent: 'space-between'
-        };
         return (
             <div>
                 <Segment color={this.props.accent} style={{ minHeight: '80vh', margin: '0 auto' }}>
