@@ -25,27 +25,39 @@ class HomeLayout extends Component {
     const headerStyle = {
       h1Small: {
         marginRight: "115px",
+        fontFamily:"gesta !important",
         fontSize: "0.9rem"
       },
       h1Large: {
         marginRight: "115px",
+        fontFamily: "gesta !important",
         fontSize: "2rem"
       },
       h2Small: {
-        fontSize: "0.9rem"
+        fontSize: "0.9rem",
+        fontFamily: "gesta !important"
       },
       h2Large: {
-        fontSize: "1.3rem"
+        fontSize: "1.3rem",
+        fontFamily: "gesta !important"
       },
       h3Small: {
+        fontFamily: "gesta !important",
         fontSize: "0.8rem"
       },
       h3Large: {
+        fontFamily: "gesta !important",
         fontSize: "1.2rem"
       }
     };
 
     return <div className="fade-in-top" style={{ height: window.innerHeight - 520, textAlign: "center" }}>
+        <style>
+          {
+          "h1,h2,h3,h4,p{font-family: gesta !important;}"
+          }
+      </style>
+      
         <h1 style={window.innerWidth > 850 ? headerStyle.h1Large : headerStyle.h1Small} className="sentence">
           Hi, I'm Mushfiqur Rahman. I am a&nbsp;<div className="fadeIn">
             <span> software developer.</span>
