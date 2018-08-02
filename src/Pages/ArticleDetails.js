@@ -295,6 +295,8 @@ class ArticleDetails extends Component {
           zip_code: nextProps.article.zip_code
         };
       }
+
+      
       if (articleObj._id !== "" && articleObj._id) {
         webClient
           .put("/api/article/" + articleObj._id, articleObj)

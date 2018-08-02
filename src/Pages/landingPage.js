@@ -116,8 +116,12 @@ class HomeLayout extends Component {
         >
           You can view my photography.
         </h3>
+
+        <button className='button slide'>
+          &nbsp;
+        </button>
         <Link target="_blank" to="https://photos.mushfiqweb.com/">
-          <Label className="pulse Alegreya" color={this.props.accent}>
+          <Label className="button slide" color={this.props.accent}>
             my photography
           </Label>
         </Link>
@@ -132,7 +136,7 @@ class HomeLayout extends Component {
           </Link>.
         </h4>
 
-        <Link target="_blank" to="https://mushfiqweb-todo.firebaseapp.com/">
+        <Link target="_blank" to="https://todo.mushfiqweb.com/">
           <Label className="pulse Alegreya" color={this.props.accent}>
             A Simple Todo App
           </Label>
