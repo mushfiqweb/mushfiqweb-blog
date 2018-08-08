@@ -117,11 +117,8 @@ class HomeLayout extends Component {
           You can view my photography.
         </h3>
 
-        <button className='button slide'>
-          &nbsp;
-        </button>
         <Link target="_blank" to="https://photos.mushfiqweb.com/">
-          <Label className="button slide" color={this.props.accent}>
+          <Label className="pulse Alegreya" color={this.props.accent}>
             my photography
           </Label>
         </Link>
