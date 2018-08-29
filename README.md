@@ -11,8 +11,6 @@ https://mushfiqweb.com
 - [WebPack](https://webpack.github.io)
 - [YARN](https://yarnpkg.com/en/)
 
-
-
 ## [List of Articles](https://mushfiqweb.com/articles)
 
 - [**Style and customize file input tag in your own way with example**](http://blog.mushfiqweb.com/FF9wFy)
@@ -22,7 +20,6 @@ https://mushfiqweb.com
 - [**Fundamentals of JavaScript ES6 Classes**](http://blog.mushfiqweb.com/75bFb3)
 - [**A quick intro guide to CSS Grid System**](http://blog.mushfiqweb.com/dFF4FF)
 - [**Getting started With ReactJs Development and Environment Setup**](http://blog.mushfiqweb.com/ob7FuF)
-
 
 https://www.pointblankdevelopment.com.au/blog/124/react-redux-with-aspnet-core-20-login-registration-tutorial-example
 http://jasonwatmore.com/post/2017/09/16/react-redux-user-registration-and-login-tutorial-example
