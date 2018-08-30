@@ -4,11 +4,26 @@ import { Label, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ReactGA from "react-ga";
 import { getAccentColor, fetchFakeArticles } from "../Actions/article.Actions";
-import Helmet from "react-helmet";
+import firebase from 'firebase/app';
+
+const SecretData = {
+  k: 'AIzaSyC-EC-kXGbt8fv8ne3UDO6zXLdUkJ4bcqg',
+  d: 'mushfiqweb-frontend.firebaseapp.com',
+  u: 'https://mushfiqweb-frontend.firebaseio.com',
+  b: 'mushfiqweb-frontend.appspot.com'
+}
+
 class HomeLayout extends Component {
   state = {};
 
+  writePOST = () => {
+    firebase.database().ref('posts/').set({
+      postId: 3, postTitle: 'From CODE', postDate: '8/8/2018', postCategory: 'CSS'
+    });
+  }
+
   componentDidMount = () => {
+
     this.props.getAccentColor(this.props.accent);
     this.props.fetchFakeArticles();
     if (window.location.hostname !== "localhost") {
@@ -25,7 +40,7 @@ class HomeLayout extends Component {
     const headerStyle = {
       h1Small: {
         marginRight: "115px",
-        fontFamily:"gesta !important",
+        fontFamily: "gesta !important",
         fontSize: "0.9rem"
       },
       h1Large: {
@@ -52,93 +67,96 @@ class HomeLayout extends Component {
     };
 
     return <div className="fade-in-top" style={{ height: window.innerHeight - 520, textAlign: "center" }}>
-        <style>
-          {
+      <style>
+        {
           "h1,h2,h3,h4,p{font-family: gesta !important;}"
-          }
+        }
       </style>
-      
-        <h1 style={window.innerWidth > 850 ? headerStyle.h1Large : headerStyle.h1Small} className="sentence">
-          Hi, I'm Mushfiqur Rahman. I am a&nbsp;<div className="fadeIn">
-            <span> software developer.</span>
-            <span> photographer.</span>
-            <span> freelancer.</span>
-            <span> tech geek.</span>
-            <span> music enthusiast.</span>
-          </div>
-        </h1>
 
-        <h2
-          style={
-            window.innerWidth > 850
-              ? headerStyle.h2Large
-              : headerStyle.h2Small
-          }
-        >
-          I have been working on Web Application Development for more than
-          five years.
+      <h1 style={window.innerWidth > 850 ? headerStyle.h1Large : headerStyle.h1Small} className="sentence">
+        Hi, I'm Mushfiqur Rahman. I am a&nbsp;<div className="fadeIn">
+          <span> software developer.</span>
+          <span> photographer.</span>
+          <span> freelancer.</span>
+          <span> tech geek.</span>
+          <span> music enthusiast.</span>
+        </div>
+      </h1>
+
+      <h2
+        style={
+          window.innerWidth > 850
+            ? headerStyle.h2Large
+            : headerStyle.h2Small
+        }
+      >
+        I have been working on Web Application Development for more than
+        five years.
         </h2>
 
-        <h2
-          style={
-            window.innerWidth > 850
-              ? headerStyle.h2Large
-              : headerStyle.h2Small
-          }
-        >
-          Once I started my career on ASP.NET Development but eventually
-          switched everything to JavaScript.
+      <h2
+        style={
+          window.innerWidth > 850
+            ? headerStyle.h2Large
+            : headerStyle.h2Small
+        }
+      >
+        Once I started my career on ASP.NET Development but eventually
+        switched everything to JavaScript.
         </h2>
-        <h2 style={window.innerWidth > 850 ? headerStyle.h2Large : headerStyle.h2Small}>
-          And I'm <Icon name="heart" color="red" />ing JavaScript everywhere now!
+      <h2 style={window.innerWidth > 850 ? headerStyle.h2Large : headerStyle.h2Small}>
+        And I'm <Icon name="heart" color="red" />ing JavaScript everywhere now!
         </h2>
-        <h3
-          style={
-            window.innerWidth > 850
-              ? headerStyle.h3Large
-              : headerStyle.h3Small
-          }
-        >
-          You can read my articles.
+
+      <Label onClick={this.writePOST}>Click</Label>
+
+      <h3
+        style={
+          window.innerWidth > 850
+            ? headerStyle.h3Large
+            : headerStyle.h3Small
+        }
+      >
+        You can read my articles.
         </h3>
-        <Link to="/articles">
-          <Label className="pulse Alegreya" color={this.props.accent}>
-            See my articles
+      <Link to="/articles">
+        <Label className="pulse Alegreya" color={this.props.accent}>
+          See my articles
           </Label>
-        </Link>
-        <div>&nbsp;</div>
-        <h3
-          style={
-            window.innerWidth > 850
-              ? headerStyle.h3Large
-              : headerStyle.h3Small
-          }
-        >
-          You can view my photography.
+      </Link>
+      <div>&nbsp;</div>
+      <h3
+        style={
+          window.innerWidth > 850
+            ? headerStyle.h3Large
+            : headerStyle.h3Small
+        }
+      >
+        You can view my photography.
         </h3>
 
-        <Link target="_blank" to="https://photos.mushfiqweb.com/">
-          <Label className="pulse Alegreya" color={this.props.accent}>
-            my photography
+      <Link target="_blank" to="https://photos.mushfiqweb.com/">
+        <Label className="pulse Alegreya" color={this.props.accent}>
+          my photography
           </Label>
-        </Link>
-        <div>&nbsp;</div>
-        <h4 style={window.innerWidth > 850 ? headerStyle.h3Large : headerStyle.h3Small}>
-          Check out the following app created using <Link target="_blank" to="https://github.com/facebookincubator/create-react-app" className="cool-link Alegreya">
-            Create React App
+      </Link>
+      <div>&nbsp;</div>
+      <h4 style={window.innerWidth > 850 ? headerStyle.h3Large : headerStyle.h3Small}>
+        Check out the following app created using <Link target="_blank" to="https://github.com/facebookincubator/create-react-app" className="cool-link Alegreya">
+          Create React App
           </Link>, <Link target="_blank" to="https://redux.js.org/" className="cool-link Alegreya">
-            Redux
+          Redux
           </Link>, and <Link target="_blank" to="https://firebase.google.com/" className="cool-link Alegreya">
-            Firebase
+          Firebase
           </Link>.
         </h4>
 
-        <Link target="_blank" to="https://todo.mushfiqweb.com/">
-          <Label className="pulse Alegreya" color={this.props.accent}>
-            A Simple Todo App
+      <Link target="_blank" to="https://todo.mushfiqweb.com/">
+        <Label className="pulse Alegreya" color={this.props.accent}>
+          A Simple Todo App
           </Label>
-        </Link>
-      </div>;
+      </Link>
+    </div>;
   }
 }
 function mapStateToProps(state) {

@@ -12,29 +12,26 @@ import {
 import _ from "lodash";
 import { emptyArticle, getAccentColor } from "./Actions/article.Actions";
 import { connect } from "react-redux";
-
 import Home from "./Pages/landingPage";
-import Missed from "./Components/missed";
 import ArticleDetails from "./Pages/ArticleDetails";
 import ArticleViewer from "./Pages/ArticleViewer";
 import AddArticle from "./Pages/article.Add";
-import FroalaEditor from "./Pages/FroalaEditor";
-import ArticleListEdit from "./Pages/ArticleListEdit";
-import ImageColor from "./Pages/ImageColor";
 import InstaFeed from "./Pages/InstaFeed";
 import GithubTrends from "./Pages/Github.Trends";
 import SocialMenu from "./Components/SocialMenu";
 import SubscribeMe from "./Pages/Subscribe";
 import TransitionablePortalExampleControlled from "./Pages/Transition.Portal";
-import { AnimatedSwitch, AnimatedRoute } from "react-router-transition";
+
 import LogRocket from "logrocket";
-import IP from "ip";
+
 import axios from "axios";
 
 const myIP = "103.218.26.182";
 
 class App extends Component {
   componentDidMount = () => {
+
+  
     this.props.getAccentColor(this.props.AppAccentColor);
 
     if (window.location.host != "localhost") {
