@@ -1,8 +1,4 @@
 {
-  "rules": {
-    ".read": true,
-    ".write": true
-  },
   "hosting": {
     "public": "build",
     "ignore": [
@@ -10,16 +6,11 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [      
+    "rewrites": [
       {
         "source": "**",
         "destination": "/index.html"
-      },
-      {
-        "source": "/edit/*",
-        "destination": "/edit/index.html"
       }
     ]
   }
 }
-

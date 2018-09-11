@@ -1,6 +1,0 @@
-service cloud.firestore {
-  match /posts/{anyDocument} {
-    allow read: true;
-    allow write:true;
-  }  
-}

@@ -4,23 +4,12 @@ import { Label, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ReactGA from "react-ga";
 import { getAccentColor, fetchFakeArticles } from "../Actions/article.Actions";
-import firebase from 'firebase/app';
 
-const SecretData = {
-  k: 'AIzaSyC-EC-kXGbt8fv8ne3UDO6zXLdUkJ4bcqg',
-  d: 'mushfiqweb-frontend.firebaseapp.com',
-  u: 'https://mushfiqweb-frontend.firebaseio.com',
-  b: 'mushfiqweb-frontend.appspot.com'
-}
+
 
 class HomeLayout extends Component {
   state = {};
 
-  writePOST = () => {
-    firebase.database().ref('posts/').set({
-      postId: 3, postTitle: 'From CODE', postDate: '8/8/2018', postCategory: 'CSS'
-    });
-  }
 
   componentDidMount = () => {
 
@@ -106,9 +95,7 @@ class HomeLayout extends Component {
         </h2>
       <h2 style={window.innerWidth > 850 ? headerStyle.h2Large : headerStyle.h2Small}>
         And I'm <Icon name="heart" color="red" />ing JavaScript everywhere now!
-        </h2>
-
-      <Label onClick={this.writePOST}>Click</Label>
+        </h2>             
 
       <h3
         style={
