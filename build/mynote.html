@@ -195,16 +195,19 @@
 
 
       $('#edit').on('froalaEditor.initialized', function (e, editor) {
-        $("div.fr-toolbar").append('<button id="save-status" style="display:none;" type="button" tabindex="-1" role="button" aria-disabled="true" title="Status" class="fr-command fr-btn">Saved</button>');
+        $("div.fr-toolbar").append('<button id="save-status" style="display:none;" type="button" tabindex="-1" role="button" aria-disabled="true" title="Status" class="fr-command fr-btn"> <img style="margin-top:50px;width:50px;" src="ok.svg"/> </button>');
       });
 
 
-      $('#edit').on('froalaEditor.contentChanged', function (e, editor) {        
+      $('#edit').on('froalaEditor.contentChanged', function (e, editor) {
         localStorage.setItem('mushfiqweb-editor-value', editor.html.get());
       });
 
       $('#edit').on('froalaEditor.blur', function (e, editor) {
-        $('#save-status').val('Working');
+
+        $('#save-status').css('display', 'block');
+        $('#save-status').addClass('fade-in');
+
         var mainData = {
           _id: "5bb22b56ea32b2002142513a",
           body: editor.html.get(),
@@ -216,16 +219,15 @@
 
         axios.patch('https://mushfiqweb-api.herokuapp.com/api/animarticle', mainData).then((response) => {
 
-          $('#save-status').css('display','block');
-          $('#save-status').addClass('fade-in');
           setTimeout(() => {
             $('#save-status').removeClass('fade-in');
             $('#save-status').addClass('fade-out');
             setTimeout(() => {
               $('#save-status').removeClass('fade-out');
-              $('#save-status').css('display','none');
-            }, 1000);
-          }, 3000);          
+              $('#save-status').css('display', 'none');
+            }, 1500);
+          }, 1000);
+
 
           console.log(response);
         }).catch((error) => {
