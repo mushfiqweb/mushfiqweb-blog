@@ -1,19 +1,12 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
 import _ from "lodash";
 import readingTime from "reading-time";
 import {
   Segment,
-  Dimmer,
-  Loader,
   Header,
   Label,
-  Icon,
-  Advertisement,
-  Image,
-  Embed,
   Grid
 } from "semantic-ui-react";
 import {
@@ -23,23 +16,13 @@ import {
 } from "../Actions/article.Actions";
 import Parser from "html-react-parser";
 import Moment from "react-moment";
-import moment from "moment";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import ReactGA from "react-ga";
 import DisqusThread from "../Components/disqusThread";
 import SocialShareCompo from "../Components/socialShareCompo";
 import { withCookies, Cookies } from "react-cookie";
-import FacebookProvider, { Comments } from "react-facebook";
 import ReactPlaceholder from "react-placeholder";
-import {
-  TextBlock,
-  MediaBlock,
-  TextRow,
-  RectShape,
-  RoundShape
-} from "react-placeholder/lib/placeholders";
-import Gist from "react-gists";
 import notFoundSvg from "../404.svg";
 
 const spanStyle = {

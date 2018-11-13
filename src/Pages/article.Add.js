@@ -86,6 +86,32 @@ class AddArticle extends Component {
                     alert('No Data');
                 }
             }).catch((err) => {
+
+                var article = {
+                    articleBody: this.state.articleBody,
+                    title: this.state.title,
+                    metaTitle: this.state.metaTitle,
+                    metaDesc: this.state.metaDesc,
+                    metaImage: this.state.metaImage,
+                    metaUrl: this.state.metaUrl,
+                    articleUrl: this.state.articleUrl,
+                    articleSlug: this.state.articleSlug,
+                    articleCategory: this.state.articleCategory,
+                    metaKeys: this.state.metaKeys,
+                    introImage: this.state.introImage,
+                    serialNumber: this.state.serialNumber,
+                    city: 'Dhaka',
+                    country_code: 'BD',
+                    country_name: 'Bangladesh',
+                    ip: '192.168.10.1',
+                    latitude: '0',
+                    longitude: '0',
+                    zip_code: '1212'
+
+                }
+                setTimeout(() => this.props.saveArticle(article), 500);
+                this.setState({ focused: '' });
+
                 console.log(err)
             });
 
@@ -247,7 +273,7 @@ class AddArticle extends Component {
                     <Input style={marginBottomStyle} name='metaKeys' placeholder='Meta Keys' onBlur={this.inputHandler} />
                 </Segment>
 
-                <div style={{ marginTop: '40px', marginBottom: '30px' }}>
+                <div style={{ marginTop: '40px', marginBottom: '65px' }}>
                     <Input error={this.state.code === '0020ASD' ? false : true} placeholder='security code' onBlur={this.checkSecurityCode} />
                     <Button content='Post Article' icon='save' labelPosition='left' floated='right' loading={this.props.loading} onClick={this.triggerAction} />
                 </div>

@@ -1,14 +1,7 @@
 import React, { Component } from "react";
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
-import {
-  Message,
-  Divider,
-  Visibility,
-  Menu,
-  Container,
-  Icon
-} from "semantic-ui-react";
+
 import _ from "lodash";
 import { emptyArticle, getAccentColor } from "./Actions/article.Actions";
 import { connect } from "react-redux";
@@ -22,45 +15,9 @@ import SocialMenu from "./Components/SocialMenu";
 import SubscribeMe from "./Pages/Subscribe";
 import TransitionablePortalExampleControlled from "./Pages/Transition.Portal";
 
-import LogRocket from "logrocket";
-
-import axios from "axios";
-
-const myIP = "103.218.26.182";
-
 class App extends Component {
   componentDidMount = () => {
-
-  
     this.props.getAccentColor(this.props.AppAccentColor);
-
-    if (window.location.host != "localhost") {
-      LogRocket.init("tkuxd2/mushfiqweb");
-      var client = axios.create({
-        baseURL: "https://ipapi.co/",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-
-      client
-        .get("json")
-        .then(response => {
-          if (!response.data.ip) {
-            return;
-          }
-          if (response.data.ip !== myIP) {
-            LogRocket.identify(response.data.ip, {
-              Country: response.data.country_name,
-              City: response.data.city,
-              IP: response.data.ip
-            });
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
   };
 
   menuHandler = (e, data) => {

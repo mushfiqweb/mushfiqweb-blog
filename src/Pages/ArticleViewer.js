@@ -5,7 +5,6 @@ import { fetchArticles, getAccentColor, initFetch } from '../Actions/article.Act
 import ArticleCard from '../Components/ArticleCard.Component'
 
 import ReactGA from 'react-ga';
-import Container from 'semantic-ui-react/dist/commonjs/elements/Container/Container';
 
 class ArticleViewer extends Component {
     state = {
