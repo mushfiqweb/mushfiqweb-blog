@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import _ from "lodash";
 import readingTime from "reading-time";
-import {
-  Segment,
-  Header,
-  Label,
-  Grid
-} from "semantic-ui-react";
+import { Segment, Header, Label, Grid } from "semantic-ui-react";
 import {
   fetchArticle,
   getAccentColor,
@@ -62,7 +57,7 @@ class ArticleDetails extends Component {
     menuFixed: false,
     overlayFixed: false,
     rating: false,
-    maxRating: "",    
+    maxRating: "",
     isRated: false,
     ratingDoneMsg: "Rate The Article!",
     nextUrl: "",
@@ -176,8 +171,6 @@ class ArticleDetails extends Component {
           });
       }, 500);
 
-
-
       const articleStats = nextProps.article
         ? readingTime(nextProps.article.articleBody)
         : "";
@@ -279,7 +272,6 @@ class ArticleDetails extends Component {
         };
       }
 
-      
       if (articleObj._id !== "" && articleObj._id) {
         webClient
           .put("/api/article/" + articleObj._id, articleObj)
@@ -724,7 +716,8 @@ class ArticleDetails extends Component {
                     Please navigate to{" "}
                     <Link className="cool-link pulse Alegreya" to="/articles">
                       Article List
-                    </Link>!
+                    </Link>
+                    !
                   </h1>
                 </div>
               </Header>
@@ -911,7 +904,8 @@ function mapStateToProps(state) {
 }
 
 export default withCookies(
-  connect(mapStateToProps, { fetchArticle, getAccentColor, emptyArticle })(
-    ArticleDetails
-  )
+  connect(
+    mapStateToProps,
+    { fetchArticle, getAccentColor, emptyArticle }
+  )(ArticleDetails)
 );
