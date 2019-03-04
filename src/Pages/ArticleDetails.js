@@ -46,7 +46,7 @@ const StyleSheet = {
 };
 
 const webClient = axios.create({
-  baseURL: "https://mushfiqweb-api.herokuapp.com",
+  baseURL: "https://api.mushfiqweb.com",
   headers: {
     "Content-Type": "application/json"
   }

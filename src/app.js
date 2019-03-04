@@ -7,6 +7,7 @@ import { emptyArticle, getAccentColor } from "./Actions/article.Actions";
 import { connect } from "react-redux";
 import Home from "./Pages/landingPage";
 import ArticleDetails from "./Pages/ArticleDetails";
+import TimeZone from "./Pages/TimeZone";
 import ArticleViewer from "./Pages/ArticleViewer";
 import AddArticle from "./Pages/article.Add";
 import InstaFeed from "./Pages/InstaFeed";
@@ -136,17 +137,14 @@ class App extends Component {
         >
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/how-to-keep-up-with-different-timezones-around-the-world" component={TimeZone} />
             <Route exact path="/articles" component={ArticleViewer} />
             <Route exact path="/articleadd" component={AddArticle} />
             <Route exact path="/InstaFeed" component={InstaFeed} />
             <Route exact path="/GithubTrends" component={GithubTrends} />
             <Route exact path="/Subscribe" component={SubscribeMe} />
-            <Route
-              exact
-              path="/TransitionablePortalExampleControlled"
-              component={TransitionablePortalExampleControlled}
-            />
             <Route exact path="/:articleUrl" component={ArticleDetails} />
+
           </Switch>
         </div>
         <SocialMenu accent={this.props.AppAccentColor} />

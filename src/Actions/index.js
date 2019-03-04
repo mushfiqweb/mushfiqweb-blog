@@ -17,9 +17,10 @@ export const scraperClientDev = axios.create({
 })
 
 /* PRODUCTION CLIENTS */
-
+//https://api.mushfiqweb.com/
+//https://mushfiqweb-api.herokuapp.com
 export const apiClientProd = axios.create({
-    baseURL: "https://mushfiqweb-api.herokuapp.com",
+    baseURL: "https://api.mushfiqweb.com",
     headers: {
         "Content-Type": "application/json"
     }
