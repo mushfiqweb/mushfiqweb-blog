@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Change Color Dynamically
+	</title>
+
+	<style>
+		.animated-img {
+			-webkit-animation-duration: 2s;
+			-moz-animation-duration: 2s;
+			-ms-animation-duration: 2s;
+			-o-animation-duration: 2s;
+			animation-duration: 2s;
+			-webkit-animation-fill-mode: both;
+			-moz-animation-fill-mode: both;
+			-ms-animation-fill-mode: both;
+			-o-animation-fill-mode: both;
+			animation-fill-mode: both;
+		}
+
+		@-webkit-keyframes fadeIn-img {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+
+		@keyframes fadeIn-img {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+
+		.fadeIn-img {
+			-webkit-animation-name: fadeIn-img;
+			animation-name: fadeIn-img;
+		}
+
+
+		@-webkit-keyframes fadeOut-img {
+			0% {
+				opacity: 1;
+			}
+			100% {
+				opacity: 0;
+			}
+		}
+
+		@keyframes fadeOut-img {
+			0% {
+				opacity: 1;
+			}
+			100% {
+				opacity: 0;
+			}
+		}
+
+		.fadeOut-img {
+			-webkit-animation-name: fadeOut-img;
+			animation-name: fadeOut-img;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="animated-img fadeIn-img">
+		<header>
+			<h2 class="">
+				I AM FADING IIIIINNNN!
+			</h2>
+		</header>
+	</div>
+	<div class="animated-img fadeOut-img">
+		<header>
+			<h2 class="">
+				I AM FADING OOUUUTTT!
+			</h2>
+		</header>
+	</div>
+	<!-- CLICK TO CHANGE COLOR -->
+	<input class="color-input" type="color" value="#d01919" />
+	<img src="https://i.imgur.com/az5o2p2.png" />
+
+</body>
+
+</html>

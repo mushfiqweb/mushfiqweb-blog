@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="I have been working on Web Application Development for more than five years. Once I started my career on ASP.NET Development but eventually switched everything to JavaScript. And I'm loving JavaScript everywhere now!">
+  <meta name="keywords" content="Frontend Developer, Javascript Developer, Full Stack Developer, Tech Geek, Mushfiq, Mushfiqur Rahman, Mushfiqur, Mushfiqweb, Mushfiqur's blog, React, Reactjs, React Developer, Reactjs developer">
+  <title>Center a div element Vertically and Horizontally Using CSS3 Transform | mushfiqWEB - mushfiqur's blog</title>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.mushfiqweb.com">
+  <meta property="og:title" content="mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast">
+  <meta property="og:image" content="https://i.imgur.com/01NTyYX.png">
+  <meta property="og:description" content="I have been working on Web Application Development for more than five years. Once I started my career on ASP.NET Development but eventually switched everything to JavaScript. And I'm loving JavaScript everywhere now!">
+  <meta property="og:site_name" content="mushfiqWEB - mushfiqur's blog">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@mushfiqweb">
+  <meta property="twitter:url" content="https://www.mushfiqweb.com">
+  <meta name="twitter:creator" content="@mushfiqweb">
+  <meta name="twitter:title" content="mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast">
+  <meta name="twitter:description" content="I have been working on Web Application Development for more than five years. Once I started my career on ASP.NET Development but eventually switched everything to JavaScript. And I'm loving JavaScript everywhere now!">
+  <meta name="twitter:image" content="https://i.imgur.com/01NTyYX.png">
+  <meta itemprop="name" content="mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast">
+  <meta itemprop="description" content="I have been working on Web Application Development for more than five years. Once I started my career on ASP.NET Development but eventually switched everything to JavaScript. And I'm loving JavaScript everywhere now!">
+  <meta itemprop="image" content="http://i.imgur.com/01NTyYX.png">
+
+  
+  <meta property="fb:app_id" content="920812974736093">
+  <meta name="p:domain_verify" content="03c5661dfaaf44c99511beab42d1b6ba">
+  <meta name="google-site-verification" content="x722Fh0DXqHucppdfXIN55BaYesG728oAWoc9g3eb8M">
+  <meta name="msvalidate.01" content="6E12217175EA3B0ABE1852F04509885C">
+
+
+
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="semantic.min.css" rel="stylesheet">
+  <link href="Style/style.css" rel="stylesheet">
+  <style>
+    .ui.label>a {
+      opacity: 1
+    }
+
+    .fr-wrapper {
+      height: 700px !important
+    }
+
+    .ui .secondary .menu {
+      display: none
+    }
+
+    .fr-box.fr-basic .fr-element {
+      max-height: 650px
+    }
+
+    i.small.icon,
+    i.small.icons {
+      font-size: 1.4em !important
+    }
+
+    #disqus_thread {
+      position: relative
+    }
+
+    #disqus_thread:after {
+      content: "";
+      display: block;
+      height: 55px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      background: #fff
+    }
+
+    div.ui .message>a {
+      display: inline-block;
+      color: #838383;
+      text-decoration: none;
+      font-weight: 400
+    }
+
+    div.ui .message>a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #a1a1a1;
+      transition: width .3s;
+      -moz-transition: width .3s;
+      -o-transition: width .3s;
+      -ms-transition: width .3s
+    }
+
+    div.ui .message>a:hover {
+      color: #4d4d4d
+    }
+
+    div.ui .message>a:hover::after {
+      width: 100%
+    }
+
+    .share-btn-div {
+      display: flex;
+      margin: 0 10px 0 10px
+    }
+
+    .share-btn-margin {
+      margin-right: -5px;
+      cursor: pointer
+    }
+
+    .share-counter-text {
+      color: #fff !important;
+      font-weight: 600;
+      height: 100%;
+      padding: 10px
+    }
+
+    .chitikaAdBlock {
+      margin: 0 auto !important;
+      display: block !important
+    }
+
+    ::selection {
+      text-shadow: none !important;
+      color: #fff !important;
+      background: #424242 !important
+    }
+  </style>
+
+  <script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "email": "mailto:hello@mushfiqweb.com",
+    "jobTitle": "Software Engineer",
+    "name": "Mushfiqur Rahman Shishir",
+    "gender": "male",
+    "url": "https://mushfiqweb.com",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": ""
+    },
+    "headline": "mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast",
+    "alternativeHeadline": "mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast",
+    "image": "https://i.imgur.com/01NTyYX.png",
+    "author": {
+      "@type": "Person",
+      "name": "Mushfiqur Rahman Shishir"
+    },
+    "award": "Best article ever written",
+    "editor": {
+      "@type": "Person",
+      "name": "Mushfiqur Rahman Shishir"
+    },
+    "keywords": "mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast",
+    "publisher": {
+      "@type": "Person",
+      "name": "mushfiqWEB.com - blog of a tech geek, javascript developer, photographer and music enthusiast",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://i.imgur.com/01NTyYX.png"
+      }
+    },
+    "sameAs": ["https://www.facebook.com/shiss", "https://instagram.com/mushfiqweb",
+      "https://www.linkedin.com/in/mushfiqweb", "https://twitter.com//mushfiqweb",
+      "https://stackoverflow.com/users/1421285/mushfiq", "https://github.com/mushfiqweb",
+      "https://www.flickr.com/photos/shiss", "https://www.last.fm/user/cOdEnAmE_06",
+      "https://www.pinterest.com/mushfiqweb", "https://mushfiqweb.tumblr.com",
+      "https://plus.google.com/+MushfiqurRahmnamShishir"
+    ],
+ "description": "I have been working on Web Application Development for more than five years. Once I started my career on
+ASP.NET Development but eventually switched everything to JavaScript. And I'm loving JavaScript everywhere now!"
+  }</script>
+
+</head>
+
+<body>
+
+  <div id="root">
+    <div>
+      <div style="border-bottom: 2px solid blue; box-shadow: rgba(8, 7, 7, 0.2) 0px 3px 5px; display: flex; flex-direction: row; justify-content: space-around; left: 0px; top: 0px; position: sticky; z-index: 101; margin: 0px; background: rgb(255, 255, 255); width: 100vw;">
+        <div title="Mushfiqur's Blog" class="item borderless menu-home pulse effect-shine link--ilin"><span title="Mushfiqur's Blog">Mushfiqur's
+          </span> <span title="Mushfiqur's Blog" style="background-color: rgb(45, 45, 45); line-height: 30px; color: rgb(255, 255, 255);">
+            Blog </span></div>
+        <div title="All Articles" class="item borderless right menu-home-small pulse effect-shine">All Articles</div>
+      </div>
+      <div class="ui container" style="min-height: 80vh; margin-top: 10px;">
+        <div>
+
+        </div>
+      </div>
+      <div style="border-top: 1px solid blue; box-shadow: rgba(8, 7, 7, 0.2) 0px 3px 5px; padding: 10px 0px; left: 0px; bottom: 0px; position: fixed; z-index: 101; margin: 0px auto; background: rgb(255, 255, 255); width: 100vw; text-align: center;"><a
+          target="_blank" href="http://share.mushfiqweb.com/Facebook"><i title="View Facebook" aria-hidden="true" class="blue facebook small icon pulse"></i></a><a
+          target="_blank" href="http://share.mushfiqweb.com/Twitter"><i title="View Tweets" aria-hidden="true" class="blue twitter small icon pulse"></i></a><a
+          target="_blank" href="http://share.mushfiqweb.com/Stackoverflow"><i title="View StackOverflow" aria-hidden="true"
+            class="blue stack overflow small icon pulse"></i></a><a target="_blank" href="http://share.mushfiqweb.com/GitHub"><i
+            title="View Repositories" aria-hidden="true" class="blue github small icon pulse"></i></a><a target="_blank" href="http://share.mushfiqweb.com/Instagram"><i
+            title="View Instagram" aria-hidden="true" class="blue instagram small icon pulse"></i></a><a target="_blank" href="http://share.mushfiqweb.com/Flickr"><i
+            title="View Photos" aria-hidden="true" class="blue flickr small icon pulse"></i></a><a target="_blank" href="http://share.mushfiqweb.com/Google"><i
+            title="View Google" aria-hidden="true" class="blue google plus small icon pulse"></i></a><a target="_blank" href="http://share.mushfiqweb.com/LastFM"><i
+            title="View Scrobbles" aria-hidden="true" class="blue lastfm small icon pulse"></i></a><a target="_blank" href="http://share.mushfiqweb.com/LinkedIn"><i
+            title="View Pro Network" aria-hidden="true" class="blue linkedin small icon pulse"></i></a><a target="_top" href="mailto:hello@mushfiqweb.com"><i
+            title="Send Email" aria-hidden="true" class="blue mail small icon pulse"></i></a></div>
+    </div>
+  </div>
+
+</body>
+
+</html>

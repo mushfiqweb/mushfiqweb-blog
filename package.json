@@ -8,6 +8,7 @@
     "colors": "^1.1.2",
     "facebook-plugins": "^1.0.5",
     "firebase": "^5.4.1",
+    "firebase-tools": "^6.9.2",
     "froala-editor": "^2.7.3",
     "glamor": "^2.20.40",
     "html-react-parser": "latest",
@@ -49,11 +50,13 @@
     "shortid": "^2.2.8",
     "slick-carousel": "^1.8.1",
     "super-react-gist": "^1.0.1",
-    "twit": "^2.2.9"
+    "twit": "^2.2.9",
+    "react-snap": "latest"
   },
   "scripts": {
     "start": "SET PORT=1971 && react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "react-snap",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
