@@ -94,8 +94,8 @@ class HomeLayout extends Component {
         switched everything to JavaScript.
         </h2>
       <h2 style={window.innerWidth > 850 ? headerStyle.h2Large : headerStyle.h2Small}>
-        And I'm <Icon name="heart" color="red" />ing JavaScript everywhere now! Currently working @ <Link target="_blank" to="https://www.echologyx.com" className="cool-link Alegreya"> EchoLogyx </Link> as a Senior Software Engineer.
-        </h2>             
+        And I'm <Icon name="heart" color="red" />ing JavaScript everywhere now! Currently working @ <Link target="_blank" to="https://www.echologyx.com" className="cool-link Alegreya"> EchoLogyx </Link> as a Senior Software Engineer for <Link target="_blank" to="https://www.ninetypercent.com" className="cool-link Alegreya">NINETY PERCENT</Link>.
+        </h2>
 
       <h3
         style={
